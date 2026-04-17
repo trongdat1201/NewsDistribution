@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DATNWF.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +17,8 @@ namespace DATNWF
         public Home()
         {
             InitializeComponent();
-            //this.WindowState = FormWindowState.Maximized;
+            this.Size = new Size(1280, 720);
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
         private void OpenChildForm(Form childForm)
         {
@@ -37,27 +39,29 @@ namespace DATNWF
         {
             OpenChildForm(new frmPublications());
         }
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmCustomers());
+        }
+        private void btnInvoices_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmInvoices());
+        }
         private void dayandtime_Tick(object sender, EventArgs e)
         {
-            // 1. Tạo một bức ảnh trống có kích thước bằng với PictureBox
             Bitmap bmp = new Bitmap(picTime.Width, picTime.Height);
 
-            // 2. Tạo đối tượng Graphics để "vẽ" lên bức ảnh đó
             using (Graphics g = Graphics.FromImage(bmp))
             {
-                // Khử răng cưa để chữ mượt hơn
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
-                // Thiết lập màu nền (tùy chọn)
                 g.Clear(Color.White);
 
-                // 3. Chuẩn bị nội dung và định dạng chữ
                 string text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 Font font = new Font("Arial", 16, FontStyle.Bold);
                 Brush brush = Brushes.Black; // Màu chữ
 
-                // 4. Vẽ chuỗi ký tự vào giữa PictureBox
                 SizeF textSize = g.MeasureString(text, font);
                 PointF position = new PointF(
                     (picTime.Width - textSize.Width) / 2,
@@ -66,9 +70,6 @@ namespace DATNWF
 
                 g.DrawString(text, font, brush, position);
             }
-
-            // 5. Gán bức ảnh đã vẽ vào PictureBox
-            // Giải phóng ảnh cũ để tránh tràn bộ nhớ
             if (picTime.Image != null) picTime.Image.Dispose();
             picTime.Image = bmp;
         }

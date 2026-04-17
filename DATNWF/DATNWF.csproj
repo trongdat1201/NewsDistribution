@@ -64,6 +64,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\frmCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmCustomers.Designer.cs">
+      <DependentUpon>frmCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmInvoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmInvoices.Designer.cs">
+      <DependentUpon>frmInvoices.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmPublications.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +90,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Views\frmCustomers.resx">
+      <DependentUpon>frmCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\frmInvoices.resx">
+      <DependentUpon>frmInvoices.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\frmPublications.resx">
       <DependentUpon>frmPublications.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,30 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\checklist.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\delivery.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\invoice.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\publication.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\customer-engagement.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\dashboard %283%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\gear.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\logout.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
