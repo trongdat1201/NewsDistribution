@@ -35,7 +35,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.pnlHeaderPublications = new Guna.UI2.WinForms.Guna2Panel();
-            this.pnlPublicationDesktop = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.dgvBao = new Guna.UI2.WinForms.Guna2DataGridView();
             this.colmaBao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,9 +45,8 @@
             this.colngayBatDau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.coltanSuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colsoGoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.pnlHeaderPublications.SuspendLayout();
-            this.pnlPublicationDesktop.SuspendLayout();
+            this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBao)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,16 +86,36 @@
             this.pnlHeaderPublications.Size = new System.Drawing.Size(1271, 100);
             this.pnlHeaderPublications.TabIndex = 0;
             // 
-            // pnlPublicationDesktop
+            // guna2Button1
             // 
-            this.pnlPublicationDesktop.BorderRadius = 20;
-            this.pnlPublicationDesktop.Controls.Add(this.dgvBao);
-            this.pnlPublicationDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlPublicationDesktop.Location = new System.Drawing.Point(0, 100);
-            this.pnlPublicationDesktop.Name = "pnlPublicationDesktop";
-            this.pnlPublicationDesktop.Padding = new System.Windows.Forms.Padding(20);
-            this.pnlPublicationDesktop.Size = new System.Drawing.Size(1271, 672);
-            this.pnlPublicationDesktop.TabIndex = 1;
+            this.guna2Button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.guna2Button1.BorderRadius = 17;
+            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button1.FillColor = System.Drawing.Color.Transparent;
+            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button1.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button1.HoverState.FillColor = System.Drawing.Color.Black;
+            this.guna2Button1.HoverState.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button1.Image")));
+            this.guna2Button1.ImageSize = new System.Drawing.Size(30, 30);
+            this.guna2Button1.Location = new System.Drawing.Point(1045, 12);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.Size = new System.Drawing.Size(206, 72);
+            this.guna2Button1.TabIndex = 5;
+            this.guna2Button1.Text = "Add New";
+            // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.Controls.Add(this.dgvBao);
+            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Panel1.Location = new System.Drawing.Point(0, 100);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.Padding = new System.Windows.Forms.Padding(20);
+            this.guna2Panel1.Size = new System.Drawing.Size(1271, 672);
+            this.guna2Panel1.TabIndex = 1;
             // 
             // dgvBao
             // 
@@ -143,7 +163,7 @@
             this.dgvBao.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvBao.RowTemplate.Height = 24;
             this.dgvBao.Size = new System.Drawing.Size(1231, 632);
-            this.dgvBao.TabIndex = 1;
+            this.dgvBao.TabIndex = 3;
             this.dgvBao.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvBao.ThemeStyle.AlternatingRowsStyle.Font = null;
             this.dgvBao.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
@@ -209,40 +229,19 @@
             this.colsoGoc.MinimumWidth = 6;
             this.colsoGoc.Name = "colsoGoc";
             // 
-            // guna2Button1
-            // 
-            this.guna2Button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.guna2Button1.BorderRadius = 17;
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button1.HoverState.FillColor = System.Drawing.Color.Black;
-            this.guna2Button1.HoverState.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Image = ((System.Drawing.Image)(resources.GetObject("guna2Button1.Image")));
-            this.guna2Button1.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button1.Location = new System.Drawing.Point(1045, 12);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(206, 72);
-            this.guna2Button1.TabIndex = 5;
-            this.guna2Button1.Text = "Add New";
-            // 
             // frmPublications
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1271, 772);
-            this.Controls.Add(this.pnlPublicationDesktop);
+            this.Controls.Add(this.guna2Panel1);
             this.Controls.Add(this.pnlHeaderPublications);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPublications";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.frmPublications_Load);
+            this.Load += new System.EventHandler(this.FrmPublications_Load);
             this.pnlHeaderPublications.ResumeLayout(false);
-            this.pnlPublicationDesktop.ResumeLayout(false);
+            this.guna2Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBao)).EndInit();
             this.ResumeLayout(false);
 
@@ -252,7 +251,8 @@
 
         private Guna.UI2.WinForms.Guna2TextBox lblSearch;
         private Guna.UI2.WinForms.Guna2Panel pnlHeaderPublications;
-        private Guna.UI2.WinForms.Guna2Panel pnlPublicationDesktop;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2DataGridView dgvBao;
         private System.Windows.Forms.DataGridViewTextBoxColumn colmaBao;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTen;
@@ -261,6 +261,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colngayBatDau;
         private System.Windows.Forms.DataGridViewTextBoxColumn coltanSuat;
         private System.Windows.Forms.DataGridViewTextBoxColumn colsoGoc;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

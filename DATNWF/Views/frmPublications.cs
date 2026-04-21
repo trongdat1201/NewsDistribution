@@ -17,7 +17,7 @@ namespace DATNWF
         public frmPublications()
         {
             InitializeComponent();
-            this.Load += frmPublications_Load;
+            this.Load += FrmPublications_Load;
             colmaBao.DataPropertyName = "maBao";
             colTen.DataPropertyName = "ten";
             colDVT.DataPropertyName = "DVT";
@@ -54,7 +54,7 @@ namespace DATNWF
                 }
             }
         }
-        private void frmPublications_Load(object sender, EventArgs e)
+        private void FrmPublications_Load(object sender, EventArgs e)
         {
             LoadData();
         }
