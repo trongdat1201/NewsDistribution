@@ -69,6 +69,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ThanhnienDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThanhnienDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ThanhnienDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThanhnienDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ThanhnienDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThanhnienDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ThanhnienDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThanhnienDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ThanhnienDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThanhnienDataSet4.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmCustomers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +120,30 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\frmSuaBao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmSuaBao.Designer.cs">
+      <DependentUpon>frmSuaBao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmSuaKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmSuaKhachHang.Designer.cs">
+      <DependentUpon>frmSuaKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmThemBao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmThemBao.Designer.cs">
+      <DependentUpon>frmThemBao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmThemKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmThemKhachHang.Designer.cs">
+      <DependentUpon>frmThemKhachHang.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Views\frmCustomers.resx">
       <DependentUpon>frmCustomers.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +161,18 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\frmSuaBao.resx">
+      <DependentUpon>frmSuaBao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\frmSuaKhachHang.resx">
+      <DependentUpon>frmSuaKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\frmThemBao.resx">
+      <DependentUpon>frmThemBao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\frmThemKhachHang.resx">
+      <DependentUpon>frmThemKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -122,6 +183,61 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="ThanhnienDataSet.xsc">
+      <DependentUpon>ThanhnienDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ThanhnienDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ThanhnienDataSet.xss">
+      <DependentUpon>ThanhnienDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet1.xsc">
+      <DependentUpon>ThanhnienDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ThanhnienDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ThanhnienDataSet1.xss">
+      <DependentUpon>ThanhnienDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet2.xsc">
+      <DependentUpon>ThanhnienDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ThanhnienDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ThanhnienDataSet2.xss">
+      <DependentUpon>ThanhnienDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet3.xsc">
+      <DependentUpon>ThanhnienDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ThanhnienDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ThanhnienDataSet3.xss">
+      <DependentUpon>ThanhnienDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet4.xsc">
+      <DependentUpon>ThanhnienDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ThanhnienDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ThanhnienDataSet4.xss">
+      <DependentUpon>ThanhnienDataSet4.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

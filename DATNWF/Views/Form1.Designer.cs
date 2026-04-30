@@ -36,17 +36,8 @@
             this.lblVersion = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.tableLayoutPanelTitle1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.tableLayoutPanelBtn = new System.Windows.Forms.TableLayoutPanel();
-            this.panelHeader = new Guna.UI2.WinForms.Guna2Panel();
-            this.pnlHeaderIcon = new System.Windows.Forms.TableLayoutPanel();
-            this.panelDesktop = new Guna.UI2.WinForms.Guna2Panel();
-            this.dayandtime = new System.Windows.Forms.Timer(this.components);
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.picTime = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.picMessage = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.picUser = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            this.picNotification = new Guna.UI2.WinForms.Guna2PictureBox();
             this.picLogo = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.tableLayoutPanelBtn = new System.Windows.Forms.TableLayoutPanel();
             this.btnLogout = new Guna.UI2.WinForms.Guna2Button();
             this.btnSetting = new Guna.UI2.WinForms.Guna2Button();
             this.btnInventory = new Guna.UI2.WinForms.Guna2Button();
@@ -55,18 +46,27 @@
             this.btnCustomers = new Guna.UI2.WinForms.Guna2Button();
             this.btnPublications = new Guna.UI2.WinForms.Guna2Button();
             this.btnDashboard = new Guna.UI2.WinForms.Guna2Button();
+            this.panelHeader = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.picTime = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.pnlHeaderIcon = new System.Windows.Forms.TableLayoutPanel();
+            this.picMessage = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.picUser = new Guna.UI2.WinForms.Guna2CirclePictureBox();
+            this.picNotification = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.panelDesktop = new Guna.UI2.WinForms.Guna2Panel();
+            this.dayandtime = new System.Windows.Forms.Timer(this.components);
             this.panelSidebar.SuspendLayout();
             this.tableLayoutPanelSidebar.SuspendLayout();
             this.tableLayoutPanelTitle1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.tableLayoutPanelBtn.SuspendLayout();
             this.panelHeader.SuspendLayout();
-            this.pnlHeaderIcon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTime)).BeginInit();
+            this.pnlHeaderIcon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMessage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNotification)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -83,7 +83,7 @@
             this.panelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSidebar.Location = new System.Drawing.Point(0, 0);
             this.panelSidebar.Name = "panelSidebar";
-            this.panelSidebar.Size = new System.Drawing.Size(276, 720);
+            this.panelSidebar.Size = new System.Drawing.Size(276, 768);
             this.panelSidebar.TabIndex = 0;
             // 
             // tableLayoutPanelSidebar
@@ -101,7 +101,7 @@
             this.tableLayoutPanelSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.39711F));
             this.tableLayoutPanelSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79.60289F));
             this.tableLayoutPanelSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tableLayoutPanelSidebar.Size = new System.Drawing.Size(276, 720);
+            this.tableLayoutPanelSidebar.Size = new System.Drawing.Size(276, 768);
             this.tableLayoutPanelSidebar.TabIndex = 0;
             // 
             // lblVersion
@@ -109,7 +109,7 @@
             this.lblVersion.AutoSize = false;
             this.lblVersion.BackColor = System.Drawing.Color.Transparent;
             this.lblVersion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblVersion.Location = new System.Drawing.Point(3, 676);
+            this.lblVersion.Location = new System.Drawing.Point(3, 724);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(270, 41);
             this.lblVersion.TabIndex = 0;
@@ -129,7 +129,7 @@
             this.tableLayoutPanelTitle1.RowCount = 2;
             this.tableLayoutPanelTitle1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelTitle1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.tableLayoutPanelTitle1.Size = new System.Drawing.Size(270, 131);
+            this.tableLayoutPanelTitle1.Size = new System.Drawing.Size(270, 141);
             this.tableLayoutPanelTitle1.TabIndex = 0;
             // 
             // lblTitle
@@ -138,12 +138,23 @@
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(3, 93);
+            this.lblTitle.Location = new System.Drawing.Point(3, 103);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(264, 35);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Newspaper Distribution";
             this.lblTitle.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // picLogo
+            // 
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
+            this.picLogo.ImageRotate = 0F;
+            this.picLogo.Location = new System.Drawing.Point(3, 3);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(264, 80);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLogo.TabIndex = 2;
+            this.picLogo.TabStop = false;
             // 
             // tableLayoutPanelBtn
             // 
@@ -158,7 +169,7 @@
             this.tableLayoutPanelBtn.Controls.Add(this.btnPublications, 0, 1);
             this.tableLayoutPanelBtn.Controls.Add(this.btnDashboard, 0, 0);
             this.tableLayoutPanelBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelBtn.Location = new System.Drawing.Point(3, 140);
+            this.tableLayoutPanelBtn.Location = new System.Drawing.Point(3, 150);
             this.tableLayoutPanelBtn.Name = "tableLayoutPanelBtn";
             this.tableLayoutPanelBtn.RowCount = 8;
             this.tableLayoutPanelBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
@@ -169,8 +180,195 @@
             this.tableLayoutPanelBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanelBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanelBtn.Size = new System.Drawing.Size(270, 530);
+            this.tableLayoutPanelBtn.Size = new System.Drawing.Size(270, 568);
             this.tableLayoutPanelBtn.TabIndex = 1;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BorderRadius = 20;
+            this.btnLogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLogout.FillColor = System.Drawing.Color.Transparent;
+            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.Black;
+            this.btnLogout.HoverState.FillColor = System.Drawing.Color.Black;
+            this.btnLogout.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.Image = global::DATNWF.Properties.Resources.logout;
+            this.btnLogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnLogout.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnLogout.Location = new System.Drawing.Point(3, 500);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(264, 65);
+            this.btnLogout.TabIndex = 7;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.BorderRadius = 20;
+            this.btnSetting.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSetting.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSetting.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSetting.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSetting.FillColor = System.Drawing.Color.Transparent;
+            this.btnSetting.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSetting.ForeColor = System.Drawing.Color.Black;
+            this.btnSetting.HoverState.FillColor = System.Drawing.Color.Black;
+            this.btnSetting.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnSetting.Image = global::DATNWF.Properties.Resources.gear;
+            this.btnSetting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSetting.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnSetting.Location = new System.Drawing.Point(3, 429);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Size = new System.Drawing.Size(264, 65);
+            this.btnSetting.TabIndex = 6;
+            this.btnSetting.Text = "Setting";
+            this.btnSetting.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // btnInventory
+            // 
+            this.btnInventory.BorderRadius = 20;
+            this.btnInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnInventory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInventory.FillColor = System.Drawing.Color.Transparent;
+            this.btnInventory.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInventory.ForeColor = System.Drawing.Color.Black;
+            this.btnInventory.HoverState.FillColor = System.Drawing.Color.Black;
+            this.btnInventory.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnInventory.Image = global::DATNWF.Properties.Resources.checklist;
+            this.btnInventory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnInventory.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnInventory.Location = new System.Drawing.Point(3, 358);
+            this.btnInventory.Name = "btnInventory";
+            this.btnInventory.Size = new System.Drawing.Size(264, 65);
+            this.btnInventory.TabIndex = 5;
+            this.btnInventory.Text = "Inventory";
+            this.btnInventory.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // btnDelivery
+            // 
+            this.btnDelivery.BorderRadius = 20;
+            this.btnDelivery.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnDelivery.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnDelivery.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnDelivery.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnDelivery.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDelivery.FillColor = System.Drawing.Color.Transparent;
+            this.btnDelivery.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelivery.ForeColor = System.Drawing.Color.Black;
+            this.btnDelivery.HoverState.FillColor = System.Drawing.Color.Black;
+            this.btnDelivery.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnDelivery.Image = global::DATNWF.Properties.Resources.delivery;
+            this.btnDelivery.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnDelivery.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnDelivery.Location = new System.Drawing.Point(3, 287);
+            this.btnDelivery.Name = "btnDelivery";
+            this.btnDelivery.Size = new System.Drawing.Size(264, 65);
+            this.btnDelivery.TabIndex = 4;
+            this.btnDelivery.Text = "Dispatch/Delivery";
+            this.btnDelivery.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
+            // btnInvoices
+            // 
+            this.btnInvoices.BorderRadius = 20;
+            this.btnInvoices.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnInvoices.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnInvoices.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnInvoices.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnInvoices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInvoices.FillColor = System.Drawing.Color.Transparent;
+            this.btnInvoices.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInvoices.ForeColor = System.Drawing.Color.Black;
+            this.btnInvoices.HoverState.FillColor = System.Drawing.Color.Black;
+            this.btnInvoices.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnInvoices.Image = global::DATNWF.Properties.Resources.invoice;
+            this.btnInvoices.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnInvoices.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnInvoices.Location = new System.Drawing.Point(3, 216);
+            this.btnInvoices.Name = "btnInvoices";
+            this.btnInvoices.Size = new System.Drawing.Size(264, 65);
+            this.btnInvoices.TabIndex = 3;
+            this.btnInvoices.Text = "Invoices/Orders";
+            this.btnInvoices.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnInvoices.Click += new System.EventHandler(this.btnInvoices_Click);
+            // 
+            // btnCustomers
+            // 
+            this.btnCustomers.BorderRadius = 20;
+            this.btnCustomers.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnCustomers.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnCustomers.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnCustomers.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCustomers.FillColor = System.Drawing.Color.Transparent;
+            this.btnCustomers.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomers.ForeColor = System.Drawing.Color.Black;
+            this.btnCustomers.HoverState.FillColor = System.Drawing.Color.Black;
+            this.btnCustomers.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnCustomers.Image = global::DATNWF.Properties.Resources.customer_engagement;
+            this.btnCustomers.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnCustomers.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnCustomers.Location = new System.Drawing.Point(3, 145);
+            this.btnCustomers.Name = "btnCustomers";
+            this.btnCustomers.Size = new System.Drawing.Size(264, 65);
+            this.btnCustomers.TabIndex = 2;
+            this.btnCustomers.Text = "Customers";
+            this.btnCustomers.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnCustomers.Click += new System.EventHandler(this.btnCustomer_Click);
+            // 
+            // btnPublications
+            // 
+            this.btnPublications.BorderRadius = 20;
+            this.btnPublications.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnPublications.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnPublications.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnPublications.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnPublications.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPublications.FillColor = System.Drawing.Color.Transparent;
+            this.btnPublications.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPublications.ForeColor = System.Drawing.Color.Black;
+            this.btnPublications.HoverState.FillColor = System.Drawing.Color.Black;
+            this.btnPublications.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnPublications.Image = global::DATNWF.Properties.Resources.publication;
+            this.btnPublications.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnPublications.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnPublications.Location = new System.Drawing.Point(3, 74);
+            this.btnPublications.Name = "btnPublications";
+            this.btnPublications.Size = new System.Drawing.Size(264, 65);
+            this.btnPublications.TabIndex = 1;
+            this.btnPublications.Text = "Publications";
+            this.btnPublications.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnPublications.Click += new System.EventHandler(this.btnPublications_Click);
+            // 
+            // btnDashboard
+            // 
+            this.btnDashboard.BorderRadius = 20;
+            this.btnDashboard.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnDashboard.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnDashboard.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnDashboard.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDashboard.FillColor = System.Drawing.Color.Transparent;
+            this.btnDashboard.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDashboard.ForeColor = System.Drawing.Color.Black;
+            this.btnDashboard.HoverState.FillColor = System.Drawing.Color.Black;
+            this.btnDashboard.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnDashboard.Image = global::DATNWF.Properties.Resources.dashboard__3_;
+            this.btnDashboard.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnDashboard.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnDashboard.Location = new System.Drawing.Point(3, 3);
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.Size = new System.Drawing.Size(264, 65);
+            this.btnDashboard.TabIndex = 0;
+            this.btnDashboard.Text = "Dashboard";
+            this.btnDashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // panelHeader
             // 
@@ -181,41 +379,8 @@
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(276, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1004, 76);
+            this.panelHeader.Size = new System.Drawing.Size(1090, 76);
             this.panelHeader.TabIndex = 1;
-            // 
-            // pnlHeaderIcon
-            // 
-            this.pnlHeaderIcon.ColumnCount = 3;
-            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.pnlHeaderIcon.Controls.Add(this.picMessage, 0, 0);
-            this.pnlHeaderIcon.Controls.Add(this.picUser, 2, 0);
-            this.pnlHeaderIcon.Controls.Add(this.picNotification, 1, 0);
-            this.pnlHeaderIcon.Location = new System.Drawing.Point(777, 3);
-            this.pnlHeaderIcon.Name = "pnlHeaderIcon";
-            this.pnlHeaderIcon.RowCount = 1;
-            this.pnlHeaderIcon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlHeaderIcon.Size = new System.Drawing.Size(215, 69);
-            this.pnlHeaderIcon.TabIndex = 4;
-            // 
-            // panelDesktop
-            // 
-            this.panelDesktop.BackColor = System.Drawing.Color.Transparent;
-            this.panelDesktop.BorderRadius = 20;
-            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDesktop.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.panelDesktop.Location = new System.Drawing.Point(276, 76);
-            this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(1004, 644);
-            this.panelDesktop.TabIndex = 2;
-            // 
-            // dayandtime
-            // 
-            this.dayandtime.Enabled = true;
-            this.dayandtime.Interval = 1000;
-            this.dayandtime.Tick += new System.EventHandler(this.dayandtime_Tick);
             // 
             // guna2PictureBox1
             // 
@@ -239,6 +404,22 @@
             this.picTime.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picTime.TabIndex = 0;
             this.picTime.TabStop = false;
+            // 
+            // pnlHeaderIcon
+            // 
+            this.pnlHeaderIcon.ColumnCount = 3;
+            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlHeaderIcon.Controls.Add(this.picMessage, 0, 0);
+            this.pnlHeaderIcon.Controls.Add(this.picUser, 2, 0);
+            this.pnlHeaderIcon.Controls.Add(this.picNotification, 1, 0);
+            this.pnlHeaderIcon.Location = new System.Drawing.Point(863, 4);
+            this.pnlHeaderIcon.Name = "pnlHeaderIcon";
+            this.pnlHeaderIcon.RowCount = 1;
+            this.pnlHeaderIcon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.pnlHeaderIcon.Size = new System.Drawing.Size(215, 69);
+            this.pnlHeaderIcon.TabIndex = 4;
             // 
             // picMessage
             // 
@@ -282,209 +463,28 @@
             this.picNotification.TabIndex = 2;
             this.picNotification.TabStop = false;
             // 
-            // picLogo
+            // panelDesktop
             // 
-            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
-            this.picLogo.ImageRotate = 0F;
-            this.picLogo.Location = new System.Drawing.Point(3, 3);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(264, 80);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picLogo.TabIndex = 2;
-            this.picLogo.TabStop = false;
+            this.panelDesktop.BackColor = System.Drawing.Color.Transparent;
+            this.panelDesktop.BorderRadius = 20;
+            this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDesktop.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.panelDesktop.Location = new System.Drawing.Point(276, 76);
+            this.panelDesktop.Name = "panelDesktop";
+            this.panelDesktop.Size = new System.Drawing.Size(1090, 692);
+            this.panelDesktop.TabIndex = 2;
             // 
-            // btnLogout
+            // dayandtime
             // 
-            this.btnLogout.BorderRadius = 20;
-            this.btnLogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLogout.FillColor = System.Drawing.Color.Transparent;
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.Black;
-            this.btnLogout.HoverState.FillColor = System.Drawing.Color.Black;
-            this.btnLogout.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Image = global::DATNWF.Properties.Resources.logout;
-            this.btnLogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnLogout.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnLogout.Location = new System.Drawing.Point(3, 465);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(264, 62);
-            this.btnLogout.TabIndex = 7;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // btnSetting
-            // 
-            this.btnSetting.BorderRadius = 20;
-            this.btnSetting.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSetting.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSetting.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSetting.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSetting.FillColor = System.Drawing.Color.Transparent;
-            this.btnSetting.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetting.ForeColor = System.Drawing.Color.Black;
-            this.btnSetting.HoverState.FillColor = System.Drawing.Color.Black;
-            this.btnSetting.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnSetting.Image = global::DATNWF.Properties.Resources.gear;
-            this.btnSetting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnSetting.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnSetting.Location = new System.Drawing.Point(3, 399);
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(264, 60);
-            this.btnSetting.TabIndex = 6;
-            this.btnSetting.Text = "Setting";
-            this.btnSetting.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // btnInventory
-            // 
-            this.btnInventory.BorderRadius = 20;
-            this.btnInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnInventory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnInventory.FillColor = System.Drawing.Color.Transparent;
-            this.btnInventory.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInventory.ForeColor = System.Drawing.Color.Black;
-            this.btnInventory.HoverState.FillColor = System.Drawing.Color.Black;
-            this.btnInventory.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnInventory.Image = global::DATNWF.Properties.Resources.checklist;
-            this.btnInventory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnInventory.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnInventory.Location = new System.Drawing.Point(3, 333);
-            this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(264, 60);
-            this.btnInventory.TabIndex = 5;
-            this.btnInventory.Text = "Inventory";
-            this.btnInventory.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // btnDelivery
-            // 
-            this.btnDelivery.BorderRadius = 20;
-            this.btnDelivery.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDelivery.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnDelivery.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnDelivery.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnDelivery.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDelivery.FillColor = System.Drawing.Color.Transparent;
-            this.btnDelivery.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelivery.ForeColor = System.Drawing.Color.Black;
-            this.btnDelivery.HoverState.FillColor = System.Drawing.Color.Black;
-            this.btnDelivery.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnDelivery.Image = global::DATNWF.Properties.Resources.delivery;
-            this.btnDelivery.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDelivery.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnDelivery.Location = new System.Drawing.Point(3, 267);
-            this.btnDelivery.Name = "btnDelivery";
-            this.btnDelivery.Size = new System.Drawing.Size(264, 60);
-            this.btnDelivery.TabIndex = 4;
-            this.btnDelivery.Text = "Dispatch/Delivery";
-            this.btnDelivery.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // btnInvoices
-            // 
-            this.btnInvoices.BorderRadius = 20;
-            this.btnInvoices.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnInvoices.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnInvoices.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnInvoices.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnInvoices.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnInvoices.FillColor = System.Drawing.Color.Transparent;
-            this.btnInvoices.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInvoices.ForeColor = System.Drawing.Color.Black;
-            this.btnInvoices.HoverState.FillColor = System.Drawing.Color.Black;
-            this.btnInvoices.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnInvoices.Image = global::DATNWF.Properties.Resources.invoice;
-            this.btnInvoices.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnInvoices.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnInvoices.Location = new System.Drawing.Point(3, 201);
-            this.btnInvoices.Name = "btnInvoices";
-            this.btnInvoices.Size = new System.Drawing.Size(264, 60);
-            this.btnInvoices.TabIndex = 3;
-            this.btnInvoices.Text = "Invoices/Orders";
-            this.btnInvoices.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnInvoices.Click += new System.EventHandler(this.btnInvoices_Click);
-            // 
-            // btnCustomers
-            // 
-            this.btnCustomers.BorderRadius = 20;
-            this.btnCustomers.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnCustomers.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnCustomers.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnCustomers.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCustomers.FillColor = System.Drawing.Color.Transparent;
-            this.btnCustomers.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomers.ForeColor = System.Drawing.Color.Black;
-            this.btnCustomers.HoverState.FillColor = System.Drawing.Color.Black;
-            this.btnCustomers.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnCustomers.Image = global::DATNWF.Properties.Resources.customer_engagement;
-            this.btnCustomers.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCustomers.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnCustomers.Location = new System.Drawing.Point(3, 135);
-            this.btnCustomers.Name = "btnCustomers";
-            this.btnCustomers.Size = new System.Drawing.Size(264, 60);
-            this.btnCustomers.TabIndex = 2;
-            this.btnCustomers.Text = "Customers";
-            this.btnCustomers.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCustomers.Click += new System.EventHandler(this.btnCustomer_Click);
-            // 
-            // btnPublications
-            // 
-            this.btnPublications.BorderRadius = 20;
-            this.btnPublications.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPublications.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPublications.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPublications.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPublications.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPublications.FillColor = System.Drawing.Color.Transparent;
-            this.btnPublications.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPublications.ForeColor = System.Drawing.Color.Black;
-            this.btnPublications.HoverState.FillColor = System.Drawing.Color.Black;
-            this.btnPublications.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnPublications.Image = global::DATNWF.Properties.Resources.publication;
-            this.btnPublications.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnPublications.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnPublications.Location = new System.Drawing.Point(3, 69);
-            this.btnPublications.Name = "btnPublications";
-            this.btnPublications.Size = new System.Drawing.Size(264, 60);
-            this.btnPublications.TabIndex = 1;
-            this.btnPublications.Text = "Publications";
-            this.btnPublications.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnPublications.Click += new System.EventHandler(this.btnPublications_Click);
-            // 
-            // btnDashboard
-            // 
-            this.btnDashboard.BorderRadius = 20;
-            this.btnDashboard.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDashboard.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnDashboard.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnDashboard.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDashboard.FillColor = System.Drawing.Color.Transparent;
-            this.btnDashboard.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDashboard.ForeColor = System.Drawing.Color.Black;
-            this.btnDashboard.HoverState.FillColor = System.Drawing.Color.Black;
-            this.btnDashboard.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnDashboard.Image = global::DATNWF.Properties.Resources.dashboard__3_;
-            this.btnDashboard.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnDashboard.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnDashboard.Location = new System.Drawing.Point(3, 3);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(264, 60);
-            this.btnDashboard.TabIndex = 0;
-            this.btnDashboard.Text = "Dashboard";
-            this.btnDashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.dayandtime.Enabled = true;
+            this.dayandtime.Interval = 1000;
+            this.dayandtime.Tick += new System.EventHandler(this.dayandtime_Tick);
             // 
             // Home
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.ClientSize = new System.Drawing.Size(1366, 768);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelSidebar);
@@ -495,15 +495,15 @@
             this.panelSidebar.ResumeLayout(false);
             this.tableLayoutPanelSidebar.ResumeLayout(false);
             this.tableLayoutPanelTitle1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.tableLayoutPanelBtn.ResumeLayout(false);
             this.panelHeader.ResumeLayout(false);
-            this.pnlHeaderIcon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTime)).EndInit();
+            this.pnlHeaderIcon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picMessage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNotification)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
 
         }

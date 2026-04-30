@@ -17,8 +17,9 @@ namespace DATNWF
         public Home()
         {
             InitializeComponent();
-            this.Size = new Size(1280, 720);
+            this.Size = new Size(1366, 768);
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.DoubleBuffered = true;
         }
         private void OpenChildForm(Form childForm)
         {
