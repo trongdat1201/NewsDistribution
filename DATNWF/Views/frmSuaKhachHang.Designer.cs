@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSuaKhachHang));
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.tablelayoutEditCustomer = new System.Windows.Forms.TableLayoutPanel();
             this.pnlEdit = new Guna.UI2.WinForms.Guna2Panel();
@@ -50,8 +49,8 @@
             this.txtTenKH = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtMaKH = new Guna.UI2.WinForms.Guna2TextBox();
             this.pnlBtnAction = new Guna.UI2.WinForms.Guna2Panel();
-            this.imgCancel = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.imgSave = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.imgCancel = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.imgSave = new Guna.UI2.WinForms.Guna2GradientButton();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.guna2CustomGradientPanel1.SuspendLayout();
             this.tablelayoutEditCustomer.SuspendLayout();
@@ -65,7 +64,7 @@
             this.guna2CustomGradientPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2CustomGradientPanel1.Location = new System.Drawing.Point(0, 0);
             this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            this.guna2CustomGradientPanel1.Padding = new System.Windows.Forms.Padding(10);
+            this.guna2CustomGradientPanel1.Padding = new System.Windows.Forms.Padding(15);
             this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(1150, 416);
             this.guna2CustomGradientPanel1.TabIndex = 0;
             // 
@@ -77,7 +76,7 @@
             this.tablelayoutEditCustomer.Controls.Add(this.pnlBtnAction, 0, 1);
             this.tablelayoutEditCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tablelayoutEditCustomer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tablelayoutEditCustomer.Location = new System.Drawing.Point(10, 10);
+            this.tablelayoutEditCustomer.Location = new System.Drawing.Point(15, 15);
             this.tablelayoutEditCustomer.Name = "tablelayoutEditCustomer";
             this.tablelayoutEditCustomer.RowCount = 2;
             this.tablelayoutEditCustomer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
@@ -95,7 +94,7 @@
             this.tablelayoutEditCustomer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tablelayoutEditCustomer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tablelayoutEditCustomer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tablelayoutEditCustomer.Size = new System.Drawing.Size(1130, 396);
+            this.tablelayoutEditCustomer.Size = new System.Drawing.Size(1120, 386);
             this.tablelayoutEditCustomer.TabIndex = 32;
             // 
             // pnlEdit
@@ -123,7 +122,7 @@
             this.pnlEdit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlEdit.Location = new System.Drawing.Point(3, 3);
             this.pnlEdit.Name = "pnlEdit";
-            this.pnlEdit.Size = new System.Drawing.Size(1124, 291);
+            this.pnlEdit.Size = new System.Drawing.Size(1114, 283);
             this.pnlEdit.TabIndex = 0;
             // 
             // lblKeToan
@@ -150,40 +149,40 @@
             // 
             this.chkP_PH.AutoSize = true;
             this.chkP_PH.BackColor = System.Drawing.Color.Transparent;
-            this.chkP_PH.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkP_PH.CheckedState.BorderColor = System.Drawing.Color.Black;
             this.chkP_PH.CheckedState.BorderRadius = 0;
             this.chkP_PH.CheckedState.BorderThickness = 0;
-            this.chkP_PH.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkP_PH.CheckedState.FillColor = System.Drawing.Color.Red;
             this.chkP_PH.Cursor = System.Windows.Forms.Cursors.Default;
             this.chkP_PH.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkP_PH.Location = new System.Drawing.Point(1035, 51);
             this.chkP_PH.Name = "chkP_PH";
             this.chkP_PH.Size = new System.Drawing.Size(18, 17);
             this.chkP_PH.TabIndex = 53;
-            this.chkP_PH.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkP_PH.UncheckedState.BorderColor = System.Drawing.Color.LightGray;
             this.chkP_PH.UncheckedState.BorderRadius = 0;
             this.chkP_PH.UncheckedState.BorderThickness = 0;
-            this.chkP_PH.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkP_PH.UncheckedState.FillColor = System.Drawing.Color.LightGray;
             this.chkP_PH.UseVisualStyleBackColor = false;
             // 
             // chkP_KT
             // 
             this.chkP_KT.AutoSize = true;
             this.chkP_KT.BackColor = System.Drawing.Color.Transparent;
-            this.chkP_KT.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkP_KT.CheckedState.BorderColor = System.Drawing.Color.Black;
             this.chkP_KT.CheckedState.BorderRadius = 0;
             this.chkP_KT.CheckedState.BorderThickness = 0;
-            this.chkP_KT.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkP_KT.CheckedState.FillColor = System.Drawing.Color.Red;
             this.chkP_KT.Cursor = System.Windows.Forms.Cursors.Default;
             this.chkP_KT.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkP_KT.Location = new System.Drawing.Point(1035, 116);
             this.chkP_KT.Name = "chkP_KT";
             this.chkP_KT.Size = new System.Drawing.Size(18, 17);
             this.chkP_KT.TabIndex = 52;
-            this.chkP_KT.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkP_KT.UncheckedState.BorderColor = System.Drawing.Color.LightGray;
             this.chkP_KT.UncheckedState.BorderRadius = 0;
             this.chkP_KT.UncheckedState.BorderThickness = 0;
-            this.chkP_KT.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkP_KT.UncheckedState.FillColor = System.Drawing.Color.LightGray;
             this.chkP_KT.UseVisualStyleBackColor = false;
             // 
             // cboUuTien
@@ -305,7 +304,7 @@
             this.txtDienThoai.Location = new System.Drawing.Point(589, 28);
             this.txtDienThoai.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDienThoai.Name = "txtDienThoai";
-            this.txtDienThoai.PlaceholderText = "0987654321";
+            this.txtDienThoai.PlaceholderText = "";
             this.txtDienThoai.SelectedText = "";
             this.txtDienThoai.Size = new System.Drawing.Size(229, 48);
             this.txtDienThoai.TabIndex = 33;
@@ -327,7 +326,7 @@
             this.txtDiaChi.Location = new System.Drawing.Point(184, 162);
             this.txtDiaChi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.PlaceholderText = "Hà Nội";
+            this.txtDiaChi.PlaceholderText = "";
             this.txtDiaChi.SelectedText = "";
             this.txtDiaChi.Size = new System.Drawing.Size(229, 48);
             this.txtDiaChi.TabIndex = 32;
@@ -349,7 +348,7 @@
             this.txtTenKH.Location = new System.Drawing.Point(184, 95);
             this.txtTenKH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTenKH.Name = "txtTenKH";
-            this.txtTenKH.PlaceholderText = "Nguyễn Văn A";
+            this.txtTenKH.PlaceholderText = "";
             this.txtTenKH.SelectedText = "";
             this.txtTenKH.Size = new System.Drawing.Size(229, 48);
             this.txtTenKH.TabIndex = 31;
@@ -373,7 +372,7 @@
             this.txtMaKH.Location = new System.Drawing.Point(184, 29);
             this.txtMaKH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMaKH.Name = "txtMaKH";
-            this.txtMaKH.PlaceholderText = "KH01";
+            this.txtMaKH.PlaceholderText = "";
             this.txtMaKH.ReadOnly = true;
             this.txtMaKH.SelectedText = "";
             this.txtMaKH.Size = new System.Drawing.Size(229, 48);
@@ -385,38 +384,53 @@
             this.pnlBtnAction.Controls.Add(this.imgCancel);
             this.pnlBtnAction.Controls.Add(this.imgSave);
             this.pnlBtnAction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBtnAction.Location = new System.Drawing.Point(3, 300);
+            this.pnlBtnAction.Location = new System.Drawing.Point(3, 292);
             this.pnlBtnAction.Name = "pnlBtnAction";
-            this.pnlBtnAction.Size = new System.Drawing.Size(1124, 93);
+            this.pnlBtnAction.Size = new System.Drawing.Size(1114, 91);
             this.pnlBtnAction.TabIndex = 1;
             // 
             // imgCancel
             // 
-            this.imgCancel.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgCancel.HoverState.ImageSize = new System.Drawing.Size(50, 50);
-            this.imgCancel.Image = ((System.Drawing.Image)(resources.GetObject("imgCancel.Image")));
-            this.imgCancel.ImageOffset = new System.Drawing.Point(0, 0);
-            this.imgCancel.ImageRotate = 0F;
-            this.imgCancel.ImageSize = new System.Drawing.Size(50, 50);
-            this.imgCancel.Location = new System.Drawing.Point(105, 23);
+            this.imgCancel.BackColor = System.Drawing.Color.White;
+            this.imgCancel.BorderRadius = 20;
+            this.imgCancel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.imgCancel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.imgCancel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgCancel.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgCancel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.imgCancel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgCancel.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgCancel.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.imgCancel.ForeColor = System.Drawing.Color.Black;
+            this.imgCancel.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgCancel.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgCancel.Location = new System.Drawing.Point(209, 24);
             this.imgCancel.Name = "imgCancel";
-            this.imgCancel.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgCancel.Size = new System.Drawing.Size(64, 54);
-            this.imgCancel.TabIndex = 4;
+            this.imgCancel.Size = new System.Drawing.Size(122, 45);
+            this.imgCancel.TabIndex = 35;
+            this.imgCancel.Text = "Đóng";
             this.imgCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // imgSave
             // 
-            this.imgSave.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgSave.HoverState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgSave.Image = ((System.Drawing.Image)(resources.GetObject("imgSave.Image")));
-            this.imgSave.ImageOffset = new System.Drawing.Point(0, 0);
-            this.imgSave.ImageRotate = 0F;
-            this.imgSave.Location = new System.Drawing.Point(21, 23);
+            this.imgSave.BackColor = System.Drawing.Color.White;
+            this.imgSave.BorderRadius = 20;
+            this.imgSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.imgSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.imgSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgSave.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.imgSave.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgSave.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgSave.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.imgSave.ForeColor = System.Drawing.Color.Black;
+            this.imgSave.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgSave.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgSave.Location = new System.Drawing.Point(40, 24);
             this.imgSave.Name = "imgSave";
-            this.imgSave.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgSave.Size = new System.Drawing.Size(64, 54);
-            this.imgSave.TabIndex = 3;
+            this.imgSave.Size = new System.Drawing.Size(122, 45);
+            this.imgSave.TabIndex = 34;
+            this.imgSave.Text = "Lưu";
             this.imgSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // guna2BorderlessForm1
@@ -468,8 +482,8 @@
         private Guna.UI2.WinForms.Guna2TextBox txtTenKH;
         private Guna.UI2.WinForms.Guna2TextBox txtMaKH;
         private Guna.UI2.WinForms.Guna2Panel pnlBtnAction;
-        private Guna.UI2.WinForms.Guna2ImageButton imgCancel;
-        private Guna.UI2.WinForms.Guna2ImageButton imgSave;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
+        private Guna.UI2.WinForms.Guna2GradientButton imgCancel;
+        private Guna.UI2.WinForms.Guna2GradientButton imgSave;
     }
 }

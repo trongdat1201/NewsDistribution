@@ -19,9 +19,16 @@ namespace DATNWF.Views
 
         private void frmInvoices_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'thanhnienDataSet4.tabHOADON' table. You can move, or remove it, as needed.
             this.tabHOADONTableAdapter.Fill(this.thanhnienDataSet4.tabHOADON);
 
+        }
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            frmLogin frm = new frmLogin();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                
+            }
         }
     }
 }

@@ -24,6 +24,7 @@ namespace DATNWF.Views
         {
             this.tabKHACHHANGTableAdapter.Fill(this.thanhnienDataSet3.tabKHACHHANG);
             LoadData();
+            LoadKhachHangOrderGanDay();
         }
         private void LoadData()
         {
@@ -125,6 +126,53 @@ namespace DATNWF.Views
                         else
                             MessageBox.Show("Lỗi: " + ex.Message);
                     }
+                }
+            }
+        }
+        private void LoadKhachHangOrderGanDay()
+        {
+            string connectionString = @"Data Source=DESKTOP-IKRN14J\SQLEXPRESS;Initial Catalog=Thanhnien;Integrated Security=True";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string sql = @"
+                    SELECT TOP 10 kh.MAKH, kh.TEN 
+                    FROM tabKHACHHANG kh
+                    INNER JOIN tabHOADON hd ON kh.MAKH = hd.makh
+                    GROUP BY kh.MAKH, kh.TEN
+                    ORDER BY MAX(hd.ngayLapPhieu) DESC";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                DataTable dtGanDay = new DataTable();
+
+                try
+                {
+                    conn.Open();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dtGanDay);
+
+                    dgvKhachHangGanDay.DataSource = dtGanDay;
+
+                    if (dgvKhachHangGanDay.Columns.Count > 0)
+                    {
+                        dgvKhachHangGanDay.Columns["MAKH"].Visible = false;
+
+                        dgvKhachHangGanDay.Columns["TEN"].HeaderText = "Khách hàng order gần đây";
+                        dgvKhachHangGanDay.Columns["TEN"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+
+                    dgvKhachHangGanDay.ColumnHeadersVisible = false;
+                    dgvKhachHangGanDay.RowHeadersVisible = false;
+                    dgvKhachHangGanDay.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgvKhachHangGanDay.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dgvKhachHangGanDay.AllowUserToAddRows = false;
+                    dgvKhachHangGanDay.ReadOnly = true;
+                    dgvKhachHangGanDay.BackgroundColor = Color.White;
+                    dgvKhachHangGanDay.BorderStyle = BorderStyle.None;
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Lỗi tải danh sách khách hàng order gần đây: " + ex.Message, "Lỗi Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

@@ -29,10 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmThemBao));
             this.pnlfrmAddNew = new Guna.UI2.WinForms.Guna2Panel();
             this.tablelayoutfrmAddNew = new System.Windows.Forms.TableLayoutPanel();
             this.pnlAdd = new Guna.UI2.WinForms.Guna2Panel();
+            this.chkChuNhat = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.chkThu7 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.chkThu6 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.chkThu5 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.chkThu4 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.chkThu3 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.chkThu2 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.txtSoGoc = new Guna.UI2.WinForms.Guna2TextBox();
             this.lblNgayPhatHanh = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblSoGoc = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblTanSuat = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -41,13 +48,6 @@
             this.lblDVT = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblTenBao = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblMaBao = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.chkThu7 = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.chkThu6 = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.chkThu5 = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.chkThu4 = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.chkThu3 = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.chkThu2 = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.chkChuNhat = new Guna.UI2.WinForms.Guna2CheckBox();
             this.dtpNgayBatDau = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.txtTanSuat = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtDonGia = new Guna.UI2.WinForms.Guna2TextBox();
@@ -55,17 +55,14 @@
             this.txtTenBao = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtMaBao = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.imgCancel = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.imgRefresh = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.imgSave = new Guna.UI2.WinForms.Guna2GradientButton();
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.imgRefresh = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.imgCancel = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.imgSave = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.txtSoGoc = new Guna.UI2.WinForms.Guna2TextBox();
             this.pnlfrmAddNew.SuspendLayout();
             this.tablelayoutfrmAddNew.SuspendLayout();
             this.pnlAdd.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlfrmAddNew
@@ -113,6 +110,13 @@
             this.pnlAdd.AutoSize = true;
             this.pnlAdd.BackColor = System.Drawing.Color.White;
             this.pnlAdd.BorderRadius = 10;
+            this.pnlAdd.Controls.Add(this.chkChuNhat);
+            this.pnlAdd.Controls.Add(this.chkThu7);
+            this.pnlAdd.Controls.Add(this.chkThu6);
+            this.pnlAdd.Controls.Add(this.chkThu5);
+            this.pnlAdd.Controls.Add(this.chkThu4);
+            this.pnlAdd.Controls.Add(this.chkThu3);
+            this.pnlAdd.Controls.Add(this.chkThu2);
             this.pnlAdd.Controls.Add(this.txtSoGoc);
             this.pnlAdd.Controls.Add(this.lblNgayPhatHanh);
             this.pnlAdd.Controls.Add(this.lblSoGoc);
@@ -122,13 +126,6 @@
             this.pnlAdd.Controls.Add(this.lblDVT);
             this.pnlAdd.Controls.Add(this.lblTenBao);
             this.pnlAdd.Controls.Add(this.lblMaBao);
-            this.pnlAdd.Controls.Add(this.chkThu7);
-            this.pnlAdd.Controls.Add(this.chkThu6);
-            this.pnlAdd.Controls.Add(this.chkThu5);
-            this.pnlAdd.Controls.Add(this.chkThu4);
-            this.pnlAdd.Controls.Add(this.chkThu3);
-            this.pnlAdd.Controls.Add(this.chkThu2);
-            this.pnlAdd.Controls.Add(this.chkChuNhat);
             this.pnlAdd.Controls.Add(this.dtpNgayBatDau);
             this.pnlAdd.Controls.Add(this.txtTanSuat);
             this.pnlAdd.Controls.Add(this.txtDonGia);
@@ -141,6 +138,152 @@
             this.pnlAdd.Name = "pnlAdd";
             this.pnlAdd.Size = new System.Drawing.Size(1144, 306);
             this.pnlAdd.TabIndex = 0;
+            // 
+            // chkChuNhat
+            // 
+            this.chkChuNhat.AutoSize = true;
+            this.chkChuNhat.CheckedState.BorderColor = System.Drawing.Color.White;
+            this.chkChuNhat.CheckedState.BorderRadius = 0;
+            this.chkChuNhat.CheckedState.BorderThickness = 0;
+            this.chkChuNhat.CheckedState.FillColor = System.Drawing.Color.Red;
+            this.chkChuNhat.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold);
+            this.chkChuNhat.Location = new System.Drawing.Point(979, 163);
+            this.chkChuNhat.Name = "chkChuNhat";
+            this.chkChuNhat.Size = new System.Drawing.Size(86, 21);
+            this.chkChuNhat.TabIndex = 72;
+            this.chkChuNhat.Text = "Chủ nhật";
+            this.chkChuNhat.UncheckedState.BorderColor = System.Drawing.Color.LightGray;
+            this.chkChuNhat.UncheckedState.BorderRadius = 0;
+            this.chkChuNhat.UncheckedState.BorderThickness = 0;
+            this.chkChuNhat.UncheckedState.FillColor = System.Drawing.Color.LightGray;
+            // 
+            // chkThu7
+            // 
+            this.chkThu7.AutoSize = true;
+            this.chkThu7.CheckedState.BorderColor = System.Drawing.Color.White;
+            this.chkThu7.CheckedState.BorderRadius = 0;
+            this.chkThu7.CheckedState.BorderThickness = 0;
+            this.chkThu7.CheckedState.FillColor = System.Drawing.Color.Red;
+            this.chkThu7.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold);
+            this.chkThu7.Location = new System.Drawing.Point(979, 126);
+            this.chkThu7.Name = "chkThu7";
+            this.chkThu7.Size = new System.Drawing.Size(66, 21);
+            this.chkThu7.TabIndex = 71;
+            this.chkThu7.Text = "Thứ 7";
+            this.chkThu7.UncheckedState.BorderColor = System.Drawing.Color.LightGray;
+            this.chkThu7.UncheckedState.BorderRadius = 0;
+            this.chkThu7.UncheckedState.BorderThickness = 0;
+            this.chkThu7.UncheckedState.FillColor = System.Drawing.Color.LightGray;
+            // 
+            // chkThu6
+            // 
+            this.chkThu6.AutoSize = true;
+            this.chkThu6.CheckedState.BorderColor = System.Drawing.Color.White;
+            this.chkThu6.CheckedState.BorderRadius = 0;
+            this.chkThu6.CheckedState.BorderThickness = 0;
+            this.chkThu6.CheckedState.FillColor = System.Drawing.Color.Red;
+            this.chkThu6.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold);
+            this.chkThu6.Location = new System.Drawing.Point(979, 86);
+            this.chkThu6.Name = "chkThu6";
+            this.chkThu6.Size = new System.Drawing.Size(66, 21);
+            this.chkThu6.TabIndex = 70;
+            this.chkThu6.Text = "Thứ 6";
+            this.chkThu6.UncheckedState.BorderColor = System.Drawing.Color.LightGray;
+            this.chkThu6.UncheckedState.BorderRadius = 0;
+            this.chkThu6.UncheckedState.BorderThickness = 0;
+            this.chkThu6.UncheckedState.FillColor = System.Drawing.Color.LightGray;
+            // 
+            // chkThu5
+            // 
+            this.chkThu5.AutoSize = true;
+            this.chkThu5.CheckedState.BorderColor = System.Drawing.Color.White;
+            this.chkThu5.CheckedState.BorderRadius = 0;
+            this.chkThu5.CheckedState.BorderThickness = 0;
+            this.chkThu5.CheckedState.FillColor = System.Drawing.Color.Red;
+            this.chkThu5.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold);
+            this.chkThu5.Location = new System.Drawing.Point(891, 200);
+            this.chkThu5.Name = "chkThu5";
+            this.chkThu5.Size = new System.Drawing.Size(66, 21);
+            this.chkThu5.TabIndex = 69;
+            this.chkThu5.Text = "Thứ 5";
+            this.chkThu5.UncheckedState.BorderColor = System.Drawing.Color.LightGray;
+            this.chkThu5.UncheckedState.BorderRadius = 0;
+            this.chkThu5.UncheckedState.BorderThickness = 0;
+            this.chkThu5.UncheckedState.FillColor = System.Drawing.Color.LightGray;
+            // 
+            // chkThu4
+            // 
+            this.chkThu4.AutoSize = true;
+            this.chkThu4.CheckedState.BorderColor = System.Drawing.Color.White;
+            this.chkThu4.CheckedState.BorderRadius = 0;
+            this.chkThu4.CheckedState.BorderThickness = 0;
+            this.chkThu4.CheckedState.FillColor = System.Drawing.Color.Red;
+            this.chkThu4.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkThu4.Location = new System.Drawing.Point(891, 163);
+            this.chkThu4.Name = "chkThu4";
+            this.chkThu4.Size = new System.Drawing.Size(66, 21);
+            this.chkThu4.TabIndex = 68;
+            this.chkThu4.Text = "Thứ 4";
+            this.chkThu4.UncheckedState.BorderColor = System.Drawing.Color.LightGray;
+            this.chkThu4.UncheckedState.BorderRadius = 0;
+            this.chkThu4.UncheckedState.BorderThickness = 0;
+            this.chkThu4.UncheckedState.FillColor = System.Drawing.Color.LightGray;
+            // 
+            // chkThu3
+            // 
+            this.chkThu3.AutoSize = true;
+            this.chkThu3.CheckedState.BorderColor = System.Drawing.Color.White;
+            this.chkThu3.CheckedState.BorderRadius = 0;
+            this.chkThu3.CheckedState.BorderThickness = 0;
+            this.chkThu3.CheckedState.FillColor = System.Drawing.Color.Red;
+            this.chkThu3.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkThu3.Location = new System.Drawing.Point(891, 126);
+            this.chkThu3.Name = "chkThu3";
+            this.chkThu3.Size = new System.Drawing.Size(66, 21);
+            this.chkThu3.TabIndex = 67;
+            this.chkThu3.Text = "Thứ 3";
+            this.chkThu3.UncheckedState.BorderColor = System.Drawing.Color.LightGray;
+            this.chkThu3.UncheckedState.BorderRadius = 0;
+            this.chkThu3.UncheckedState.BorderThickness = 0;
+            this.chkThu3.UncheckedState.FillColor = System.Drawing.Color.LightGray;
+            // 
+            // chkThu2
+            // 
+            this.chkThu2.AutoSize = true;
+            this.chkThu2.CheckedState.BorderColor = System.Drawing.Color.White;
+            this.chkThu2.CheckedState.BorderRadius = 0;
+            this.chkThu2.CheckedState.BorderThickness = 0;
+            this.chkThu2.CheckedState.FillColor = System.Drawing.Color.Red;
+            this.chkThu2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkThu2.Location = new System.Drawing.Point(891, 86);
+            this.chkThu2.Name = "chkThu2";
+            this.chkThu2.Size = new System.Drawing.Size(66, 21);
+            this.chkThu2.TabIndex = 66;
+            this.chkThu2.Text = "Thứ 2";
+            this.chkThu2.UncheckedState.BorderColor = System.Drawing.Color.LightGray;
+            this.chkThu2.UncheckedState.BorderRadius = 0;
+            this.chkThu2.UncheckedState.BorderThickness = 0;
+            this.chkThu2.UncheckedState.FillColor = System.Drawing.Color.LightGray;
+            // 
+            // txtSoGoc
+            // 
+            this.txtSoGoc.BorderRadius = 10;
+            this.txtSoGoc.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtSoGoc.DefaultText = "";
+            this.txtSoGoc.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtSoGoc.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtSoGoc.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSoGoc.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtSoGoc.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtSoGoc.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtSoGoc.HoverState.BorderColor = System.Drawing.Color.DarkSalmon;
+            this.txtSoGoc.Location = new System.Drawing.Point(569, 227);
+            this.txtSoGoc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSoGoc.Name = "txtSoGoc";
+            this.txtSoGoc.PlaceholderText = "";
+            this.txtSoGoc.SelectedText = "";
+            this.txtSoGoc.Size = new System.Drawing.Size(229, 48);
+            this.txtSoGoc.TabIndex = 52;
             // 
             // lblNgayPhatHanh
             // 
@@ -222,159 +365,14 @@
             this.lblMaBao.TabIndex = 44;
             this.lblMaBao.Text = "Mã Báo";
             // 
-            // chkThu7
-            // 
-            this.chkThu7.AutoSize = true;
-            this.chkThu7.BackColor = System.Drawing.Color.Transparent;
-            this.chkThu7.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkThu7.CheckedState.BorderRadius = 0;
-            this.chkThu7.CheckedState.BorderThickness = 0;
-            this.chkThu7.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkThu7.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkThu7.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkThu7.Location = new System.Drawing.Point(1004, 131);
-            this.chkThu7.Name = "chkThu7";
-            this.chkThu7.Size = new System.Drawing.Size(75, 27);
-            this.chkThu7.TabIndex = 43;
-            this.chkThu7.Text = "Thứ 7";
-            this.chkThu7.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkThu7.UncheckedState.BorderRadius = 0;
-            this.chkThu7.UncheckedState.BorderThickness = 0;
-            this.chkThu7.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkThu7.UseVisualStyleBackColor = false;
-            // 
-            // chkThu6
-            // 
-            this.chkThu6.AutoSize = true;
-            this.chkThu6.BackColor = System.Drawing.Color.Transparent;
-            this.chkThu6.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkThu6.CheckedState.BorderRadius = 0;
-            this.chkThu6.CheckedState.BorderThickness = 0;
-            this.chkThu6.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkThu6.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkThu6.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkThu6.Location = new System.Drawing.Point(1004, 96);
-            this.chkThu6.Name = "chkThu6";
-            this.chkThu6.Size = new System.Drawing.Size(75, 27);
-            this.chkThu6.TabIndex = 42;
-            this.chkThu6.Text = "Thứ 6";
-            this.chkThu6.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkThu6.UncheckedState.BorderRadius = 0;
-            this.chkThu6.UncheckedState.BorderThickness = 0;
-            this.chkThu6.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkThu6.UseVisualStyleBackColor = false;
-            // 
-            // chkThu5
-            // 
-            this.chkThu5.AutoSize = true;
-            this.chkThu5.BackColor = System.Drawing.Color.Transparent;
-            this.chkThu5.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkThu5.CheckedState.BorderRadius = 0;
-            this.chkThu5.CheckedState.BorderThickness = 0;
-            this.chkThu5.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkThu5.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkThu5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkThu5.Location = new System.Drawing.Point(891, 207);
-            this.chkThu5.Name = "chkThu5";
-            this.chkThu5.Size = new System.Drawing.Size(75, 27);
-            this.chkThu5.TabIndex = 41;
-            this.chkThu5.Text = "Thứ 5";
-            this.chkThu5.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkThu5.UncheckedState.BorderRadius = 0;
-            this.chkThu5.UncheckedState.BorderThickness = 0;
-            this.chkThu5.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkThu5.UseVisualStyleBackColor = false;
-            // 
-            // chkThu4
-            // 
-            this.chkThu4.AutoSize = true;
-            this.chkThu4.BackColor = System.Drawing.Color.Transparent;
-            this.chkThu4.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkThu4.CheckedState.BorderRadius = 0;
-            this.chkThu4.CheckedState.BorderThickness = 0;
-            this.chkThu4.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkThu4.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkThu4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkThu4.Location = new System.Drawing.Point(891, 169);
-            this.chkThu4.Name = "chkThu4";
-            this.chkThu4.Size = new System.Drawing.Size(75, 27);
-            this.chkThu4.TabIndex = 40;
-            this.chkThu4.Text = "Thứ 4";
-            this.chkThu4.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkThu4.UncheckedState.BorderRadius = 0;
-            this.chkThu4.UncheckedState.BorderThickness = 0;
-            this.chkThu4.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkThu4.UseVisualStyleBackColor = false;
-            // 
-            // chkThu3
-            // 
-            this.chkThu3.AutoSize = true;
-            this.chkThu3.BackColor = System.Drawing.Color.Transparent;
-            this.chkThu3.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkThu3.CheckedState.BorderRadius = 0;
-            this.chkThu3.CheckedState.BorderThickness = 0;
-            this.chkThu3.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkThu3.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkThu3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkThu3.Location = new System.Drawing.Point(891, 131);
-            this.chkThu3.Name = "chkThu3";
-            this.chkThu3.Size = new System.Drawing.Size(75, 27);
-            this.chkThu3.TabIndex = 39;
-            this.chkThu3.Text = "Thứ 3";
-            this.chkThu3.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkThu3.UncheckedState.BorderRadius = 0;
-            this.chkThu3.UncheckedState.BorderThickness = 0;
-            this.chkThu3.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkThu3.UseVisualStyleBackColor = false;
-            // 
-            // chkThu2
-            // 
-            this.chkThu2.AutoSize = true;
-            this.chkThu2.BackColor = System.Drawing.Color.Transparent;
-            this.chkThu2.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkThu2.CheckedState.BorderRadius = 0;
-            this.chkThu2.CheckedState.BorderThickness = 0;
-            this.chkThu2.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkThu2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkThu2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkThu2.Location = new System.Drawing.Point(891, 96);
-            this.chkThu2.Name = "chkThu2";
-            this.chkThu2.Size = new System.Drawing.Size(75, 27);
-            this.chkThu2.TabIndex = 38;
-            this.chkThu2.Text = "Thứ 2";
-            this.chkThu2.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkThu2.UncheckedState.BorderRadius = 0;
-            this.chkThu2.UncheckedState.BorderThickness = 0;
-            this.chkThu2.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkThu2.UseVisualStyleBackColor = false;
-            // 
-            // chkChuNhat
-            // 
-            this.chkChuNhat.AutoSize = true;
-            this.chkChuNhat.BackColor = System.Drawing.Color.Transparent;
-            this.chkChuNhat.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkChuNhat.CheckedState.BorderRadius = 0;
-            this.chkChuNhat.CheckedState.BorderThickness = 0;
-            this.chkChuNhat.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.chkChuNhat.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkChuNhat.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkChuNhat.Location = new System.Drawing.Point(1004, 169);
-            this.chkChuNhat.Name = "chkChuNhat";
-            this.chkChuNhat.Size = new System.Drawing.Size(103, 27);
-            this.chkChuNhat.TabIndex = 37;
-            this.chkChuNhat.Text = "Chủ nhật";
-            this.chkChuNhat.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkChuNhat.UncheckedState.BorderRadius = 0;
-            this.chkChuNhat.UncheckedState.BorderThickness = 0;
-            this.chkChuNhat.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.chkChuNhat.UseVisualStyleBackColor = false;
-            // 
             // dtpNgayBatDau
             // 
             this.dtpNgayBatDau.BorderRadius = 10;
             this.dtpNgayBatDau.Checked = true;
+            this.dtpNgayBatDau.FillColor = System.Drawing.Color.LightGray;
             this.dtpNgayBatDau.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpNgayBatDau.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNgayBatDau.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.dtpNgayBatDau.Location = new System.Drawing.Point(569, 30);
             this.dtpNgayBatDau.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpNgayBatDau.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
@@ -395,7 +393,7 @@
             this.txtTanSuat.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtTanSuat.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtTanSuat.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTanSuat.HoverState.BorderColor = System.Drawing.Color.White;
+            this.txtTanSuat.HoverState.BorderColor = System.Drawing.Color.DarkSalmon;
             this.txtTanSuat.HoverState.ForeColor = System.Drawing.Color.Black;
             this.txtTanSuat.Location = new System.Drawing.Point(569, 162);
             this.txtTanSuat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -417,7 +415,7 @@
             this.txtDonGia.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtDonGia.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtDonGia.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtDonGia.HoverState.BorderColor = System.Drawing.Color.White;
+            this.txtDonGia.HoverState.BorderColor = System.Drawing.Color.DarkSalmon;
             this.txtDonGia.HoverState.ForeColor = System.Drawing.Color.Black;
             this.txtDonGia.Location = new System.Drawing.Point(569, 96);
             this.txtDonGia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -439,7 +437,7 @@
             this.txtDVT.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtDVT.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtDVT.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtDVT.HoverState.BorderColor = System.Drawing.Color.White;
+            this.txtDVT.HoverState.BorderColor = System.Drawing.Color.DarkSalmon;
             this.txtDVT.HoverState.ForeColor = System.Drawing.Color.Black;
             this.txtDVT.Location = new System.Drawing.Point(145, 227);
             this.txtDVT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -461,7 +459,7 @@
             this.txtTenBao.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtTenBao.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtTenBao.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTenBao.HoverState.BorderColor = System.Drawing.Color.White;
+            this.txtTenBao.HoverState.BorderColor = System.Drawing.Color.DarkSalmon;
             this.txtTenBao.HoverState.ForeColor = System.Drawing.Color.Black;
             this.txtTenBao.Location = new System.Drawing.Point(145, 96);
             this.txtTenBao.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -484,7 +482,7 @@
             this.txtMaBao.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtMaBao.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtMaBao.ForeColor = System.Drawing.Color.Black;
-            this.txtMaBao.HoverState.BorderColor = System.Drawing.Color.White;
+            this.txtMaBao.HoverState.BorderColor = System.Drawing.Color.DarkSalmon;
             this.txtMaBao.HoverState.FillColor = System.Drawing.Color.White;
             this.txtMaBao.HoverState.ForeColor = System.Drawing.Color.Black;
             this.txtMaBao.Location = new System.Drawing.Point(145, 30);
@@ -498,9 +496,8 @@
             // guna2Panel1
             // 
             this.guna2Panel1.BackColor = System.Drawing.Color.White;
-            this.guna2Panel1.Controls.Add(this.guna2PictureBox1);
-            this.guna2Panel1.Controls.Add(this.imgRefresh);
             this.guna2Panel1.Controls.Add(this.imgCancel);
+            this.guna2Panel1.Controls.Add(this.imgRefresh);
             this.guna2Panel1.Controls.Add(this.imgSave);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel1.Location = new System.Drawing.Point(3, 315);
@@ -508,83 +505,77 @@
             this.guna2Panel1.Size = new System.Drawing.Size(1144, 98);
             this.guna2Panel1.TabIndex = 1;
             // 
+            // imgCancel
+            // 
+            this.imgCancel.BackColor = System.Drawing.Color.White;
+            this.imgCancel.BorderRadius = 20;
+            this.imgCancel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.imgCancel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.imgCancel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgCancel.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgCancel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.imgCancel.FillColor = System.Drawing.Color.LightGray;
+            this.imgCancel.FillColor2 = System.Drawing.Color.WhiteSmoke;
+            this.imgCancel.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.imgCancel.ForeColor = System.Drawing.Color.Black;
+            this.imgCancel.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgCancel.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgCancel.Location = new System.Drawing.Point(379, 30);
+            this.imgCancel.Name = "imgCancel";
+            this.imgCancel.Size = new System.Drawing.Size(122, 45);
+            this.imgCancel.TabIndex = 36;
+            this.imgCancel.Text = "Đóng";
+            this.imgCancel.Click += new System.EventHandler(this.imgCancel_Click);
+            // 
+            // imgRefresh
+            // 
+            this.imgRefresh.BackColor = System.Drawing.Color.White;
+            this.imgRefresh.BorderRadius = 20;
+            this.imgRefresh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.imgRefresh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.imgRefresh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgRefresh.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgRefresh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.imgRefresh.FillColor = System.Drawing.Color.LightGray;
+            this.imgRefresh.FillColor2 = System.Drawing.Color.WhiteSmoke;
+            this.imgRefresh.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.imgRefresh.ForeColor = System.Drawing.Color.Black;
+            this.imgRefresh.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgRefresh.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgRefresh.Location = new System.Drawing.Point(204, 30);
+            this.imgRefresh.Name = "imgRefresh";
+            this.imgRefresh.Size = new System.Drawing.Size(122, 45);
+            this.imgRefresh.TabIndex = 35;
+            this.imgRefresh.Text = "Làm mới";
+            // 
+            // imgSave
+            // 
+            this.imgSave.BackColor = System.Drawing.Color.White;
+            this.imgSave.BorderRadius = 20;
+            this.imgSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.imgSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.imgSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgSave.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.imgSave.FillColor = System.Drawing.Color.LightGray;
+            this.imgSave.FillColor2 = System.Drawing.Color.WhiteSmoke;
+            this.imgSave.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.imgSave.ForeColor = System.Drawing.Color.Black;
+            this.imgSave.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgSave.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgSave.Location = new System.Drawing.Point(39, 30);
+            this.imgSave.Name = "imgSave";
+            this.imgSave.Size = new System.Drawing.Size(122, 45);
+            this.imgSave.TabIndex = 34;
+            this.imgSave.Text = "Lưu";
+            this.imgSave.Click += new System.EventHandler(this.imgSave_Click);
+            // 
             // guna2BorderlessForm1
             // 
             this.guna2BorderlessForm1.BorderRadius = 20;
             this.guna2BorderlessForm1.ContainerControl = this;
             this.guna2BorderlessForm1.DockIndicatorTransparencyValue = 0.6D;
             this.guna2BorderlessForm1.TransparentWhileDrag = true;
-            // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(541, 23);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(64, 64);
-            this.guna2PictureBox1.TabIndex = 6;
-            this.guna2PictureBox1.TabStop = false;
-            // 
-            // imgRefresh
-            // 
-            this.imgRefresh.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgRefresh.HoverState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgRefresh.Image = ((System.Drawing.Image)(resources.GetObject("imgRefresh.Image")));
-            this.imgRefresh.ImageOffset = new System.Drawing.Point(0, 0);
-            this.imgRefresh.ImageRotate = 0F;
-            this.imgRefresh.Location = new System.Drawing.Point(101, 23);
-            this.imgRefresh.Name = "imgRefresh";
-            this.imgRefresh.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgRefresh.Size = new System.Drawing.Size(64, 54);
-            this.imgRefresh.TabIndex = 5;
-            // 
-            // imgCancel
-            // 
-            this.imgCancel.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgCancel.HoverState.ImageSize = new System.Drawing.Size(50, 50);
-            this.imgCancel.Image = ((System.Drawing.Image)(resources.GetObject("imgCancel.Image")));
-            this.imgCancel.ImageOffset = new System.Drawing.Point(0, 0);
-            this.imgCancel.ImageRotate = 0F;
-            this.imgCancel.ImageSize = new System.Drawing.Size(50, 50);
-            this.imgCancel.Location = new System.Drawing.Point(183, 23);
-            this.imgCancel.Name = "imgCancel";
-            this.imgCancel.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgCancel.Size = new System.Drawing.Size(64, 54);
-            this.imgCancel.TabIndex = 4;
-            this.imgCancel.Click += new System.EventHandler(this.imgCancel_Click);
-            // 
-            // imgSave
-            // 
-            this.imgSave.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgSave.HoverState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgSave.Image = ((System.Drawing.Image)(resources.GetObject("imgSave.Image")));
-            this.imgSave.ImageOffset = new System.Drawing.Point(0, 0);
-            this.imgSave.ImageRotate = 0F;
-            this.imgSave.Location = new System.Drawing.Point(21, 23);
-            this.imgSave.Name = "imgSave";
-            this.imgSave.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgSave.Size = new System.Drawing.Size(64, 54);
-            this.imgSave.TabIndex = 3;
-            this.imgSave.Click += new System.EventHandler(this.imgSave_Click);
-            // 
-            // txtSoGoc
-            // 
-            this.txtSoGoc.BorderRadius = 10;
-            this.txtSoGoc.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSoGoc.DefaultText = "";
-            this.txtSoGoc.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtSoGoc.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtSoGoc.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSoGoc.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtSoGoc.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSoGoc.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtSoGoc.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSoGoc.Location = new System.Drawing.Point(569, 227);
-            this.txtSoGoc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtSoGoc.Name = "txtSoGoc";
-            this.txtSoGoc.PlaceholderText = "";
-            this.txtSoGoc.SelectedText = "";
-            this.txtSoGoc.Size = new System.Drawing.Size(229, 48);
-            this.txtSoGoc.TabIndex = 52;
             // 
             // frmThemBao
             // 
@@ -595,14 +586,13 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmThemBao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmThemBao";
+            this.Text = "Thêm báo mới";
             this.pnlfrmAddNew.ResumeLayout(false);
             this.tablelayoutfrmAddNew.ResumeLayout(false);
             this.tablelayoutfrmAddNew.PerformLayout();
             this.pnlAdd.ResumeLayout(false);
             this.pnlAdd.PerformLayout();
             this.guna2Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -617,13 +607,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblDVT;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTenBao;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblMaBao;
-        private Guna.UI2.WinForms.Guna2CheckBox chkThu7;
-        private Guna.UI2.WinForms.Guna2CheckBox chkThu6;
-        private Guna.UI2.WinForms.Guna2CheckBox chkThu5;
-        private Guna.UI2.WinForms.Guna2CheckBox chkThu4;
-        private Guna.UI2.WinForms.Guna2CheckBox chkThu3;
-        private Guna.UI2.WinForms.Guna2CheckBox chkThu2;
-        private Guna.UI2.WinForms.Guna2CheckBox chkChuNhat;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayBatDau;
         private Guna.UI2.WinForms.Guna2TextBox txtTanSuat;
         private Guna.UI2.WinForms.Guna2TextBox txtDonGia;
@@ -634,11 +617,17 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblSoGoc;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblTanSuat;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2ImageButton imgRefresh;
-        private Guna.UI2.WinForms.Guna2ImageButton imgCancel;
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
-        private Guna.UI2.WinForms.Guna2ImageButton imgSave;
         private Guna.UI2.WinForms.Guna2TextBox txtSoGoc;
+        private Guna.UI2.WinForms.Guna2CheckBox chkChuNhat;
+        private Guna.UI2.WinForms.Guna2CheckBox chkThu7;
+        private Guna.UI2.WinForms.Guna2CheckBox chkThu6;
+        private Guna.UI2.WinForms.Guna2CheckBox chkThu5;
+        private Guna.UI2.WinForms.Guna2CheckBox chkThu4;
+        private Guna.UI2.WinForms.Guna2CheckBox chkThu3;
+        private Guna.UI2.WinForms.Guna2CheckBox chkThu2;
+        private Guna.UI2.WinForms.Guna2GradientButton imgCancel;
+        private Guna.UI2.WinForms.Guna2GradientButton imgRefresh;
+        private Guna.UI2.WinForms.Guna2GradientButton imgSave;
     }
 }

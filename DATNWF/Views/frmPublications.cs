@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
 
+
 namespace DATNWF
 {
     public partial class frmPublications : Form
@@ -134,6 +135,7 @@ namespace DATNWF
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
+                // Vẫn lấy cả maBao (để xử lý ngầm) và ten (để hiển thị)
                 string sql = $"SELECT maBao, ten FROM tabBAO WHERE {cotThuTrongSQL} = 1";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -145,13 +147,34 @@ namespace DATNWF
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dtHomNay);
 
-                    lstBaoHomNay.DataSource = dtHomNay;
-                    lstBaoHomNay.DisplayMember = "ten"; 
-                    lstBaoHomNay.ValueMember = "maBao";
+                    // 1. Đổ dữ liệu vào DataGridView
+                    dgvBaoHomNay.DataSource = dtHomNay;
+
+                    // 2. Tinh chỉnh giao diện DataGridView để hiển thị đẹp như danh sách
+                    if (dgvBaoHomNay.Columns.Count > 0)
+                    {
+                        // Ẩn cột maBao (Đóng vai trò như ValueMember của ListBox cũ)
+                        dgvBaoHomNay.Columns["maBao"].Visible = false;
+
+                        // Cấu hình cột tên báo (Đóng vai trò như DisplayMember)
+                        dgvBaoHomNay.Columns["ten"].HeaderText = "Tên báo";
+                        // Lệnh quan trọng: Căn giữa nội dung text
+                        dgvBaoHomNay.Columns["ten"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+
+                    // 3. Các thiết lập dọn dẹp UI (có thể set trực tiếp trong Properties, hoặc viết ở đây)
+                    dgvBaoHomNay.ColumnHeadersVisible = false; // Ẩn thanh tiêu đề cột phía trên
+                    dgvBaoHomNay.RowHeadersVisible = false;    // Ẩn cột mũi tên chọn dòng ngoài cùng bên trái
+                    dgvBaoHomNay.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Ép cột Tên báo tràn viền
+                    dgvBaoHomNay.SelectionMode = DataGridViewSelectionMode.FullRowSelect;    // Click vào đâu cũng chọn cả dòng
+                    dgvBaoHomNay.AllowUserToAddRows = false;   // Chặn dòng trắng trống ở cuối
+                    dgvBaoHomNay.ReadOnly = true;              // Chỉ xem, không cho sửa text trực tiếp
+                    dgvBaoHomNay.BackgroundColor = Color.White; // Đồng bộ màu nền với Sidebar
+                    dgvBaoHomNay.BorderStyle = BorderStyle.None; // Xóa viền ngoài
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi tải danh sách báo hôm nay: " + ex.Message);
+                    MessageBox.Show("Lỗi tải danh sách báo hôm nay: " + ex.Message, "Lỗi Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

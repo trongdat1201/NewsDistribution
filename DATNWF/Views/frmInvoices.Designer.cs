@@ -40,11 +40,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.dboTabBao = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.thanhnienDataSet4 = new DATNWF.ThanhnienDataSet4();
-            this.tabHOADONBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabHOADONTableAdapter = new DATNWF.ThanhnienDataSet4TableAdapters.tabHOADONTableAdapter();
             this.sohdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.makhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayLapPhieuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,13 +47,15 @@
             this.denNgayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ghichuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.thanhToanDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tabHOADONBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.thanhnienDataSet4 = new DATNWF.ThanhnienDataSet4();
+            this.tabHOADONTableAdapter = new DATNWF.ThanhnienDataSet4TableAdapters.tabHOADONTableAdapter();
             this.pnlHeaderPublications.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dboTabBao)).BeginInit();
-            this.guna2Panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thanhnienDataSet4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabHOADONBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thanhnienDataSet4)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeaderPublications
@@ -92,6 +89,7 @@
             this.btnAddNew.Size = new System.Drawing.Size(206, 72);
             this.btnAddNew.TabIndex = 5;
             this.btnAddNew.Text = "Add New";
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // txtSearch
             // 
@@ -121,10 +119,9 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.64422F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.35578F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 99.41434F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.5856515F));
             this.tableLayoutPanel1.Controls.Add(this.guna2Panel1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.guna2Panel2, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 100);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -140,7 +137,7 @@
             this.guna2Panel1.Location = new System.Drawing.Point(3, 3);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Padding = new System.Windows.Forms.Padding(10);
-            this.guna2Panel1.Size = new System.Drawing.Size(959, 662);
+            this.guna2Panel1.Size = new System.Drawing.Size(1352, 662);
             this.guna2Panel1.TabIndex = 0;
             // 
             // dboTabBao
@@ -195,7 +192,7 @@
             this.dboTabBao.RowHeadersVisible = false;
             this.dboTabBao.RowHeadersWidth = 51;
             this.dboTabBao.RowTemplate.Height = 24;
-            this.dboTabBao.Size = new System.Drawing.Size(939, 642);
+            this.dboTabBao.Size = new System.Drawing.Size(1332, 642);
             this.dboTabBao.TabIndex = 1;
             this.dboTabBao.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dboTabBao.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -219,50 +216,10 @@
             this.dboTabBao.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dboTabBao.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
-            // guna2Panel2
-            // 
-            this.guna2Panel2.Controls.Add(this.tableLayoutPanel2);
-            this.guna2Panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Panel2.Location = new System.Drawing.Point(968, 3);
-            this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Padding = new System.Windows.Forms.Padding(0, 10, 10, 10);
-            this.guna2Panel2.Size = new System.Drawing.Size(395, 662);
-            this.guna2Panel2.TabIndex = 1;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 10);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 148F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(385, 642);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // thanhnienDataSet4
-            // 
-            this.thanhnienDataSet4.DataSetName = "ThanhnienDataSet4";
-            this.thanhnienDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tabHOADONBindingSource
-            // 
-            this.tabHOADONBindingSource.DataMember = "tabHOADON";
-            this.tabHOADONBindingSource.DataSource = this.thanhnienDataSet4;
-            // 
-            // tabHOADONTableAdapter
-            // 
-            this.tabHOADONTableAdapter.ClearBeforeFill = true;
-            // 
             // sohdDataGridViewTextBoxColumn
             // 
             this.sohdDataGridViewTextBoxColumn.DataPropertyName = "sohd";
-            this.sohdDataGridViewTextBoxColumn.HeaderText = "sohd";
+            this.sohdDataGridViewTextBoxColumn.HeaderText = "Số hóa đơn";
             this.sohdDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.sohdDataGridViewTextBoxColumn.Name = "sohdDataGridViewTextBoxColumn";
             this.sohdDataGridViewTextBoxColumn.ReadOnly = true;
@@ -270,7 +227,7 @@
             // makhDataGridViewTextBoxColumn
             // 
             this.makhDataGridViewTextBoxColumn.DataPropertyName = "makh";
-            this.makhDataGridViewTextBoxColumn.HeaderText = "makh";
+            this.makhDataGridViewTextBoxColumn.HeaderText = "Mã khách hàng";
             this.makhDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.makhDataGridViewTextBoxColumn.Name = "makhDataGridViewTextBoxColumn";
             this.makhDataGridViewTextBoxColumn.ReadOnly = true;
@@ -278,7 +235,7 @@
             // ngayLapPhieuDataGridViewTextBoxColumn
             // 
             this.ngayLapPhieuDataGridViewTextBoxColumn.DataPropertyName = "ngayLapPhieu";
-            this.ngayLapPhieuDataGridViewTextBoxColumn.HeaderText = "ngayLapPhieu";
+            this.ngayLapPhieuDataGridViewTextBoxColumn.HeaderText = "Ngày lập phiếu";
             this.ngayLapPhieuDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.ngayLapPhieuDataGridViewTextBoxColumn.Name = "ngayLapPhieuDataGridViewTextBoxColumn";
             this.ngayLapPhieuDataGridViewTextBoxColumn.ReadOnly = true;
@@ -286,7 +243,7 @@
             // tuNgayDataGridViewTextBoxColumn
             // 
             this.tuNgayDataGridViewTextBoxColumn.DataPropertyName = "tuNgay";
-            this.tuNgayDataGridViewTextBoxColumn.HeaderText = "tuNgay";
+            this.tuNgayDataGridViewTextBoxColumn.HeaderText = "Từ ngày";
             this.tuNgayDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.tuNgayDataGridViewTextBoxColumn.Name = "tuNgayDataGridViewTextBoxColumn";
             this.tuNgayDataGridViewTextBoxColumn.ReadOnly = true;
@@ -294,7 +251,7 @@
             // denNgayDataGridViewTextBoxColumn
             // 
             this.denNgayDataGridViewTextBoxColumn.DataPropertyName = "denNgay";
-            this.denNgayDataGridViewTextBoxColumn.HeaderText = "denNgay";
+            this.denNgayDataGridViewTextBoxColumn.HeaderText = "Đến ngày";
             this.denNgayDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.denNgayDataGridViewTextBoxColumn.Name = "denNgayDataGridViewTextBoxColumn";
             this.denNgayDataGridViewTextBoxColumn.ReadOnly = true;
@@ -302,7 +259,7 @@
             // ghichuDataGridViewTextBoxColumn
             // 
             this.ghichuDataGridViewTextBoxColumn.DataPropertyName = "ghichu";
-            this.ghichuDataGridViewTextBoxColumn.HeaderText = "ghichu";
+            this.ghichuDataGridViewTextBoxColumn.HeaderText = "Ghi chú";
             this.ghichuDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.ghichuDataGridViewTextBoxColumn.Name = "ghichuDataGridViewTextBoxColumn";
             this.ghichuDataGridViewTextBoxColumn.ReadOnly = true;
@@ -310,10 +267,24 @@
             // thanhToanDataGridViewCheckBoxColumn
             // 
             this.thanhToanDataGridViewCheckBoxColumn.DataPropertyName = "thanhToan";
-            this.thanhToanDataGridViewCheckBoxColumn.HeaderText = "thanhToan";
+            this.thanhToanDataGridViewCheckBoxColumn.HeaderText = "Thanh toán";
             this.thanhToanDataGridViewCheckBoxColumn.MinimumWidth = 6;
             this.thanhToanDataGridViewCheckBoxColumn.Name = "thanhToanDataGridViewCheckBoxColumn";
             this.thanhToanDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // tabHOADONBindingSource
+            // 
+            this.tabHOADONBindingSource.DataMember = "tabHOADON";
+            this.tabHOADONBindingSource.DataSource = this.thanhnienDataSet4;
+            // 
+            // thanhnienDataSet4
+            // 
+            this.thanhnienDataSet4.DataSetName = "ThanhnienDataSet4";
+            this.thanhnienDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tabHOADONTableAdapter
+            // 
+            this.tabHOADONTableAdapter.ClearBeforeFill = true;
             // 
             // frmInvoices
             // 
@@ -330,9 +301,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.guna2Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dboTabBao)).EndInit();
-            this.guna2Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.thanhnienDataSet4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabHOADONBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thanhnienDataSet4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -345,8 +315,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2DataGridView dboTabBao;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private ThanhnienDataSet4 thanhnienDataSet4;
         private System.Windows.Forms.BindingSource tabHOADONBindingSource;
         private ThanhnienDataSet4TableAdapters.tabHOADONTableAdapter tabHOADONTableAdapter;

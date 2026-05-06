@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmThemKhachHang));
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.pnlAddDetail = new Guna.UI2.WinForms.Guna2Panel();
             this.tablelayoutAddCustomer = new System.Windows.Forms.TableLayoutPanel();
@@ -51,9 +50,9 @@
             this.txtTenKH = new Guna.UI2.WinForms.Guna2TextBox();
             this.txtMaKH = new Guna.UI2.WinForms.Guna2TextBox();
             this.pnlBtnAction = new Guna.UI2.WinForms.Guna2Panel();
-            this.imgRefresh = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.imgCancel = new Guna.UI2.WinForms.Guna2ImageButton();
-            this.imgSave = new Guna.UI2.WinForms.Guna2ImageButton();
+            this.imgCancel = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.imgRefresh = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.imgSave = new Guna.UI2.WinForms.Guna2GradientButton();
             this.pnlAddDetail.SuspendLayout();
             this.tablelayoutAddCustomer.SuspendLayout();
             this.pnlAdd.SuspendLayout();
@@ -158,40 +157,40 @@
             // 
             this.chkP_PH.AutoSize = true;
             this.chkP_PH.BackColor = System.Drawing.Color.Transparent;
-            this.chkP_PH.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkP_PH.CheckedState.BorderColor = System.Drawing.Color.Black;
             this.chkP_PH.CheckedState.BorderRadius = 0;
             this.chkP_PH.CheckedState.BorderThickness = 0;
-            this.chkP_PH.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkP_PH.CheckedState.FillColor = System.Drawing.Color.Red;
             this.chkP_PH.Cursor = System.Windows.Forms.Cursors.Default;
-            this.chkP_PH.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkP_PH.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.chkP_PH.Location = new System.Drawing.Point(1035, 51);
             this.chkP_PH.Name = "chkP_PH";
             this.chkP_PH.Size = new System.Drawing.Size(18, 17);
             this.chkP_PH.TabIndex = 53;
-            this.chkP_PH.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkP_PH.UncheckedState.BorderColor = System.Drawing.Color.LightGray;
             this.chkP_PH.UncheckedState.BorderRadius = 0;
             this.chkP_PH.UncheckedState.BorderThickness = 0;
-            this.chkP_PH.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkP_PH.UncheckedState.FillColor = System.Drawing.Color.LightGray;
             this.chkP_PH.UseVisualStyleBackColor = false;
             // 
             // chkP_KT
             // 
             this.chkP_KT.AutoSize = true;
             this.chkP_KT.BackColor = System.Drawing.Color.Transparent;
-            this.chkP_KT.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkP_KT.CheckedState.BorderColor = System.Drawing.Color.Black;
             this.chkP_KT.CheckedState.BorderRadius = 0;
             this.chkP_KT.CheckedState.BorderThickness = 0;
-            this.chkP_KT.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkP_KT.CheckedState.FillColor = System.Drawing.Color.Red;
             this.chkP_KT.Cursor = System.Windows.Forms.Cursors.Default;
             this.chkP_KT.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkP_KT.Location = new System.Drawing.Point(1035, 116);
             this.chkP_KT.Name = "chkP_KT";
             this.chkP_KT.Size = new System.Drawing.Size(18, 17);
             this.chkP_KT.TabIndex = 52;
-            this.chkP_KT.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkP_KT.UncheckedState.BorderColor = System.Drawing.Color.LightGray;
             this.chkP_KT.UncheckedState.BorderRadius = 0;
             this.chkP_KT.UncheckedState.BorderThickness = 0;
-            this.chkP_KT.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkP_KT.UncheckedState.FillColor = System.Drawing.Color.LightGray;
             this.chkP_KT.UseVisualStyleBackColor = false;
             // 
             // cboUuTien
@@ -389,8 +388,8 @@
             // pnlBtnAction
             // 
             this.pnlBtnAction.BackColor = System.Drawing.Color.White;
-            this.pnlBtnAction.Controls.Add(this.imgRefresh);
             this.pnlBtnAction.Controls.Add(this.imgCancel);
+            this.pnlBtnAction.Controls.Add(this.imgRefresh);
             this.pnlBtnAction.Controls.Add(this.imgSave);
             this.pnlBtnAction.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBtnAction.Location = new System.Drawing.Point(3, 292);
@@ -398,46 +397,72 @@
             this.pnlBtnAction.Size = new System.Drawing.Size(1114, 91);
             this.pnlBtnAction.TabIndex = 1;
             // 
-            // imgRefresh
-            // 
-            this.imgRefresh.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgRefresh.HoverState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgRefresh.Image = ((System.Drawing.Image)(resources.GetObject("imgRefresh.Image")));
-            this.imgRefresh.ImageOffset = new System.Drawing.Point(0, 0);
-            this.imgRefresh.ImageRotate = 0F;
-            this.imgRefresh.Location = new System.Drawing.Point(101, 23);
-            this.imgRefresh.Name = "imgRefresh";
-            this.imgRefresh.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgRefresh.Size = new System.Drawing.Size(64, 54);
-            this.imgRefresh.TabIndex = 5;
-            // 
             // imgCancel
             // 
-            this.imgCancel.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgCancel.HoverState.ImageSize = new System.Drawing.Size(50, 50);
-            this.imgCancel.Image = ((System.Drawing.Image)(resources.GetObject("imgCancel.Image")));
-            this.imgCancel.ImageOffset = new System.Drawing.Point(0, 0);
-            this.imgCancel.ImageRotate = 0F;
-            this.imgCancel.ImageSize = new System.Drawing.Size(50, 50);
-            this.imgCancel.Location = new System.Drawing.Point(183, 23);
+            this.imgCancel.BackColor = System.Drawing.Color.White;
+            this.imgCancel.BorderRadius = 20;
+            this.imgCancel.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.imgCancel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.imgCancel.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgCancel.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgCancel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.imgCancel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgCancel.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imgCancel.ForeColor = System.Drawing.Color.Black;
+            this.imgCancel.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgCancel.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgCancel.HoverState.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imgCancel.Location = new System.Drawing.Point(380, 27);
             this.imgCancel.Name = "imgCancel";
-            this.imgCancel.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgCancel.Size = new System.Drawing.Size(64, 54);
-            this.imgCancel.TabIndex = 4;
+            this.imgCancel.Size = new System.Drawing.Size(122, 45);
+            this.imgCancel.TabIndex = 39;
+            this.imgCancel.Text = "Đóng";
             this.imgCancel.Click += new System.EventHandler(this.imgCancel_Click);
+            // 
+            // imgRefresh
+            // 
+            this.imgRefresh.BackColor = System.Drawing.Color.White;
+            this.imgRefresh.BorderRadius = 20;
+            this.imgRefresh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.imgRefresh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.imgRefresh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgRefresh.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgRefresh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.imgRefresh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgRefresh.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgRefresh.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imgRefresh.ForeColor = System.Drawing.Color.Black;
+            this.imgRefresh.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgRefresh.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgRefresh.HoverState.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imgRefresh.Location = new System.Drawing.Point(205, 27);
+            this.imgRefresh.Name = "imgRefresh";
+            this.imgRefresh.Size = new System.Drawing.Size(122, 45);
+            this.imgRefresh.TabIndex = 38;
+            this.imgRefresh.Text = "Làm mới";
             // 
             // imgSave
             // 
-            this.imgSave.CheckedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgSave.HoverState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgSave.Image = ((System.Drawing.Image)(resources.GetObject("imgSave.Image")));
-            this.imgSave.ImageOffset = new System.Drawing.Point(0, 0);
-            this.imgSave.ImageRotate = 0F;
-            this.imgSave.Location = new System.Drawing.Point(21, 23);
+            this.imgSave.BackColor = System.Drawing.Color.White;
+            this.imgSave.BorderRadius = 20;
+            this.imgSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.imgSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.imgSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgSave.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.imgSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.imgSave.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgSave.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgSave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imgSave.ForeColor = System.Drawing.Color.Black;
+            this.imgSave.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.imgSave.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.imgSave.HoverState.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.imgSave.Location = new System.Drawing.Point(40, 27);
             this.imgSave.Name = "imgSave";
-            this.imgSave.PressedState.ImageSize = new System.Drawing.Size(64, 64);
-            this.imgSave.Size = new System.Drawing.Size(64, 54);
-            this.imgSave.TabIndex = 3;
+            this.imgSave.Size = new System.Drawing.Size(122, 45);
+            this.imgSave.TabIndex = 37;
+            this.imgSave.Text = "Lưu";
             this.imgSave.Click += new System.EventHandler(this.imgSave_Click);
             // 
             // frmThemKhachHang
@@ -477,13 +502,13 @@
         private Guna.UI2.WinForms.Guna2TextBox txtTenKH;
         private Guna.UI2.WinForms.Guna2TextBox txtMaKH;
         private Guna.UI2.WinForms.Guna2Panel pnlBtnAction;
-        private Guna.UI2.WinForms.Guna2ImageButton imgRefresh;
-        private Guna.UI2.WinForms.Guna2ImageButton imgCancel;
-        private Guna.UI2.WinForms.Guna2ImageButton imgSave;
         private Guna.UI2.WinForms.Guna2ComboBox cboUuTien;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblKeToan;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPHH;
         private Guna.UI2.WinForms.Guna2CheckBox chkP_PH;
         private Guna.UI2.WinForms.Guna2CheckBox chkP_KT;
+        private Guna.UI2.WinForms.Guna2GradientButton imgCancel;
+        private Guna.UI2.WinForms.Guna2GradientButton imgRefresh;
+        private Guna.UI2.WinForms.Guna2GradientButton imgSave;
     }
 }

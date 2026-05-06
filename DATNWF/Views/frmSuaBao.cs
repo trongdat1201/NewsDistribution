@@ -92,36 +92,27 @@ namespace DATNWF.Views
                 return;
             }
             double donGia = 0;
-            if (!string.IsNullOrWhiteSpace(txtDonGia.Text))
+            if (string.IsNullOrWhiteSpace(txtDonGia.Text) || !double.TryParse(txtDonGia.Text, out donGia) || donGia < 0)
             {
-                if (!double.TryParse(txtDonGia.Text, out donGia) || donGia < 0)
-                {
-                    MessageBox.Show("Đơn giá phải là một số hợp lệ và không được âm!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtDonGia.Focus();
-                    return;
-                }
+                MessageBox.Show("Vui lòng nhập Đơn giá là một số hợp lệ và không được âm!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDonGia.Focus();
+                return;
             }
 
             int tanSuat = 0;
-            if (!string.IsNullOrWhiteSpace(txtTanSuat.Text))
+            if (string.IsNullOrWhiteSpace(txtTanSuat.Text) || !int.TryParse(txtTanSuat.Text, out tanSuat) || tanSuat < 0)
             {
-                if (!int.TryParse(txtTanSuat.Text, out tanSuat) || tanSuat < 0)
-                {
-                    MessageBox.Show("Tần suất phải là số nguyên hợp lệ và không được âm!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtTanSuat.Focus();
-                    return;
-                }
+                MessageBox.Show("Vui lòng nhập Tần suất là số nguyên hợp lệ và không được âm!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTanSuat.Focus();
+                return;
             }
 
             int soGoc = 0;
-            if (!string.IsNullOrWhiteSpace(txtSoGoc.Text))
+            if (string.IsNullOrWhiteSpace(txtSoGoc.Text) || !int.TryParse(txtSoGoc.Text, out soGoc) || soGoc < 0)
             {
-                if (!int.TryParse(txtSoGoc.Text, out soGoc) || soGoc < 0)
-                {
-                    MessageBox.Show("Số gốc phải là số nguyên hợp lệ và không được âm!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtSoGoc.Focus();
-                    return;
-                }
+                MessageBox.Show("Vui lòng nhập Số gốc là số nguyên hợp lệ và không được âm!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSoGoc.Focus();
+                return;
             }
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -133,13 +124,12 @@ namespace DATNWF.Views
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
-                // Gán Parameters (Copy y hệt bên Add New)
                 cmd.Parameters.AddWithValue("@maBao", txtMaBao.Text.Trim());
                 cmd.Parameters.AddWithValue("@ten", txtTenBao.Text.Trim());
                 cmd.Parameters.AddWithValue("@dvt", txtDVT.Text.Trim());
-                cmd.Parameters.AddWithValue("@donGia", Convert.ToDouble(txtDonGia.Text));
-                cmd.Parameters.AddWithValue("@tanSuat", Convert.ToInt32(txtTanSuat.Text));
-                cmd.Parameters.AddWithValue("@soGoc", Convert.ToInt32(txtSoGoc.Text));
+                cmd.Parameters.AddWithValue("@donGia", donGia);
+                cmd.Parameters.AddWithValue("@tanSuat", tanSuat);
+                cmd.Parameters.AddWithValue("@soGoc", soGoc);
                 cmd.Parameters.AddWithValue("@ngayBatDau", dtpNgayBatDau.Value);
                 cmd.Parameters.AddWithValue("@t1", chkChuNhat.Checked);
                 cmd.Parameters.AddWithValue("@t2", chkThu2.Checked);

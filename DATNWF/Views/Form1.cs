@@ -25,7 +25,7 @@ namespace DATNWF
         {
             if (panelDesktop.Controls.Count > 0)
             {
-                panelDesktop.Controls[0].Dispose();
+                panelDesktop.Controls[0].Dispose(); 
             }
 
             childForm.TopLevel = false;         
@@ -47,6 +47,22 @@ namespace DATNWF
         private void btnInvoices_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmInvoices());
+        }
+        private void btnDelivery_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmDelivery());
+        }
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmInventory());
+        }
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmSetting());
+        }
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmDashboard());
         }
         private void dayandtime_Tick(object sender, EventArgs e)
         {
@@ -74,5 +90,7 @@ namespace DATNWF
             if (picTime.Image != null) picTime.Image.Dispose();
             picTime.Image = bmp;
         }
+
+
     }
 }
