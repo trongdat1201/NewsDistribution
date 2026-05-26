@@ -8,19 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DATNWF.Views
+namespace DATNWF
 {
-    public partial class frmInventory : Form
+    public partial class frmThemBaoNLe : Form
     {
-        public frmInventory()
+        public frmThemBaoNLe()
         {
             InitializeComponent();
-        }
-
-        private void frmInventory_Load(object sender, EventArgs e)
-        {
-            this.tabTonTableAdapter.Fill(this.thanhnienDataSet5.tabTon);
-
         }
     }
 }

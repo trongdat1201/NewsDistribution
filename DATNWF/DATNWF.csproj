@@ -47,6 +47,7 @@
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Management" />
@@ -64,6 +65,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\frmEditDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmEditDelivery.Designer.cs">
+      <DependentUpon>frmEditDelivery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmThemBaoNLe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmThemBaoNLe.Designer.cs">
+      <DependentUpon>frmThemBaoNLe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -99,11 +112,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ThanhnienDataSet5.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ThanhnienDataSet8.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThanhnienDataSet8.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Views\Form2.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmChonBao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmChonBao.Designer.cs">
+      <DependentUpon>frmChonBao.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\frmCustomers.cs">
       <SubType>Form</SubType>
@@ -203,8 +227,17 @@
     <Compile Include="Views\frmTimKhachHang.Designer.cs">
       <DependentUpon>frmTimKhachHang.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\frmEditDelivery.resx">
+      <DependentUpon>frmEditDelivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\frmThemBaoNLe.resx">
+      <DependentUpon>frmThemBaoNLe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\frmChonBao.resx">
+      <DependentUpon>frmChonBao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\frmCustomers.resx">
       <DependentUpon>frmCustomers.cs</DependentUpon>
@@ -331,6 +364,17 @@
     </None>
     <None Include="ThanhnienDataSet5.xss">
       <DependentUpon>ThanhnienDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet8.xsc">
+      <DependentUpon>ThanhnienDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet8.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ThanhnienDataSet8.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ThanhnienDataSet8.xss">
+      <DependentUpon>ThanhnienDataSet8.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

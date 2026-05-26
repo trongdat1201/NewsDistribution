@@ -1,37 +1,55 @@
 ﻿using DATNWF.Views;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Forms;
-
+using System.Configuration;
 
 namespace DATNWF
 {
     public partial class frmPublications : Form
     {
-        string connectionString = @"Data Source=DESKTOP-IKRN14J\SQLEXPRESS;Initial Catalog=Thanhnien;Integrated Security=True";
+        string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
 
         public frmPublications()
         {
             InitializeComponent();
-            
+            this.dboTabBao.SelectionChanged += new System.EventHandler(this.dboTabBao_SelectionChanged);
         }
+
         private void LoadData()
         {
             this.tabBAOTableAdapter.Fill(this.thanhnienDataSet.tabBAO);
+            this.tabBao_ngoaiLeTableAdapter.Fill(this.thanhnienDataSet8.tabBao_ngoaiLe);
         }
+
         private void frmPublications_Load(object sender, EventArgs e)
         {
             LoadData();
             LoadBaoHomNay();
         }
+
+        private void dboTabBao_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dboTabBao.SelectedRows.Count > 0)
+            {
+                string maBao = dboTabBao.SelectedRows[0].Cells["maBaoDataGridViewTextBoxColumn"].Value.ToString();
+
+                if (tabBaongoaiLeBindingSource != null)
+                {
+                    tabBaongoaiLeBindingSource.Filter = $"maBao = '{maBao.Replace("'", "''")}'";
+                }
+            }
+            else
+            {
+                if (tabBaongoaiLeBindingSource != null)
+                {
+                    tabBaongoaiLeBindingSource.Filter = "1 = 0";
+                }
+            }
+        }
+
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             string keyword = txtSearch.Text.Trim().Replace("'", "''");
@@ -46,18 +64,20 @@ namespace DATNWF
                 {
                     tabBAOBindingSource.Filter = string.Format("maBao LIKE '%{0}%' OR ten LIKE '%{0}%'", keyword);
                 }
-
                 dboTabBao.ClearSelection();
             }
         }
+
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            frmThemBao frm = new frmThemBao();
-            if (frm.ShowDialog() == DialogResult.OK)
+            frmThemBao frmChon = new frmThemBao();
+            if (frmChon.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
+                LoadBaoHomNay();
             }
         }
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (dboTabBao.SelectedRows.Count == 0)
@@ -68,12 +88,13 @@ namespace DATNWF
             string maBao = dboTabBao.SelectedRows[0].Cells["maBaoDataGridViewTextBoxColumn"].Value.ToString();
 
             frmSuaBao frm = new frmSuaBao(maBao);
-
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
+                LoadBaoHomNay();
             }
         }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dboTabBao.SelectedRows.Count == 0)
@@ -84,39 +105,51 @@ namespace DATNWF
             string maBao = dboTabBao.SelectedRows[0].Cells["maBaoDataGridViewTextBoxColumn"].Value.ToString();
             string tenBao = dboTabBao.SelectedRows[0].Cells["tenDataGridViewTextBoxColumn"].Value.ToString();
 
-            DialogResult dr = MessageBox.Show($"Bạn có chắc chắn muốn xóa báo '{tenBao}' ra khỏi hệ thống?",
-                                              "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show($"Bạn có chắc chắn muốn xóa báo '{tenBao}' ra khỏi hệ thống?\nThao tác này sẽ xóa cả lịch phát hành ngoại lệ của báo này.",
+                                              "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (dr == DialogResult.Yes)
             {
-                using (SqlConnection conn = new SqlConnection(connectionString)) 
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string sql = "DELETE FROM tabBAO WHERE maBao = @maBao";
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@maBao", maBao);
+                    conn.Open();
+                    using (SqlTransaction trans = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            string sqlNgoaiLe = "DELETE FROM tabBao_ngoaiLe WHERE maBao = @maBao";
+                            SqlCommand cmdNgoaiLe = new SqlCommand(sqlNgoaiLe, conn, trans);
+                            cmdNgoaiLe.Parameters.AddWithValue("@maBao", maBao);
+                            cmdNgoaiLe.ExecuteNonQuery();
 
-                    try
-                    {
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Đã xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadData();
-                    }
-                    catch (SqlException ex)
-                    {
-                        if (ex.Number == 547)
-                        {
-                            MessageBox.Show("Không thể xóa báo này vì đang có dữ liệu liên quan trong kho hoặc hóa đơn!",
-                                            "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            string sqlBao = "DELETE FROM tabBAO WHERE maBao = @maBao";
+                            SqlCommand cmdBao = new SqlCommand(sqlBao, conn, trans);
+                            cmdBao.Parameters.AddWithValue("@maBao", maBao);
+                            cmdBao.ExecuteNonQuery();
+
+                            trans.Commit(); 
+                            MessageBox.Show("Đã xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadData();
+                            LoadBaoHomNay();
                         }
-                        else
+                        catch (SqlException ex)
                         {
-                            MessageBox.Show("Lỗi Database: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            trans.Rollback(); 
+                            if (ex.Number == 547)
+                            {
+                                MessageBox.Show("Không thể xóa báo này vì đang có dữ liệu liên quan trong kho hoặc hóa đơn điều phối!",
+                                                "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lỗi Database: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
                 }
             }
         }
+
         private void LoadBaoHomNay()
         {
             DayOfWeek today = DateTime.Now.DayOfWeek;
@@ -135,9 +168,7 @@ namespace DATNWF
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                // Vẫn lấy cả maBao (để xử lý ngầm) và ten (để hiển thị)
                 string sql = $"SELECT maBao, ten FROM tabBAO WHERE {cotThuTrongSQL} = 1";
-
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 DataTable dtHomNay = new DataTable();
 
@@ -147,30 +178,23 @@ namespace DATNWF
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
                     da.Fill(dtHomNay);
 
-                    // 1. Đổ dữ liệu vào DataGridView
                     dgvBaoHomNay.DataSource = dtHomNay;
 
-                    // 2. Tinh chỉnh giao diện DataGridView để hiển thị đẹp như danh sách
                     if (dgvBaoHomNay.Columns.Count > 0)
                     {
-                        // Ẩn cột maBao (Đóng vai trò như ValueMember của ListBox cũ)
                         dgvBaoHomNay.Columns["maBao"].Visible = false;
-
-                        // Cấu hình cột tên báo (Đóng vai trò như DisplayMember)
                         dgvBaoHomNay.Columns["ten"].HeaderText = "Tên báo";
-                        // Lệnh quan trọng: Căn giữa nội dung text
                         dgvBaoHomNay.Columns["ten"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     }
 
-                    // 3. Các thiết lập dọn dẹp UI (có thể set trực tiếp trong Properties, hoặc viết ở đây)
-                    dgvBaoHomNay.ColumnHeadersVisible = false; // Ẩn thanh tiêu đề cột phía trên
-                    dgvBaoHomNay.RowHeadersVisible = false;    // Ẩn cột mũi tên chọn dòng ngoài cùng bên trái
-                    dgvBaoHomNay.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Ép cột Tên báo tràn viền
-                    dgvBaoHomNay.SelectionMode = DataGridViewSelectionMode.FullRowSelect;    // Click vào đâu cũng chọn cả dòng
-                    dgvBaoHomNay.AllowUserToAddRows = false;   // Chặn dòng trắng trống ở cuối
-                    dgvBaoHomNay.ReadOnly = true;              // Chỉ xem, không cho sửa text trực tiếp
-                    dgvBaoHomNay.BackgroundColor = Color.White; // Đồng bộ màu nền với Sidebar
-                    dgvBaoHomNay.BorderStyle = BorderStyle.None; // Xóa viền ngoài
+                    dgvBaoHomNay.ColumnHeadersVisible = false;
+                    dgvBaoHomNay.RowHeadersVisible = false;
+                    dgvBaoHomNay.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dgvBaoHomNay.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    dgvBaoHomNay.AllowUserToAddRows = false;
+                    dgvBaoHomNay.ReadOnly = true;
+                    dgvBaoHomNay.BackgroundColor = Color.White;
+                    dgvBaoHomNay.BorderStyle = BorderStyle.None;
                 }
                 catch (Exception ex)
                 {

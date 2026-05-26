@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTaoDieuPhoi));
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.panelLeft = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.txtMaKH = new Guna.UI2.WinForms.Guna2TextBox();
-            this.picTimKH = new Guna.UI2.WinForms.Guna2PictureBox();
             this.btnClose = new Guna.UI2.WinForms.Guna2GradientButton();
             this.btnRefresh = new Guna.UI2.WinForms.Guna2GradientButton();
             this.txtGhiChu = new Guna.UI2.WinForms.Guna2TextBox();
@@ -48,14 +50,19 @@
             this.lblNgayLapPhieu = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblMaKH = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblSoHD = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panelRight = new System.Windows.Forms.TableLayoutPanel();
             this.guna2CustomGradientPanel2 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.guna2CustomGradientPanel3 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.guna2GradientButton4 = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.dgvChiTiet = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.guna2GradientButton1 = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.picTimKH = new Guna.UI2.WinForms.Guna2PictureBox();
             this.panelLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picTimKH)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.panelRight.SuspendLayout();
+            this.guna2CustomGradientPanel2.SuspendLayout();
             this.guna2CustomGradientPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChiTiet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picTimKH)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -69,7 +76,6 @@
             // 
             this.panelLeft.Controls.Add(this.txtMaKH);
             this.panelLeft.Controls.Add(this.picTimKH);
-            this.panelLeft.Controls.Add(this.btnClose);
             this.panelLeft.Controls.Add(this.btnRefresh);
             this.panelLeft.Controls.Add(this.txtGhiChu);
             this.panelLeft.Controls.Add(this.btnCreate);
@@ -110,22 +116,9 @@
             this.txtMaKH.Size = new System.Drawing.Size(213, 48);
             this.txtMaKH.TabIndex = 18;
             // 
-            // picTimKH
-            // 
-            this.picTimKH.BackColor = System.Drawing.Color.White;
-            this.picTimKH.BorderRadius = 5;
-            this.picTimKH.Image = ((System.Drawing.Image)(resources.GetObject("picTimKH.Image")));
-            this.picTimKH.ImageRotate = 0F;
-            this.picTimKH.Location = new System.Drawing.Point(389, 106);
-            this.picTimKH.Name = "picTimKH";
-            this.picTimKH.Size = new System.Drawing.Size(40, 48);
-            this.picTimKH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picTimKH.TabIndex = 17;
-            this.picTimKH.TabStop = false;
-            this.picTimKH.Click += new System.EventHandler(this.picTimKH_Click);
-            // 
             // btnClose
             // 
+            this.btnClose.Animated = true;
             this.btnClose.BackColor = System.Drawing.Color.White;
             this.btnClose.BorderRadius = 20;
             this.btnClose.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -133,13 +126,14 @@
             this.btnClose.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnClose.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnClose.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnClose.FillColor = System.Drawing.Color.LightGray;
-            this.btnClose.FillColor2 = System.Drawing.Color.WhiteSmoke;
+            this.btnClose.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnClose.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnClose.ForeColor = System.Drawing.Color.Black;
+            this.btnClose.HoverState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnClose.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnClose.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnClose.Location = new System.Drawing.Point(297, 500);
+            this.btnClose.Location = new System.Drawing.Point(550, 28);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(122, 45);
             this.btnClose.TabIndex = 16;
@@ -148,6 +142,7 @@
             // 
             // btnRefresh
             // 
+            this.btnRefresh.Animated = true;
             this.btnRefresh.BackColor = System.Drawing.Color.White;
             this.btnRefresh.BorderRadius = 20;
             this.btnRefresh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -155,13 +150,14 @@
             this.btnRefresh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnRefresh.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnRefresh.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnRefresh.FillColor = System.Drawing.Color.LightGray;
-            this.btnRefresh.FillColor2 = System.Drawing.Color.WhiteSmoke;
+            this.btnRefresh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnRefresh.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnRefresh.ForeColor = System.Drawing.Color.Black;
+            this.btnRefresh.HoverState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnRefresh.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnRefresh.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnRefresh.Location = new System.Drawing.Point(155, 500);
+            this.btnRefresh.Location = new System.Drawing.Point(261, 500);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(122, 45);
             this.btnRefresh.TabIndex = 15;
@@ -191,6 +187,7 @@
             // 
             // btnCreate
             // 
+            this.btnCreate.Animated = true;
             this.btnCreate.BackColor = System.Drawing.Color.White;
             this.btnCreate.BorderRadius = 20;
             this.btnCreate.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -198,13 +195,14 @@
             this.btnCreate.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnCreate.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnCreate.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnCreate.FillColor = System.Drawing.Color.LightGray;
-            this.btnCreate.FillColor2 = System.Drawing.Color.WhiteSmoke;
+            this.btnCreate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnCreate.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnCreate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnCreate.ForeColor = System.Drawing.Color.Black;
+            this.btnCreate.HoverState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnCreate.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnCreate.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnCreate.Location = new System.Drawing.Point(18, 500);
+            this.btnCreate.Location = new System.Drawing.Point(62, 500);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(122, 45);
             this.btnCreate.TabIndex = 14;
@@ -217,9 +215,10 @@
             this.dtpDenNgay.BorderRadius = 10;
             this.dtpDenNgay.Checked = true;
             this.dtpDenNgay.CustomFormat = "dd/MM/yyyy";
-            this.dtpDenNgay.FillColor = System.Drawing.Color.LightGray;
+            this.dtpDenNgay.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.dtpDenNgay.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDenNgay.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dtpDenNgay.Location = new System.Drawing.Point(170, 309);
             this.dtpDenNgay.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.dtpDenNgay.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
@@ -234,9 +233,10 @@
             this.dtpTuNgay.BorderRadius = 10;
             this.dtpTuNgay.Checked = true;
             this.dtpTuNgay.CustomFormat = "dd/MM/yyyy";
-            this.dtpTuNgay.FillColor = System.Drawing.Color.LightGray;
+            this.dtpTuNgay.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.dtpTuNgay.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTuNgay.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dtpTuNgay.Location = new System.Drawing.Point(170, 245);
             this.dtpTuNgay.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.dtpTuNgay.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
@@ -251,9 +251,10 @@
             this.dtpNgayLapPhieu.BorderRadius = 10;
             this.dtpNgayLapPhieu.Checked = true;
             this.dtpNgayLapPhieu.CustomFormat = "dd/MM/yyyy";
-            this.dtpNgayLapPhieu.FillColor = System.Drawing.Color.LightGray;
+            this.dtpNgayLapPhieu.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.dtpNgayLapPhieu.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpNgayLapPhieu.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNgayLapPhieu.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dtpNgayLapPhieu.Location = new System.Drawing.Point(170, 176);
             this.dtpNgayLapPhieu.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.dtpNgayLapPhieu.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
@@ -343,24 +344,25 @@
             this.lblSoHD.TabIndex = 0;
             this.lblSoHD.Text = "Số hóa đơn:";
             // 
-            // tableLayoutPanel1
+            // panelRight
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.guna2CustomGradientPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.guna2CustomGradientPanel3, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(483, 15);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.66383F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.33616F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(845, 575);
-            this.tableLayoutPanel1.TabIndex = 3;
+            this.panelRight.ColumnCount = 1;
+            this.panelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.panelRight.Controls.Add(this.guna2CustomGradientPanel2, 0, 0);
+            this.panelRight.Controls.Add(this.guna2CustomGradientPanel3, 0, 1);
+            this.panelRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelRight.Location = new System.Drawing.Point(483, 15);
+            this.panelRight.Name = "panelRight";
+            this.panelRight.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.panelRight.RowCount = 2;
+            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.66383F));
+            this.panelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.33616F));
+            this.panelRight.Size = new System.Drawing.Size(845, 575);
+            this.panelRight.TabIndex = 3;
             // 
             // guna2CustomGradientPanel2
             // 
+            this.guna2CustomGradientPanel2.Controls.Add(this.dgvChiTiet);
             this.guna2CustomGradientPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2CustomGradientPanel2.Location = new System.Drawing.Point(18, 3);
             this.guna2CustomGradientPanel2.Name = "guna2CustomGradientPanel2";
@@ -369,7 +371,9 @@
             // 
             // guna2CustomGradientPanel3
             // 
+            this.guna2CustomGradientPanel3.Controls.Add(this.guna2GradientButton1);
             this.guna2CustomGradientPanel3.Controls.Add(this.guna2GradientButton4);
+            this.guna2CustomGradientPanel3.Controls.Add(this.btnClose);
             this.guna2CustomGradientPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2CustomGradientPanel3.Location = new System.Drawing.Point(18, 472);
             this.guna2CustomGradientPanel3.Name = "guna2CustomGradientPanel3";
@@ -378,6 +382,7 @@
             // 
             // guna2GradientButton4
             // 
+            this.guna2GradientButton4.Animated = true;
             this.guna2GradientButton4.BackColor = System.Drawing.Color.White;
             this.guna2GradientButton4.BorderRadius = 20;
             this.guna2GradientButton4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
@@ -385,21 +390,121 @@
             this.guna2GradientButton4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2GradientButton4.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.guna2GradientButton4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2GradientButton4.FillColor = System.Drawing.Color.LightGray;
-            this.guna2GradientButton4.FillColor2 = System.Drawing.Color.WhiteSmoke;
+            this.guna2GradientButton4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.guna2GradientButton4.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.guna2GradientButton4.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2GradientButton4.ForeColor = System.Drawing.Color.Black;
-            this.guna2GradientButton4.Location = new System.Drawing.Point(385, 28);
+            this.guna2GradientButton4.HoverState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.guna2GradientButton4.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.guna2GradientButton4.Location = new System.Drawing.Point(170, 28);
             this.guna2GradientButton4.Name = "guna2GradientButton4";
             this.guna2GradientButton4.Size = new System.Drawing.Size(122, 45);
             this.guna2GradientButton4.TabIndex = 30;
             this.guna2GradientButton4.Text = "Lưu";
+            this.guna2GradientButton4.Click += new System.EventHandler(this.btnLuu_Click);
+            // 
+            // dgvChiTiet
+            // 
+            this.dgvChiTiet.AllowUserToAddRows = false;
+            this.dgvChiTiet.AllowUserToDeleteRows = false;
+            this.dgvChiTiet.AllowUserToResizeColumns = false;
+            this.dgvChiTiet.AllowUserToResizeRows = false;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.dgvChiTiet.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChiTiet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.dgvChiTiet.ColumnHeadersHeight = 4;
+            this.dgvChiTiet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvChiTiet.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dgvChiTiet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvChiTiet.GridColor = System.Drawing.Color.White;
+            this.dgvChiTiet.Location = new System.Drawing.Point(0, 0);
+            this.dgvChiTiet.Name = "dgvChiTiet";
+            this.dgvChiTiet.ReadOnly = true;
+            this.dgvChiTiet.RowHeadersVisible = false;
+            this.dgvChiTiet.RowHeadersWidth = 51;
+            this.dgvChiTiet.RowTemplate.Height = 24;
+            this.dgvChiTiet.Size = new System.Drawing.Size(824, 463);
+            this.dgvChiTiet.TabIndex = 0;
+            this.dgvChiTiet.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvChiTiet.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvChiTiet.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvChiTiet.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvChiTiet.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvChiTiet.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvChiTiet.ThemeStyle.GridColor = System.Drawing.Color.White;
+            this.dgvChiTiet.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvChiTiet.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvChiTiet.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvChiTiet.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvChiTiet.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dgvChiTiet.ThemeStyle.HeaderStyle.Height = 4;
+            this.dgvChiTiet.ThemeStyle.ReadOnly = true;
+            this.dgvChiTiet.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvChiTiet.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvChiTiet.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvChiTiet.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvChiTiet.ThemeStyle.RowsStyle.Height = 24;
+            this.dgvChiTiet.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvChiTiet.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvChiTiet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChiTiet_CellDoubleClick);
+            // 
+            // guna2GradientButton1
+            // 
+            this.guna2GradientButton1.Animated = true;
+            this.guna2GradientButton1.BackColor = System.Drawing.Color.White;
+            this.guna2GradientButton1.BorderRadius = 20;
+            this.guna2GradientButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2GradientButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2GradientButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2GradientButton1.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2GradientButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2GradientButton1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.guna2GradientButton1.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.guna2GradientButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2GradientButton1.ForeColor = System.Drawing.Color.Black;
+            this.guna2GradientButton1.HoverState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.guna2GradientButton1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.guna2GradientButton1.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.guna2GradientButton1.Location = new System.Drawing.Point(367, 28);
+            this.guna2GradientButton1.Name = "guna2GradientButton1";
+            this.guna2GradientButton1.Size = new System.Drawing.Size(122, 45);
+            this.guna2GradientButton1.TabIndex = 31;
+            this.guna2GradientButton1.Text = "Xóa";
+            this.guna2GradientButton1.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // picTimKH
+            // 
+            this.picTimKH.BackColor = System.Drawing.Color.White;
+            this.picTimKH.BorderRadius = 5;
+            this.picTimKH.Image = ((System.Drawing.Image)(resources.GetObject("picTimKH.Image")));
+            this.picTimKH.ImageRotate = 0F;
+            this.picTimKH.Location = new System.Drawing.Point(389, 106);
+            this.picTimKH.Name = "picTimKH";
+            this.picTimKH.Size = new System.Drawing.Size(40, 48);
+            this.picTimKH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picTimKH.TabIndex = 17;
+            this.picTimKH.TabStop = false;
+            this.picTimKH.Click += new System.EventHandler(this.picTimKH_Click);
             // 
             // frmTaoDieuPhoi
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1343, 605);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelLeft);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTaoDieuPhoi";
@@ -408,9 +513,11 @@
             this.Text = "frmTaoDieuPhoi";
             this.panelLeft.ResumeLayout(false);
             this.panelLeft.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picTimKH)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panelRight.ResumeLayout(false);
+            this.guna2CustomGradientPanel2.ResumeLayout(false);
             this.guna2CustomGradientPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvChiTiet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picTimKH)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -433,11 +540,13 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblNgayLapPhieu;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblMaKH;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblSoHD;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel panelRight;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel2;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel3;
         private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton4;
         private Guna.UI2.WinForms.Guna2PictureBox picTimKH;
         private Guna.UI2.WinForms.Guna2TextBox txtMaKH;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvChiTiet;
+        private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton1;
     }
 }

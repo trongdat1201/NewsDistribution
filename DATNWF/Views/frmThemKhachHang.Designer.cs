@@ -208,7 +208,7 @@
             "A",
             "B",
             "C"});
-            this.cboUuTien.Location = new System.Drawing.Point(589, 173);
+            this.cboUuTien.Location = new System.Drawing.Point(589, 163);
             this.cboUuTien.Name = "cboUuTien";
             this.cboUuTien.Size = new System.Drawing.Size(229, 36);
             this.cboUuTien.TabIndex = 51;

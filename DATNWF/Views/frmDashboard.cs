@@ -1,4 +1,4 @@
-﻿    using Guna.Charts.WinForms;
+﻿using Guna.Charts.WinForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.Generic;
@@ -24,6 +24,22 @@ namespace DATNWF.Views
             LoadGroupedBarChartInventory();
             LoadHorizontalBarChartTopCustomers();
             LoadMetricCards();
+
+            this.DoubleBuffered = true;
+
+            this.Load += frmDashboard_Load;
+        }
+        private void frmDashboard_Load(object sender, EventArgs e)
+        {
+            this.SuspendLayout();
+
+            LoadPieChartRevenue();
+            LoadLineChartRevenueTimeline();
+            LoadGroupedBarChartInventory();
+            LoadHorizontalBarChartTopCustomers();
+            LoadMetricCards();
+
+            this.ResumeLayout();
         }
         private DataTable GetRevenueData()
         {

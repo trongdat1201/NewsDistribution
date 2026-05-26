@@ -24,7 +24,7 @@ namespace DATNWF.Views
         }
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            frmLogin frm = new frmLogin();
+            frmTaoHoaDon frm = new frmTaoHoaDon();
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 
