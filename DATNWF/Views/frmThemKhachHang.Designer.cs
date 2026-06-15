@@ -203,6 +203,7 @@
             this.cboUuTien.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.cboUuTien.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboUuTien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
+            this.cboUuTien.HoverState.BorderColor = System.Drawing.Color.Black;
             this.cboUuTien.ItemHeight = 30;
             this.cboUuTien.Items.AddRange(new object[] {
             "A",
@@ -285,7 +286,7 @@
             this.txtChietKhau.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtChietKhau.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtChietKhau.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtChietKhau.HoverState.BorderColor = System.Drawing.Color.White;
+            this.txtChietKhau.HoverState.BorderColor = System.Drawing.Color.Black;
             this.txtChietKhau.HoverState.ForeColor = System.Drawing.Color.Black;
             this.txtChietKhau.Location = new System.Drawing.Point(589, 94);
             this.txtChietKhau.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -307,7 +308,7 @@
             this.txtDienThoai.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtDienThoai.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtDienThoai.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtDienThoai.HoverState.BorderColor = System.Drawing.Color.White;
+            this.txtDienThoai.HoverState.BorderColor = System.Drawing.Color.Black;
             this.txtDienThoai.HoverState.ForeColor = System.Drawing.Color.Black;
             this.txtDienThoai.Location = new System.Drawing.Point(589, 28);
             this.txtDienThoai.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -329,7 +330,7 @@
             this.txtDiaChi.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtDiaChi.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtDiaChi.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtDiaChi.HoverState.BorderColor = System.Drawing.Color.White;
+            this.txtDiaChi.HoverState.BorderColor = System.Drawing.Color.Black;
             this.txtDiaChi.HoverState.ForeColor = System.Drawing.Color.Black;
             this.txtDiaChi.Location = new System.Drawing.Point(184, 162);
             this.txtDiaChi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -351,7 +352,7 @@
             this.txtTenKH.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txtTenKH.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtTenKH.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTenKH.HoverState.BorderColor = System.Drawing.Color.White;
+            this.txtTenKH.HoverState.BorderColor = System.Drawing.Color.Black;
             this.txtTenKH.HoverState.ForeColor = System.Drawing.Color.Black;
             this.txtTenKH.Location = new System.Drawing.Point(184, 95);
             this.txtTenKH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -374,7 +375,7 @@
             this.txtMaKH.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtMaKH.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtMaKH.ForeColor = System.Drawing.Color.Black;
-            this.txtMaKH.HoverState.BorderColor = System.Drawing.Color.White;
+            this.txtMaKH.HoverState.BorderColor = System.Drawing.Color.Black;
             this.txtMaKH.HoverState.FillColor = System.Drawing.Color.White;
             this.txtMaKH.HoverState.ForeColor = System.Drawing.Color.Black;
             this.txtMaKH.Location = new System.Drawing.Point(184, 29);

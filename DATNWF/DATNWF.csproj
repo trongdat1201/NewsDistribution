@@ -65,6 +65,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThanhnienDataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThanhnienDataSet6.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmEditDelivery.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,11 +116,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ThanhnienDataSet5.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="ThanhnienDataSet8.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ThanhnienDataSet8.xsd</DependentUpon>
     </Compile>
     <Compile Include="Views\Form2.cs">
       <SubType>Form</SubType>
@@ -365,16 +365,16 @@
     <None Include="ThanhnienDataSet5.xss">
       <DependentUpon>ThanhnienDataSet5.xsd</DependentUpon>
     </None>
-    <None Include="ThanhnienDataSet8.xsc">
-      <DependentUpon>ThanhnienDataSet8.xsd</DependentUpon>
+    <None Include="ThanhnienDataSet6.xsc">
+      <DependentUpon>ThanhnienDataSet6.xsd</DependentUpon>
     </None>
-    <None Include="ThanhnienDataSet8.xsd">
+    <None Include="ThanhnienDataSet6.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ThanhnienDataSet8.Designer.cs</LastGenOutput>
+      <LastGenOutput>ThanhnienDataSet6.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="ThanhnienDataSet8.xss">
-      <DependentUpon>ThanhnienDataSet8.xsd</DependentUpon>
+    <None Include="ThanhnienDataSet6.xss">
+      <DependentUpon>ThanhnienDataSet6.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

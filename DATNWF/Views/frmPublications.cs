@@ -21,11 +21,13 @@ namespace DATNWF
         private void LoadData()
         {
             this.tabBAOTableAdapter.Fill(this.thanhnienDataSet.tabBAO);
-            this.tabBao_ngoaiLeTableAdapter.Fill(this.thanhnienDataSet8.tabBao_ngoaiLe);
+            this.tabBao_ngoaiLeTableAdapter.Fill(this.thanhnienDataSet6.tabBao_ngoaiLe);
         }
 
         private void frmPublications_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'thanhnienDataSet6.tabBao_ngoaiLe' table. You can move, or remove it, as needed.
+            this.tabBao_ngoaiLeTableAdapter.Fill(this.thanhnienDataSet6.tabBao_ngoaiLe);
             LoadData();
             LoadBaoHomNay();
         }

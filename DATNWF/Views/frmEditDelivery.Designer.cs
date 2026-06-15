@@ -55,7 +55,7 @@
             // 
             this.lblMaBao.BackColor = System.Drawing.Color.Transparent;
             this.lblMaBao.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaBao.Location = new System.Drawing.Point(25, 66);
+            this.lblMaBao.Location = new System.Drawing.Point(28, 59);
             this.lblMaBao.Name = "lblMaBao";
             this.lblMaBao.Size = new System.Drawing.Size(63, 25);
             this.lblMaBao.TabIndex = 81;
@@ -77,7 +77,7 @@
             this.txtMaBao.HoverState.BorderColor = System.Drawing.Color.Black;
             this.txtMaBao.HoverState.FillColor = System.Drawing.Color.White;
             this.txtMaBao.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.txtMaBao.Location = new System.Drawing.Point(131, 52);
+            this.txtMaBao.Location = new System.Drawing.Point(134, 45);
             this.txtMaBao.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMaBao.Name = "txtMaBao";
             this.txtMaBao.PlaceholderText = "";
@@ -101,7 +101,7 @@
             this.btnAddBaoNLe.ForeColor = System.Drawing.Color.Black;
             this.btnAddBaoNLe.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.btnAddBaoNLe.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnAddBaoNLe.Location = new System.Drawing.Point(458, 210);
+            this.btnAddBaoNLe.Location = new System.Drawing.Point(461, 203);
             this.btnAddBaoNLe.Name = "btnAddBaoNLe";
             this.btnAddBaoNLe.Size = new System.Drawing.Size(122, 45);
             this.btnAddBaoNLe.TabIndex = 95;
@@ -112,7 +112,7 @@
             // 
             this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(25, 137);
+            this.guna2HtmlLabel1.Location = new System.Drawing.Point(28, 130);
             this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
             this.guna2HtmlLabel1.Size = new System.Drawing.Size(67, 25);
             this.guna2HtmlLabel1.TabIndex = 97;
@@ -134,7 +134,7 @@
             this.txtTenBao.HoverState.BorderColor = System.Drawing.Color.Black;
             this.txtTenBao.HoverState.FillColor = System.Drawing.Color.White;
             this.txtTenBao.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.txtTenBao.Location = new System.Drawing.Point(131, 123);
+            this.txtTenBao.Location = new System.Drawing.Point(134, 116);
             this.txtTenBao.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTenBao.Name = "txtTenBao";
             this.txtTenBao.PlaceholderText = "";
@@ -146,7 +146,7 @@
             // 
             this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(25, 221);
+            this.guna2HtmlLabel2.Location = new System.Drawing.Point(28, 214);
             this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             this.guna2HtmlLabel2.Size = new System.Drawing.Size(58, 25);
             this.guna2HtmlLabel2.TabIndex = 99;
@@ -168,10 +168,10 @@
             this.txtSoBao.HoverState.BorderColor = System.Drawing.Color.Black;
             this.txtSoBao.HoverState.FillColor = System.Drawing.Color.White;
             this.txtSoBao.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.txtSoBao.Location = new System.Drawing.Point(131, 207);
+            this.txtSoBao.Location = new System.Drawing.Point(134, 200);
             this.txtSoBao.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSoBao.Name = "txtSoBao";
-            this.txtSoBao.PlaceholderText = "BAO01";
+            this.txtSoBao.PlaceholderText = "";
             this.txtSoBao.SelectedText = "";
             this.txtSoBao.Size = new System.Drawing.Size(229, 48);
             this.txtSoBao.TabIndex = 98;
@@ -180,11 +180,11 @@
             // 
             this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(399, 66);
+            this.guna2HtmlLabel3.Location = new System.Drawing.Point(402, 59);
             this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(63, 25);
+            this.guna2HtmlLabel3.Size = new System.Drawing.Size(67, 25);
             this.guna2HtmlLabel3.TabIndex = 101;
-            this.guna2HtmlLabel3.Text = "Mã Báo";
+            this.guna2HtmlLabel3.Text = "Đơn giá";
             // 
             // txtDonGia
             // 
@@ -202,7 +202,7 @@
             this.txtDonGia.HoverState.BorderColor = System.Drawing.Color.Black;
             this.txtDonGia.HoverState.FillColor = System.Drawing.Color.White;
             this.txtDonGia.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.txtDonGia.Location = new System.Drawing.Point(505, 52);
+            this.txtDonGia.Location = new System.Drawing.Point(508, 45);
             this.txtDonGia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtDonGia.Name = "txtDonGia";
             this.txtDonGia.PlaceholderText = "Đơn giá";
@@ -214,7 +214,7 @@
             // 
             this.guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent;
             this.guna2HtmlLabel4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel4.Location = new System.Drawing.Point(399, 128);
+            this.guna2HtmlLabel4.Location = new System.Drawing.Point(402, 121);
             this.guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             this.guna2HtmlLabel4.Size = new System.Drawing.Size(76, 25);
             this.guna2HtmlLabel4.TabIndex = 103;
@@ -236,10 +236,10 @@
             this.txtSoLuong.HoverState.BorderColor = System.Drawing.Color.Black;
             this.txtSoLuong.HoverState.FillColor = System.Drawing.Color.White;
             this.txtSoLuong.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.txtSoLuong.Location = new System.Drawing.Point(505, 114);
+            this.txtSoLuong.Location = new System.Drawing.Point(508, 107);
             this.txtSoLuong.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSoLuong.Name = "txtSoLuong";
-            this.txtSoLuong.PlaceholderText = "BAO01";
+            this.txtSoLuong.PlaceholderText = "";
             this.txtSoLuong.SelectedText = "";
             this.txtSoLuong.Size = new System.Drawing.Size(229, 48);
             this.txtSoLuong.TabIndex = 102;
@@ -260,7 +260,7 @@
             this.guna2GradientButton1.ForeColor = System.Drawing.Color.Black;
             this.guna2GradientButton1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.guna2GradientButton1.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.guna2GradientButton1.Location = new System.Drawing.Point(612, 210);
+            this.guna2GradientButton1.Location = new System.Drawing.Point(615, 203);
             this.guna2GradientButton1.Name = "guna2GradientButton1";
             this.guna2GradientButton1.Size = new System.Drawing.Size(122, 45);
             this.guna2GradientButton1.TabIndex = 104;
@@ -269,8 +269,7 @@
             // 
             // frmEditDelivery
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(800, 294);
             this.Controls.Add(this.guna2GradientButton1);

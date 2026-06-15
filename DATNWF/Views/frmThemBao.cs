@@ -18,11 +18,11 @@ namespace DATNWF.Views
         public frmThemBao()
         {
             InitializeComponent();
-
             this.DoubleBuffered = true;
 
             this.Load += frmThemBao_Load;
 
+            // Đăng ký sự kiện đếm số lần phát hành tự động
             chkChuNhat.CheckedChanged += CheckBoxBaoChinh_CheckedChanged;
             chkThu2.CheckedChanged += CheckBoxBaoChinh_CheckedChanged;
             chkThu3.CheckedChanged += CheckBoxBaoChinh_CheckedChanged;
@@ -60,21 +60,20 @@ namespace DATNWF.Views
 
             dgvNgoaiLeTam.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvNgoaiLeTam.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
             dgvNgoaiLeTam.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void SetUIState(bool isCreatingMaster)
         {
-            this.SuspendLayout(); 
+            this.SuspendLayout();
 
             txtMaBao.Enabled = isCreatingMaster && string.IsNullOrEmpty(txtMaBao.Text);
-
             txtTenBao.Enabled = isCreatingMaster;
             cbDvt.Enabled = isCreatingMaster;
             txtDonGia.Enabled = isCreatingMaster;
             txtSoGoc.Enabled = isCreatingMaster;
             dtpNgayBatDau.Enabled = isCreatingMaster;
+
             chkChuNhat.Enabled = isCreatingMaster;
             chkThu2.Enabled = isCreatingMaster;
             chkThu3.Enabled = isCreatingMaster;
@@ -83,27 +82,41 @@ namespace DATNWF.Views
             chkThu6.Enabled = isCreatingMaster;
             chkThu7.Enabled = isCreatingMaster;
 
-            pnlAdd.BackColor = isCreatingMaster ? Color.White : Color.WhiteSmoke;
             btnCreateBao.Enabled = isCreatingMaster;
-            btnEditBao.Enabled = !isCreatingMaster;
+
+            Color colorMaster = isCreatingMaster ? Color.White : Color.WhiteSmoke;
+            txtMaBao.BackColor = colorMaster;
+            txtTenBao.BackColor = colorMaster;
+            cbDvt.BackColor = colorMaster;
+            txtDonGia.BackColor = colorMaster;
+            txtSoGoc.BackColor = colorMaster;
+            txtTanSuat.BackColor = colorMaster;
+
 
             bool isExceptionActive = !isCreatingMaster;
 
             txtMaBaoNgoaiLe.Enabled = false;
-
             ngayPhatHanh.Enabled = isExceptionActive;
-            txtSoLanPhatHanhTrongNam.Enabled = isExceptionActive;
+
+            txtSoLanPhatHanhTrongNam.Enabled = false;
+            txtSoLanPhatHanhTrongNam.BackColor = Color.WhiteSmoke;
+            txtSoLanPhatHanhTrongNam.Text = "1";
+
             btnAddBaoNLe.Enabled = isExceptionActive;
-            btnDeleteBaoNle.Enabled = isExceptionActive;
+
+            if (this.Controls.ContainsKey("btnDeleteBaoNle"))
+            {
+                Control[] btns = this.Controls.Find("btnDeleteBaoNle", true);
+                if (btns.Length > 0) btns[0].Enabled = isExceptionActive;
+            }
+
             dgvNgoaiLeTam.Enabled = isExceptionActive;
 
-            tablelayoutAddBaoNLe.BackColor = isExceptionActive ? Color.White : Color.WhiteSmoke;
+            imgSave.Enabled = true;
+            imgRefresh.Enabled = true;
+            imgCancel.Enabled = true;
 
-            imgSave.Enabled = isExceptionActive;    
-            imgRefresh.Enabled = isExceptionActive;
-            imgCancel.Enabled = true;              
-
-            this.ResumeLayout(); 
+            this.ResumeLayout();
         }
 
         private void ResetToInitState()
@@ -111,6 +124,7 @@ namespace DATNWF.Views
             txtMaBao.Clear();
             txtTenBao.Clear();
             cbDvt.SelectedIndex = -1;
+            cbDvt.Text = "";
             txtDonGia.Clear();
             txtSoGoc.Clear();
             txtTanSuat.Text = "0";
@@ -128,10 +142,9 @@ namespace DATNWF.Views
             ClearExceptionInputs();
 
             txtMaBaoNgoaiLe.Clear();
+            dtNgoaiLeTam.Clear();
 
-            dtNgoaiLeTam.Clear(); 
-
-            SetUIState(true); 
+            SetUIState(true);
         }
 
         private void CheckBoxBaoChinh_CheckedChanged(object sender, EventArgs e)
@@ -149,7 +162,7 @@ namespace DATNWF.Views
 
         private void btnCreateBao_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtMaBao.Text) || string.IsNullOrWhiteSpace(txtTenBao.Text) || cbDvt.SelectedItem == null)
+            if (string.IsNullOrWhiteSpace(txtMaBao.Text) || string.IsNullOrWhiteSpace(txtTenBao.Text) || string.IsNullOrWhiteSpace(cbDvt.Text))
             {
                 MessageBox.Show("Mã báo, Tên báo và Đơn vị tính không được phép để trống!", "Ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -168,14 +181,42 @@ namespace DATNWF.Views
                 return;
             }
 
-            if (!string.IsNullOrWhiteSpace(txtSoGoc.Text))
+            try
             {
-                if (!int.TryParse(txtSoGoc.Text, out int soGocParsed) || soGocParsed < 0)
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    MessageBox.Show("Số gốc phải là số nguyên hợp lệ và không âm!", "Ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtSoGoc.Focus();
-                    return;
+                    conn.Open();
+                    string queryCheck = "SELECT COUNT(*) FROM tabBAO WHERE maBao = @maBao";
+                    using (SqlCommand cmdCheck = new SqlCommand(queryCheck, conn))
+                    {
+                        cmdCheck.Parameters.AddWithValue("@maBao", txtMaBao.Text.Trim());
+                        int count = (int)cmdCheck.ExecuteScalar();
+
+                        if (count > 0)
+                        {
+                            MessageBox.Show("Mã báo này đã tồn tại trong hệ thống!\nVui lòng nhập một Mã báo khác.", "Trùng dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtMaBao.Focus();
+                            txtMaBao.SelectAll();
+                            return; 
+                        }
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi kết nối CSDL để kiểm tra Mã báo: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtSoGoc.Text))
+            {
+                txtSoGoc.Text = "1";
+            }
+            if (!int.TryParse(txtSoGoc.Text, out int soGocParsed) || soGocParsed < 0)
+            {
+                MessageBox.Show("Số gốc phải là số nguyên hợp lệ và không âm!", "Ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSoGoc.Focus();
+                return;
             }
 
             txtMaBaoNgoaiLe.Text = txtMaBao.Text.Trim();
@@ -183,40 +224,33 @@ namespace DATNWF.Views
             SetUIState(false);
         }
 
-        private void btnEditBao_Click(object sender, EventArgs e)
-        {
-            SetUIState(true);
-        }
-
         private void ClearExceptionInputs()
         {
             ngayPhatHanh.Value = DateTime.Now;
-            txtSoLanPhatHanhTrongNam.Clear();
+            txtSoLanPhatHanhTrongNam.Text = "1"; 
+            txtSoLanPhatHanhTrongNam.Enabled = false; 
             isEditingException = false;
             if (dgvNgoaiLeTam != null) dgvNgoaiLeTam.ClearSelection();
         }
 
         private void btnAddBaoNLe_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSoLanPhatHanhTrongNam.Text) || !int.TryParse(txtSoLanPhatHanhTrongNam.Text, out int soLan) || soLan < 0)
-            {
-                MessageBox.Show("Tần suất ngoài lề phải là số nguyên hợp lệ!", "Ràng buộc", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtSoLanPhatHanhTrongNam.Focus();
-                return;
-            }
-
+            int soLan = 1;
             DateTime ngayPH = ngayPhatHanh.Value.Date;
 
             if (isEditingException)
             {
                 foreach (DataRow row in dtNgoaiLeTam.Rows)
                 {
+                    if (row.RowState == DataRowState.Deleted) continue;
+
                     if (Convert.ToDateTime(row["ngayPhatHanh"]).Date == oldNgayPhatHanh)
                     {
                         if (ngayPH != oldNgayPhatHanh)
                         {
                             foreach (DataRow rCheck in dtNgoaiLeTam.Rows)
                             {
+                                if (rCheck.RowState == DataRowState.Deleted) continue;
                                 if (rCheck != row && Convert.ToDateTime(rCheck["ngayPhatHanh"]).Date == ngayPH)
                                 {
                                     MessageBox.Show("Ngày ngoại lệ này đã tồn tại trong danh sách!", "Trùng lặp", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -225,7 +259,7 @@ namespace DATNWF.Views
                             }
                         }
                         row["ngayPhatHanh"] = ngayPH;
-                        row["soLanTrongNam"] = soLan;
+                        row["soLanTrongNam"] = soLan; 
                         break;
                     }
                 }
@@ -234,6 +268,7 @@ namespace DATNWF.Views
             {
                 foreach (DataRow row in dtNgoaiLeTam.Rows)
                 {
+                    if (row.RowState == DataRowState.Deleted) continue;
                     if (Convert.ToDateTime(row["ngayPhatHanh"]).Date == ngayPH)
                     {
                         MessageBox.Show("Ngày phát hành này đã được thêm vào danh sách!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -243,7 +278,7 @@ namespace DATNWF.Views
 
                 DataRow newRow = dtNgoaiLeTam.NewRow();
                 newRow["ngayPhatHanh"] = ngayPH;
-                newRow["soLanTrongNam"] = soLan;
+                newRow["soLanTrongNam"] = soLan; 
                 dtNgoaiLeTam.Rows.Add(newRow);
             }
 
@@ -258,7 +293,7 @@ namespace DATNWF.Views
                 if (drv != null)
                 {
                     ngayPhatHanh.Value = Convert.ToDateTime(drv.Row["ngayPhatHanh"]);
-                    txtSoLanPhatHanhTrongNam.Text = drv.Row["soLanTrongNam"].ToString();
+                    txtSoLanPhatHanhTrongNam.Text = "1"; 
 
                     isEditingException = true;
                     oldNgayPhatHanh = ngayPhatHanh.Value.Date;
@@ -285,20 +320,15 @@ namespace DATNWF.Views
 
         private void imgSave_Click(object sender, EventArgs e)
         {
-            string maBao = txtMaBao.Text.Trim();
-
-            if (string.IsNullOrEmpty(maBao) || string.IsNullOrEmpty(txtTenBao.Text))
+            if (txtMaBao.Enabled)
             {
-                MessageBox.Show("Vui lòng hoàn thiện thông tin đầu báo trước khi lưu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng hoàn thiện thông tin đầu báo và nhấn nút [Tạo Báo] trước khi Hoàn thành!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
+            string maBao = txtMaBao.Text.Trim();
             double donGia = double.Parse(txtDonGia.Text);
-            object soGocValue = DBNull.Value;
-            if (!string.IsNullOrWhiteSpace(txtSoGoc.Text) && int.TryParse(txtSoGoc.Text, out int soGocParsed))
-            {
-                soGocValue = soGocParsed;
-            }
+            int soGocParsed = int.Parse(txtSoGoc.Text);
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -324,11 +354,11 @@ namespace DATNWF.Views
                         {
                             cmdBao.Parameters.AddWithValue("@maBao", maBao);
                             cmdBao.Parameters.AddWithValue("@ten", txtTenBao.Text.Trim());
-                            cmdBao.Parameters.AddWithValue("@dvt", cbDvt.SelectedItem.ToString());
+                            cmdBao.Parameters.AddWithValue("@dvt", cbDvt.Text.Trim());
                             cmdBao.Parameters.AddWithValue("@donGia", donGia);
                             cmdBao.Parameters.AddWithValue("@tanSuat", int.Parse(txtTanSuat.Text));
-                            cmdBao.Parameters.AddWithValue("@soGoc", soGocValue);
-                            cmdBao.Parameters.AddWithValue("@ngayBatDau", dtpNgayBatDau.Value);
+                            cmdBao.Parameters.AddWithValue("@soGoc", soGocParsed);
+                            cmdBao.Parameters.AddWithValue("@ngayBatDau", dtpNgayBatDau.Value.Date);
                             cmdBao.Parameters.AddWithValue("@t1", chkChuNhat.Checked);
                             cmdBao.Parameters.AddWithValue("@t2", chkThu2.Checked);
                             cmdBao.Parameters.AddWithValue("@t3", chkThu3.Checked);
@@ -358,8 +388,8 @@ namespace DATNWF.Views
                                 using (SqlCommand cmdNgoaiLe = new SqlCommand(sqlNgoaiLe, conn, trans))
                                 {
                                     cmdNgoaiLe.Parameters.AddWithValue("@maBao", maBao);
-                                    cmdNgoaiLe.Parameters.AddWithValue("@ngay", Convert.ToDateTime(row["ngayPhatHanh"]));
-                                    cmdNgoaiLe.Parameters.AddWithValue("@soLan", Convert.ToInt32(row["soLanTrongNam"]));
+                                    cmdNgoaiLe.Parameters.AddWithValue("@ngay", Convert.ToDateTime(row["ngayPhatHanh"]).Date);
+                                    cmdNgoaiLe.Parameters.AddWithValue("@soLan", 1); 
                                     cmdNgoaiLe.ExecuteNonQuery();
                                 }
                             }
