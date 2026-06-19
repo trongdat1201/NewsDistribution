@@ -102,7 +102,7 @@ namespace DATNWF.Views
         private DataTable GetRevenueTimelineData()
         {
             DataTable dt = new DataTable();
-            string connString = @"Data Source=DESKTOP-IKRN14J\SQLEXPRESS;Initial Catalog=Thanhnien;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
 
             string query = @"
                 SELECT * FROM (
@@ -117,7 +117,7 @@ namespace DATNWF.Views
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -175,7 +175,7 @@ namespace DATNWF.Views
         private DataTable GetInventoryData()
         {
             DataTable dt = new DataTable();
-            string connString = @"Data Source=DESKTOP-IKRN14J\SQLEXPRESS;Initial Catalog=Thanhnien;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
 
             string query = @"
                 SELECT * FROM (
@@ -191,7 +191,7 @@ namespace DATNWF.Views
                 ORDER BY Ngay ASC";
             try
             {
-                using (SqlConnection conn = new SqlConnection(connString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -253,7 +253,7 @@ namespace DATNWF.Views
         private DataTable GetTopCustomersData()
         {
             DataTable dt = new DataTable();
-            string connString = @"Data Source=DESKTOP-IKRN14J\SQLEXPRESS;Initial Catalog=Thanhnien;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
 
             string query = @"
                 SELECT TOP 10 
@@ -267,7 +267,7 @@ namespace DATNWF.Views
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
@@ -318,7 +318,7 @@ namespace DATNWF.Views
         }
         public void LoadMetricCards()
         {
-            string connString = @"Data Source=DESKTOP-IKRN14J\SQLEXPRESS;Initial Catalog=Thanhnien;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
 
             // Các câu truy vấn lấy con số tổng quát[cite: 2]
             string queryDoanhThu = "SELECT ISNULL(SUM(thanhTien), 0) FROM tabCHITIETHOADON";
@@ -327,7 +327,7 @@ namespace DATNWF.Views
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 

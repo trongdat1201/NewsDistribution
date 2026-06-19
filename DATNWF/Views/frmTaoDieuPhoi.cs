@@ -19,15 +19,13 @@ namespace DATNWF.Views
         private void FormDieuPhoi_Load(object sender, EventArgs e)
         {
             SetupDataGridView();
-            ResetForm(); // Gọi hàm khởi tạo trạng thái chuẩn ngay khi mở form
+            ResetForm(); 
         }
 
-        // ======================= QUẢN LÝ TRẠNG THÁI CONTROL TẬP TRUNG (FIX LỖI LOCK) =======================
         private void SetUIState(bool isCreatingMaster)
         {
             this.SuspendLayout();
 
-            // 1. Nhóm thiết lập thông tin (Bên trái)
             picTimKH.Enabled = isCreatingMaster;
             dtpNgayLapPhieu.Enabled = isCreatingMaster;
             dtpTuNgay.Enabled = isCreatingMaster;
@@ -35,7 +33,6 @@ namespace DATNWF.Views
             txtGhiChu.Enabled = isCreatingMaster;
             btnCreate.Enabled = isCreatingMaster;
 
-            // 2. KHÓA TUYỆT ĐỐI Ô MÃ HÓA ĐƠN VÀ MÃ KHÁCH HÀNG (Luôn luôn false từ lúc mở đến lúc đóng)
             txtSoHD.Enabled = false;
             txtSoHD.ReadOnly = true;
             txtSoHD.TabStop = false;
@@ -44,11 +41,9 @@ namespace DATNWF.Views
             txtMaKH.ReadOnly = true;
             txtMaKH.TabStop = false;
 
-            // 3. Nhóm xử lý chi tiết (Bên phải)
             dgvChiTiet.Enabled = !isCreatingMaster;
             btnSave.Enabled = !isCreatingMaster;
 
-            // 4. Các nút điều khiển chung của hệ thống
             btnRefresh.Enabled = true;
             btnClose.Enabled = true;
 
@@ -66,15 +61,12 @@ namespace DATNWF.Views
             dtpTuNgay.Value = DateTime.Now;
             dtpDenNgay.Value = DateTime.Now;
 
-            // Xóa sạch dữ liệu cũ trên lưới
             dgvChiTiet.DataSource = null;
             dgvChiTiet.Columns.Clear();
 
-            // Đưa toàn bộ UI về trạng thái thiết lập ban đầu
             SetUIState(true);
         }
 
-        // ======================= LOGIC 1: TÌM KHÁCH HÀNG & SINH MÃ TỰ ĐỘNG =======================
         private void picTimKH_Click(object sender, EventArgs e)
         {
             using (frmTimKhachHang frmSearch = new frmTimKhachHang())
@@ -149,7 +141,6 @@ namespace DATNWF.Views
             }
         }
 
-        // ======================= LOGIC 2: KHỞI TẠO N DÒNG CHI TIẾT =======================
         private void btnCreate_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(maKhachHangDuocChon) || string.IsNullOrWhiteSpace(txtSoHD.Text))
@@ -167,7 +158,6 @@ namespace DATNWF.Views
                 return;
             }
 
-            // Khóa toàn bộ phần Master, kích hoạt phần chi tiết điều phối
             SetUIState(false);
 
             LoadBaoPhatHanhTheoGiaiDoan(tuNgay, denNgay);
@@ -187,7 +177,6 @@ namespace DATNWF.Views
 
         private void LoadBaoPhatHanhTheoGiaiDoan(DateTime tuNgay, DateTime denNgay)
         {
-            // Reset cấu trúc cột cũ để tránh xung đột layout
             dgvChiTiet.DataSource = null;
             dgvChiTiet.Columns.Clear();
 
@@ -235,7 +224,6 @@ namespace DATNWF.Views
 
             dgvChiTiet.DataSource = dtChiTiet;
 
-            // Định danh tiêu đề cột Tiếng Việt
             if (dgvChiTiet.Columns.Count > 0)
             {
                 dgvChiTiet.Columns["ngayNhan"].HeaderText = "Ngày nhận";
@@ -251,9 +239,6 @@ namespace DATNWF.Views
                 dgvChiTiet.Columns["thanhTien"].DefaultCellStyle.Format = "N0";
             }
 
-            // =================================================================================
-            // ĐOẠN LỆNH ÉP REDRAW ĐỂ HIỂN THỊ TÊN CỘT NGAY LẬP TỨC (SỬA TRIỆT ĐỂ LỖI ẨN HEADER)
-            // =================================================================================
             dgvChiTiet.ColumnHeadersVisible = false;
             dgvChiTiet.ColumnHeadersVisible = true;
             dgvChiTiet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -262,7 +247,6 @@ namespace DATNWF.Views
             dgvChiTiet.Refresh();
         }
 
-        // ======================= LOGIC 3: THUẬT TOÁN TÍNH SỐ BÁO =======================
         private int TinhSoBaoNghiepVu(DateTime ngayBatDau, DateTime ngayDieuPhoi, int soGoc, DataRow thongTinBao)
         {
             DateTime mocDauNam = new DateTime(ngayDieuPhoi.Year, 1, 1);
@@ -287,7 +271,6 @@ namespace DATNWF.Views
             return soGoc + countNgayPhatHanhThucTe - 1;
         }
 
-        // ======================= LOGIC 4: CẬP NHẬT CHI TIẾT SỐ LƯỢNG =======================
         private void dgvChiTiet_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -312,7 +295,6 @@ namespace DATNWF.Views
             }
         }
 
-        // ======================= LOGIC 5: LƯU TRANSACTION DỮ LIỆU XUỐNG DB =======================
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (btnCreate.Enabled) return;

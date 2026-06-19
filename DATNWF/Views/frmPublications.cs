@@ -26,7 +26,6 @@ namespace DATNWF
 
         private void frmPublications_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'thanhnienDataSet6.tabBao_ngoaiLe' table. You can move, or remove it, as needed.
             this.tabBao_ngoaiLeTableAdapter.Fill(this.thanhnienDataSet6.tabBao_ngoaiLe);
             LoadData();
             LoadBaoHomNay();
