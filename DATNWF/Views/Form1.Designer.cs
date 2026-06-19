@@ -54,6 +54,7 @@
             this.picNotification = new Guna.UI2.WinForms.Guna2PictureBox();
             this.panelDesktop = new Guna.UI2.WinForms.Guna2Panel();
             this.dayandtime = new System.Windows.Forms.Timer(this.components);
+            this.picSetting = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.panelSidebar.SuspendLayout();
             this.tableLayoutPanelSidebar.SuspendLayout();
             this.tableLayoutPanelTitle1.SuspendLayout();
@@ -66,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picMessage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNotification)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -144,14 +146,14 @@
             // 
             this.tableLayoutPanelBtn.ColumnCount = 1;
             this.tableLayoutPanelBtn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelBtn.Controls.Add(this.btnCustomer, 0, 2);
-            this.tableLayoutPanelBtn.Controls.Add(this.btnInvoices, 0, 3);
-            this.tableLayoutPanelBtn.Controls.Add(this.btnDelivery, 0, 4);
-            this.tableLayoutPanelBtn.Controls.Add(this.btnInventory, 0, 5);
-            this.tableLayoutPanelBtn.Controls.Add(this.btnSetting, 0, 6);
             this.tableLayoutPanelBtn.Controls.Add(this.btnLogout, 0, 7);
+            this.tableLayoutPanelBtn.Controls.Add(this.btnInvoices, 0, 4);
+            this.tableLayoutPanelBtn.Controls.Add(this.btnDelivery, 0, 3);
             this.tableLayoutPanelBtn.Controls.Add(this.btnPublications, 0, 1);
             this.tableLayoutPanelBtn.Controls.Add(this.btnDashboard, 0, 0);
+            this.tableLayoutPanelBtn.Controls.Add(this.btnCustomer, 0, 2);
+            this.tableLayoutPanelBtn.Controls.Add(this.btnInventory, 0, 6);
+            this.tableLayoutPanelBtn.Controls.Add(this.btnSetting, 0, 5);
             this.tableLayoutPanelBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelBtn.Location = new System.Drawing.Point(3, 150);
             this.tableLayoutPanelBtn.Name = "tableLayoutPanelBtn";
@@ -190,7 +192,7 @@
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.Size = new System.Drawing.Size(264, 65);
             this.btnCustomer.TabIndex = 2;
-            this.btnCustomer.Text = "Customers";
+            this.btnCustomer.Text = "Quản lý khách hàng";
             this.btnCustomer.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
@@ -213,11 +215,11 @@
             this.btnInvoices.Image = global::DATNWF.Properties.Resources.invoice;
             this.btnInvoices.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnInvoices.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnInvoices.Location = new System.Drawing.Point(3, 216);
+            this.btnInvoices.Location = new System.Drawing.Point(3, 287);
             this.btnInvoices.Name = "btnInvoices";
             this.btnInvoices.Size = new System.Drawing.Size(264, 65);
             this.btnInvoices.TabIndex = 3;
-            this.btnInvoices.Text = "Invoices/Orders";
+            this.btnInvoices.Text = "Quản lý hóa đơn";
             this.btnInvoices.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnInvoices.Click += new System.EventHandler(this.btnInvoices_Click);
             // 
@@ -240,11 +242,11 @@
             this.btnDelivery.Image = global::DATNWF.Properties.Resources.delivery;
             this.btnDelivery.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDelivery.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnDelivery.Location = new System.Drawing.Point(3, 287);
+            this.btnDelivery.Location = new System.Drawing.Point(3, 216);
             this.btnDelivery.Name = "btnDelivery";
             this.btnDelivery.Size = new System.Drawing.Size(264, 65);
             this.btnDelivery.TabIndex = 4;
-            this.btnDelivery.Text = "Dispatch/Delivery";
+            this.btnDelivery.Text = "Quản lý điều phối";
             this.btnDelivery.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDelivery.Click += new System.EventHandler(this.btnDelivery_Click);
             // 
@@ -267,11 +269,11 @@
             this.btnInventory.Image = global::DATNWF.Properties.Resources.checklist;
             this.btnInventory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnInventory.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnInventory.Location = new System.Drawing.Point(3, 358);
+            this.btnInventory.Location = new System.Drawing.Point(3, 429);
             this.btnInventory.Name = "btnInventory";
             this.btnInventory.Size = new System.Drawing.Size(264, 65);
             this.btnInventory.TabIndex = 5;
-            this.btnInventory.Text = "Inventory";
+            this.btnInventory.Text = "Quản lý tồn kho";
             this.btnInventory.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
             // 
@@ -291,14 +293,14 @@
             this.btnSetting.ForeColor = System.Drawing.Color.Black;
             this.btnSetting.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnSetting.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnSetting.Image = global::DATNWF.Properties.Resources.gear;
+            this.btnSetting.Image = ((System.Drawing.Image)(resources.GetObject("btnSetting.Image")));
             this.btnSetting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSetting.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnSetting.Location = new System.Drawing.Point(3, 429);
+            this.btnSetting.Location = new System.Drawing.Point(3, 358);
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Size = new System.Drawing.Size(264, 65);
             this.btnSetting.TabIndex = 6;
-            this.btnSetting.Text = "Setting";
+            this.btnSetting.Text = "Chi tiết hóa đơn";
             this.btnSetting.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
@@ -312,20 +314,21 @@
             this.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnLogout.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnLogout.FillColor = System.Drawing.Color.WhiteSmoke;
             this.btnLogout.FillColor2 = System.Drawing.Color.WhiteSmoke;
             this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
             this.btnLogout.ForeColor = System.Drawing.Color.Black;
             this.btnLogout.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnLogout.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnLogout.Image = global::DATNWF.Properties.Resources.logout;
+            this.btnLogout.Image = ((System.Drawing.Image)(resources.GetObject("btnLogout.Image")));
             this.btnLogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnLogout.ImageSize = new System.Drawing.Size(38, 38);
             this.btnLogout.Location = new System.Drawing.Point(3, 500);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(264, 65);
             this.btnLogout.TabIndex = 7;
-            this.btnLogout.Text = "Logout";
+            this.btnLogout.Text = "Quyền truy cập";
             this.btnLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // btnPublications
@@ -351,7 +354,7 @@
             this.btnPublications.Name = "btnPublications";
             this.btnPublications.Size = new System.Drawing.Size(264, 65);
             this.btnPublications.TabIndex = 1;
-            this.btnPublications.Text = "Publications";
+            this.btnPublications.Text = "Quản lý báo";
             this.btnPublications.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnPublications.Click += new System.EventHandler(this.btnPublications_Click);
             // 
@@ -378,7 +381,7 @@
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Size = new System.Drawing.Size(264, 65);
             this.btnDashboard.TabIndex = 0;
-            this.btnDashboard.Text = "Dashboard";
+            this.btnDashboard.Text = "Tổng quan";
             this.btnDashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
@@ -419,18 +422,20 @@
             // 
             // pnlHeaderIcon
             // 
-            this.pnlHeaderIcon.ColumnCount = 3;
-            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.pnlHeaderIcon.ColumnCount = 4;
+            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.pnlHeaderIcon.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.pnlHeaderIcon.Controls.Add(this.picSetting, 3, 0);
             this.pnlHeaderIcon.Controls.Add(this.picMessage, 0, 0);
             this.pnlHeaderIcon.Controls.Add(this.picUser, 2, 0);
             this.pnlHeaderIcon.Controls.Add(this.picNotification, 1, 0);
-            this.pnlHeaderIcon.Location = new System.Drawing.Point(863, 4);
+            this.pnlHeaderIcon.Location = new System.Drawing.Point(779, 4);
             this.pnlHeaderIcon.Name = "pnlHeaderIcon";
             this.pnlHeaderIcon.RowCount = 1;
             this.pnlHeaderIcon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.pnlHeaderIcon.Size = new System.Drawing.Size(215, 69);
+            this.pnlHeaderIcon.Size = new System.Drawing.Size(299, 69);
             this.pnlHeaderIcon.TabIndex = 4;
             // 
             // picMessage
@@ -441,7 +446,7 @@
             this.picMessage.ImageRotate = 0F;
             this.picMessage.Location = new System.Drawing.Point(3, 3);
             this.picMessage.Name = "picMessage";
-            this.picMessage.Size = new System.Drawing.Size(65, 63);
+            this.picMessage.Size = new System.Drawing.Size(68, 63);
             this.picMessage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picMessage.TabIndex = 3;
             this.picMessage.TabStop = false;
@@ -453,10 +458,10 @@
             this.picUser.FillColor = System.Drawing.Color.Transparent;
             this.picUser.Image = ((System.Drawing.Image)(resources.GetObject("picUser.Image")));
             this.picUser.ImageRotate = 0F;
-            this.picUser.Location = new System.Drawing.Point(145, 3);
+            this.picUser.Location = new System.Drawing.Point(151, 3);
             this.picUser.Name = "picUser";
             this.picUser.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.picUser.Size = new System.Drawing.Size(67, 63);
+            this.picUser.Size = new System.Drawing.Size(68, 63);
             this.picUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picUser.TabIndex = 1;
             this.picUser.TabStop = false;
@@ -468,9 +473,9 @@
             this.picNotification.FillColor = System.Drawing.Color.LightGray;
             this.picNotification.Image = ((System.Drawing.Image)(resources.GetObject("picNotification.Image")));
             this.picNotification.ImageRotate = 0F;
-            this.picNotification.Location = new System.Drawing.Point(74, 3);
+            this.picNotification.Location = new System.Drawing.Point(77, 3);
             this.picNotification.Name = "picNotification";
-            this.picNotification.Size = new System.Drawing.Size(65, 63);
+            this.picNotification.Size = new System.Drawing.Size(68, 63);
             this.picNotification.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picNotification.TabIndex = 2;
             this.picNotification.TabStop = false;
@@ -492,6 +497,21 @@
             this.dayandtime.Enabled = true;
             this.dayandtime.Interval = 1000;
             this.dayandtime.Tick += new System.EventHandler(this.dayandtime_Tick);
+            // 
+            // picSetting
+            // 
+            this.picSetting.BackColor = System.Drawing.Color.Transparent;
+            this.picSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picSetting.FillColor = System.Drawing.Color.Transparent;
+            this.picSetting.Image = ((System.Drawing.Image)(resources.GetObject("picSetting.Image")));
+            this.picSetting.ImageRotate = 0F;
+            this.picSetting.Location = new System.Drawing.Point(225, 3);
+            this.picSetting.Name = "picSetting";
+            this.picSetting.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.picSetting.Size = new System.Drawing.Size(71, 63);
+            this.picSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picSetting.TabIndex = 4;
+            this.picSetting.TabStop = false;
             // 
             // Home
             // 
@@ -517,6 +537,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picMessage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNotification)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSetting)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -547,6 +568,7 @@
         private Guna.UI2.WinForms.Guna2GradientButton btnDelivery;
         private Guna.UI2.WinForms.Guna2GradientButton btnInvoices;
         private Guna.UI2.WinForms.Guna2GradientButton btnCustomer;
+        private Guna.UI2.WinForms.Guna2CirclePictureBox picSetting;
     }
 }
 
