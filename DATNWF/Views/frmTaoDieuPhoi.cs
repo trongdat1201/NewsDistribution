@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace DATNWF.Views
 {
     public partial class frmTaoDieuPhoi : Form
     {
-        string connectionString = @"Data Source=DESKTOP-IKRN14J\SQLEXPRESS;Initial Catalog=Thanhnien;Integrated Security=True";
+        string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
         private string maKhachHangDuocChon = "";
 
         public frmTaoDieuPhoi()

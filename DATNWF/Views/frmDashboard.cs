@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -44,13 +45,13 @@ namespace DATNWF.Views
         private DataTable GetRevenueData()
         {
             DataTable dt = new DataTable();
-            string connString = @"Data Source=DESKTOP-IKRN14J\SQLEXPRESS;Initial Catalog=Thanhnien;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
 
             string query = "SELECT b.ten, SUM(ct.thanhTien) as Tong FROM tabCHITIETHOADON ct JOIN tabBAO b ON ct.maBao = b.maBao GROUP BY b.ten";
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {

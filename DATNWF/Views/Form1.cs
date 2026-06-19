@@ -94,7 +94,6 @@ namespace DATNWF
             OpenChildForm(frmSet);
         }
 
-        // Đồng hồ giữ nguyên 100% logic của bạn
         private void dayandtime_Tick(object sender, EventArgs e)
         {
             Bitmap bmp = new Bitmap(picTime.Width, picTime.Height);
