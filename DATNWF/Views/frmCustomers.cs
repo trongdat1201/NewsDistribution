@@ -89,7 +89,7 @@ namespace DATNWF.Views
 
             string maKH = dboTabKhachHang.SelectedRows[0].Cells["mAKHDataGridViewTextBoxColumn"].Value.ToString();
 
-            frmSuaKhachHang frm = new frmSuaKhachHang(maKH);
+            frmChiTietKhachHang frm = new frmChiTietKhachHang(maKH);
 
             if (frm.ShowDialog() == DialogResult.OK)
             {

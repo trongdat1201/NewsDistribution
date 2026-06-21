@@ -12,12 +12,12 @@ using System.Windows.Forms;
 
 namespace DATNWF.Views
 {
-    public partial class frmSuaKhachHang : Form
+    public partial class frmChiTietKhachHang : Form
     {
         string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
 
         private string maKHCanSua;
-        public frmSuaKhachHang(string maKH)
+        public frmChiTietKhachHang(string maKH)
         {
             InitializeComponent();
             maKHCanSua = maKH;

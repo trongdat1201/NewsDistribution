@@ -30,30 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomers));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlHeaderPublications = new Guna.UI2.WinForms.Guna2Panel();
             this.btnAddNew = new Guna.UI2.WinForms.Guna2Button();
             this.btnEdit = new Guna.UI2.WinForms.Guna2Button();
             this.txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.dboTabKhachHang = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.mAKHDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tENDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dIACHIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dIENTHOAIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cHIETKHAUDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pPHDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.pKTDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.uUTIENDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabKHACHHANGBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.thanhnienDataSet3 = new DATNWF.ThanhnienDataSet3();
             this.pnlDesktopRight = new Guna.UI2.WinForms.Guna2Panel();
@@ -66,10 +57,20 @@
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.tabKHACHHANGTableAdapter = new DATNWF.ThanhnienDataSet3TableAdapters.tabKHACHHANGTableAdapter();
+            this.tloRight = new System.Windows.Forms.TableLayoutPanel();
+            this.dboTabKhachHang = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.mAKHDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tENDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dIACHIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dIENTHOAIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cHIETKHAUDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pPHDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.pKTDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.uUTIENDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlHeaderPublications.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.guna2Panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dboTabKhachHang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabKHACHHANGBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thanhnienDataSet3)).BeginInit();
             this.pnlDesktopRight.SuspendLayout();
@@ -80,6 +81,8 @@
             this.guna2CustomGradientPanel2.SuspendLayout();
             this.pnlConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
+            this.tloRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dboTabKhachHang)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeaderPublications
@@ -183,156 +186,13 @@
             // 
             // guna2Panel1
             // 
-            this.guna2Panel1.Controls.Add(this.dboTabKhachHang);
+            this.guna2Panel1.Controls.Add(this.tloRight);
             this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2Panel1.Location = new System.Drawing.Point(3, 3);
             this.guna2Panel1.Name = "guna2Panel1";
             this.guna2Panel1.Padding = new System.Windows.Forms.Padding(10, 10, 5, 10);
             this.guna2Panel1.Size = new System.Drawing.Size(1108, 662);
             this.guna2Panel1.TabIndex = 0;
-            // 
-            // dboTabKhachHang
-            // 
-            this.dboTabKhachHang.AllowUserToAddRows = false;
-            this.dboTabKhachHang.AllowUserToDeleteRows = false;
-            this.dboTabKhachHang.AllowUserToResizeColumns = false;
-            this.dboTabKhachHang.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dboTabKhachHang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dboTabKhachHang.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dboTabKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dboTabKhachHang.ColumnHeadersHeight = 71;
-            this.dboTabKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dboTabKhachHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.mAKHDataGridViewTextBoxColumn,
-            this.tENDataGridViewTextBoxColumn,
-            this.dIACHIDataGridViewTextBoxColumn,
-            this.dIENTHOAIDataGridViewTextBoxColumn,
-            this.cHIETKHAUDataGridViewTextBoxColumn,
-            this.pPHDataGridViewCheckBoxColumn,
-            this.pKTDataGridViewCheckBoxColumn,
-            this.uUTIENDataGridViewTextBoxColumn});
-            this.dboTabKhachHang.DataSource = this.tabKHACHHANGBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dboTabKhachHang.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dboTabKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dboTabKhachHang.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dboTabKhachHang.Location = new System.Drawing.Point(10, 10);
-            this.dboTabKhachHang.Name = "dboTabKhachHang";
-            this.dboTabKhachHang.ReadOnly = true;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dboTabKhachHang.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dboTabKhachHang.RowHeadersVisible = false;
-            this.dboTabKhachHang.RowHeadersWidth = 51;
-            this.dboTabKhachHang.RowTemplate.Height = 24;
-            this.dboTabKhachHang.Size = new System.Drawing.Size(1093, 642);
-            this.dboTabKhachHang.TabIndex = 1;
-            this.dboTabKhachHang.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
-            this.dboTabKhachHang.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.dboTabKhachHang.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.dboTabKhachHang.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.dboTabKhachHang.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.dboTabKhachHang.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.dboTabKhachHang.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dboTabKhachHang.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.dboTabKhachHang.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dboTabKhachHang.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dboTabKhachHang.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dboTabKhachHang.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.dboTabKhachHang.ThemeStyle.HeaderStyle.Height = 71;
-            this.dboTabKhachHang.ThemeStyle.ReadOnly = true;
-            this.dboTabKhachHang.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
-            this.dboTabKhachHang.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dboTabKhachHang.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dboTabKhachHang.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            this.dboTabKhachHang.ThemeStyle.RowsStyle.Height = 24;
-            this.dboTabKhachHang.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dboTabKhachHang.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            // 
-            // mAKHDataGridViewTextBoxColumn
-            // 
-            this.mAKHDataGridViewTextBoxColumn.DataPropertyName = "MAKH";
-            this.mAKHDataGridViewTextBoxColumn.HeaderText = "Mã khách hàng";
-            this.mAKHDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.mAKHDataGridViewTextBoxColumn.Name = "mAKHDataGridViewTextBoxColumn";
-            this.mAKHDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tENDataGridViewTextBoxColumn
-            // 
-            this.tENDataGridViewTextBoxColumn.DataPropertyName = "TEN";
-            this.tENDataGridViewTextBoxColumn.HeaderText = "Tên khách hàng";
-            this.tENDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.tENDataGridViewTextBoxColumn.Name = "tENDataGridViewTextBoxColumn";
-            this.tENDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dIACHIDataGridViewTextBoxColumn
-            // 
-            this.dIACHIDataGridViewTextBoxColumn.DataPropertyName = "DIACHI";
-            this.dIACHIDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
-            this.dIACHIDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.dIACHIDataGridViewTextBoxColumn.Name = "dIACHIDataGridViewTextBoxColumn";
-            this.dIACHIDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dIENTHOAIDataGridViewTextBoxColumn
-            // 
-            this.dIENTHOAIDataGridViewTextBoxColumn.DataPropertyName = "DIENTHOAI";
-            this.dIENTHOAIDataGridViewTextBoxColumn.HeaderText = "Điện thoại";
-            this.dIENTHOAIDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.dIENTHOAIDataGridViewTextBoxColumn.Name = "dIENTHOAIDataGridViewTextBoxColumn";
-            this.dIENTHOAIDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cHIETKHAUDataGridViewTextBoxColumn
-            // 
-            this.cHIETKHAUDataGridViewTextBoxColumn.DataPropertyName = "CHIETKHAU";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.cHIETKHAUDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.cHIETKHAUDataGridViewTextBoxColumn.HeaderText = "Chiết khấu";
-            this.cHIETKHAUDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.cHIETKHAUDataGridViewTextBoxColumn.Name = "cHIETKHAUDataGridViewTextBoxColumn";
-            this.cHIETKHAUDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // pPHDataGridViewCheckBoxColumn
-            // 
-            this.pPHDataGridViewCheckBoxColumn.DataPropertyName = "P_PH";
-            this.pPHDataGridViewCheckBoxColumn.HeaderText = "P_PH";
-            this.pPHDataGridViewCheckBoxColumn.MinimumWidth = 6;
-            this.pPHDataGridViewCheckBoxColumn.Name = "pPHDataGridViewCheckBoxColumn";
-            this.pPHDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // pKTDataGridViewCheckBoxColumn
-            // 
-            this.pKTDataGridViewCheckBoxColumn.DataPropertyName = "P_KT";
-            this.pKTDataGridViewCheckBoxColumn.HeaderText = "P_KT";
-            this.pKTDataGridViewCheckBoxColumn.MinimumWidth = 6;
-            this.pKTDataGridViewCheckBoxColumn.Name = "pKTDataGridViewCheckBoxColumn";
-            this.pKTDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // uUTIENDataGridViewTextBoxColumn
-            // 
-            this.uUTIENDataGridViewTextBoxColumn.DataPropertyName = "UUTIEN";
-            this.uUTIENDataGridViewTextBoxColumn.HeaderText = "Ưu tiên";
-            this.uUTIENDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.uUTIENDataGridViewTextBoxColumn.Name = "uUTIENDataGridViewTextBoxColumn";
-            this.uUTIENDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tabKHACHHANGBindingSource
             // 
@@ -517,6 +377,177 @@
             // 
             this.tabKHACHHANGTableAdapter.ClearBeforeFill = true;
             // 
+            // tloRight
+            // 
+            this.tloRight.ColumnCount = 1;
+            this.tloRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tloRight.Controls.Add(this.dboTabKhachHang, 0, 0);
+            this.tloRight.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tloRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tloRight.Location = new System.Drawing.Point(10, 10);
+            this.tloRight.Name = "tloRight";
+            this.tloRight.RowCount = 2;
+            this.tloRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.23053F));
+            this.tloRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.76947F));
+            this.tloRight.Size = new System.Drawing.Size(1093, 642);
+            this.tloRight.TabIndex = 0;
+            // 
+            // dboTabKhachHang
+            // 
+            this.dboTabKhachHang.AllowUserToAddRows = false;
+            this.dboTabKhachHang.AllowUserToDeleteRows = false;
+            this.dboTabKhachHang.AllowUserToResizeColumns = false;
+            this.dboTabKhachHang.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dboTabKhachHang.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dboTabKhachHang.AutoGenerateColumns = false;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dboTabKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dboTabKhachHang.ColumnHeadersHeight = 71;
+            this.dboTabKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dboTabKhachHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.mAKHDataGridViewTextBoxColumn,
+            this.tENDataGridViewTextBoxColumn,
+            this.dIACHIDataGridViewTextBoxColumn,
+            this.dIENTHOAIDataGridViewTextBoxColumn,
+            this.cHIETKHAUDataGridViewTextBoxColumn,
+            this.pPHDataGridViewCheckBoxColumn,
+            this.pKTDataGridViewCheckBoxColumn,
+            this.uUTIENDataGridViewTextBoxColumn});
+            this.dboTabKhachHang.DataSource = this.tabKHACHHANGBindingSource;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dboTabKhachHang.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dboTabKhachHang.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dboTabKhachHang.Location = new System.Drawing.Point(3, 3);
+            this.dboTabKhachHang.Name = "dboTabKhachHang";
+            this.dboTabKhachHang.ReadOnly = true;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dboTabKhachHang.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dboTabKhachHang.RowHeadersVisible = false;
+            this.dboTabKhachHang.RowHeadersWidth = 51;
+            this.dboTabKhachHang.RowTemplate.Height = 24;
+            this.dboTabKhachHang.Size = new System.Drawing.Size(1087, 355);
+            this.dboTabKhachHang.TabIndex = 2;
+            this.dboTabKhachHang.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dboTabKhachHang.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dboTabKhachHang.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dboTabKhachHang.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dboTabKhachHang.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dboTabKhachHang.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dboTabKhachHang.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dboTabKhachHang.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dboTabKhachHang.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dboTabKhachHang.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dboTabKhachHang.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dboTabKhachHang.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            this.dboTabKhachHang.ThemeStyle.HeaderStyle.Height = 71;
+            this.dboTabKhachHang.ThemeStyle.ReadOnly = true;
+            this.dboTabKhachHang.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dboTabKhachHang.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dboTabKhachHang.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dboTabKhachHang.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dboTabKhachHang.ThemeStyle.RowsStyle.Height = 24;
+            this.dboTabKhachHang.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dboTabKhachHang.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
+            // mAKHDataGridViewTextBoxColumn
+            // 
+            this.mAKHDataGridViewTextBoxColumn.DataPropertyName = "MAKH";
+            this.mAKHDataGridViewTextBoxColumn.HeaderText = "Mã khách hàng";
+            this.mAKHDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.mAKHDataGridViewTextBoxColumn.Name = "mAKHDataGridViewTextBoxColumn";
+            this.mAKHDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tENDataGridViewTextBoxColumn
+            // 
+            this.tENDataGridViewTextBoxColumn.DataPropertyName = "TEN";
+            this.tENDataGridViewTextBoxColumn.HeaderText = "Tên khách hàng";
+            this.tENDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.tENDataGridViewTextBoxColumn.Name = "tENDataGridViewTextBoxColumn";
+            this.tENDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dIACHIDataGridViewTextBoxColumn
+            // 
+            this.dIACHIDataGridViewTextBoxColumn.DataPropertyName = "DIACHI";
+            this.dIACHIDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
+            this.dIACHIDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.dIACHIDataGridViewTextBoxColumn.Name = "dIACHIDataGridViewTextBoxColumn";
+            this.dIACHIDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dIENTHOAIDataGridViewTextBoxColumn
+            // 
+            this.dIENTHOAIDataGridViewTextBoxColumn.DataPropertyName = "DIENTHOAI";
+            this.dIENTHOAIDataGridViewTextBoxColumn.HeaderText = "Điện thoại";
+            this.dIENTHOAIDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.dIENTHOAIDataGridViewTextBoxColumn.Name = "dIENTHOAIDataGridViewTextBoxColumn";
+            this.dIENTHOAIDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // cHIETKHAUDataGridViewTextBoxColumn
+            // 
+            this.cHIETKHAUDataGridViewTextBoxColumn.DataPropertyName = "CHIETKHAU";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.cHIETKHAUDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.cHIETKHAUDataGridViewTextBoxColumn.HeaderText = "Chiết khấu";
+            this.cHIETKHAUDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.cHIETKHAUDataGridViewTextBoxColumn.Name = "cHIETKHAUDataGridViewTextBoxColumn";
+            this.cHIETKHAUDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // pPHDataGridViewCheckBoxColumn
+            // 
+            this.pPHDataGridViewCheckBoxColumn.DataPropertyName = "P_PH";
+            this.pPHDataGridViewCheckBoxColumn.HeaderText = "P_PH";
+            this.pPHDataGridViewCheckBoxColumn.MinimumWidth = 6;
+            this.pPHDataGridViewCheckBoxColumn.Name = "pPHDataGridViewCheckBoxColumn";
+            this.pPHDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // pKTDataGridViewCheckBoxColumn
+            // 
+            this.pKTDataGridViewCheckBoxColumn.DataPropertyName = "P_KT";
+            this.pKTDataGridViewCheckBoxColumn.HeaderText = "P_KT";
+            this.pKTDataGridViewCheckBoxColumn.MinimumWidth = 6;
+            this.pKTDataGridViewCheckBoxColumn.Name = "pKTDataGridViewCheckBoxColumn";
+            this.pKTDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // uUTIENDataGridViewTextBoxColumn
+            // 
+            this.uUTIENDataGridViewTextBoxColumn.DataPropertyName = "UUTIEN";
+            this.uUTIENDataGridViewTextBoxColumn.HeaderText = "Ưu tiên";
+            this.uUTIENDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.uUTIENDataGridViewTextBoxColumn.Name = "uUTIENDataGridViewTextBoxColumn";
+            this.uUTIENDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 371);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1087, 268);
+            this.tableLayoutPanel3.TabIndex = 3;
+            // 
             // frmCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -532,7 +563,6 @@
             this.pnlHeaderPublications.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.guna2Panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dboTabKhachHang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabKHACHHANGBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thanhnienDataSet3)).EndInit();
             this.pnlDesktopRight.ResumeLayout(false);
@@ -543,6 +573,8 @@
             this.guna2CustomGradientPanel2.ResumeLayout(false);
             this.pnlConfig.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
+            this.tloRight.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dboTabKhachHang)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -552,7 +584,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtSearch;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
-        private Guna.UI2.WinForms.Guna2DataGridView dboTabKhachHang;
         private Guna.UI2.WinForms.Guna2Panel pnlDesktopRight;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel2;
@@ -560,6 +591,15 @@
         private System.Windows.Forms.BindingSource tabKHACHHANGBindingSource;
         private ThanhnienDataSet3TableAdapters.tabKHACHHANGTableAdapter tabKHACHHANGTableAdapter;
         private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
+        private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvKhachHangGanDay;
+        private Guna.UI2.WinForms.Guna2Button btnEdit;
+        private Guna.UI2.WinForms.Guna2Button btnAddNew;
+        private Guna.UI2.WinForms.Guna2Panel pnlConfig;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
+        private System.Windows.Forms.TableLayoutPanel tloRight;
+        private Guna.UI2.WinForms.Guna2DataGridView dboTabKhachHang;
         private System.Windows.Forms.DataGridViewTextBoxColumn mAKHDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tENDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dIACHIDataGridViewTextBoxColumn;
@@ -568,12 +608,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn pPHDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn pKTDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn uUTIENDataGridViewTextBoxColumn;
-        private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
-        private Guna.UI2.WinForms.Guna2DataGridView dgvKhachHangGanDay;
-        private Guna.UI2.WinForms.Guna2Button btnEdit;
-        private Guna.UI2.WinForms.Guna2Button btnAddNew;
-        private Guna.UI2.WinForms.Guna2Panel pnlConfig;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }
