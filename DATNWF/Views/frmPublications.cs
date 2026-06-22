@@ -1,4 +1,5 @@
 ﻿using DATNWF.Views;
+using Guna.Charts.WinForms;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -29,6 +30,7 @@ namespace DATNWF
             this.tabBao_ngoaiLeTableAdapter.Fill(this.thanhnienDataSet6.tabBao_ngoaiLe);
             LoadData();
             LoadBaoHomNay();
+            LoadTopBaoDoanhThu();
         }
 
         private void dboTabBao_SelectionChanged(object sender, EventArgs e)
@@ -201,6 +203,53 @@ namespace DATNWF
                 {
                     MessageBox.Show("Lỗi tải danh sách báo hôm nay: " + ex.Message, "Lỗi Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void LoadTopBaoDoanhThu()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string sql = @"
+                    SELECT b.ten AS TenBao, SUM(cthd.thanhTien) AS TongDoanhThu
+                    FROM tabCHITIETHOADON cthd
+                    INNER JOIN tabBAO b ON cthd.maBao = b.maBao
+                    GROUP BY b.ten
+                    ORDER BY TongDoanhThu DESC";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+
+                var ds = new GunaDoughnutDataset { Label = "Doanh thu" };
+                ds.FillColors.AddRange(new[]
+                {
+                    Color.FromArgb(100, 88, 255),
+                    Color.FromArgb(255, 192, 128),
+                    Color.FromArgb(76, 175, 80),
+                    Color.FromArgb(244, 67, 54),
+                    Color.FromArgb(255, 152, 0),
+                    Color.FromArgb(0, 188, 212),
+                    Color.FromArgb(156, 39, 176),
+                    Color.FromArgb(255, 235, 59),
+                    Color.FromArgb(103, 58, 183),
+                    Color.FromArgb(0, 150, 136)
+                });
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string ten = reader["TenBao"].ToString();
+                        double dt = reader["TongDoanhThu"] == DBNull.Value ? 0 : Convert.ToDouble(reader["TongDoanhThu"]);
+                        ds.DataPoints.Add(ten, dt);
+                    }
+                }
+
+                barChart.Datasets.Clear();
+                barChart.Datasets.Add(ds);
+                barChart.Legend.Position = LegendPosition.Right;
+                barChart.Legend.Display = true;
+                barChart.Refresh();
             }
         }
     }

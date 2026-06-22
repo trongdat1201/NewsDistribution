@@ -191,11 +191,11 @@
     <Compile Include="Views\frmSuaBao.Designer.cs">
       <DependentUpon>frmSuaBao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\frmSuaKhachHang.cs">
+    <Compile Include="Views\frmChiTietKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\frmSuaKhachHang.Designer.cs">
-      <DependentUpon>frmSuaKhachHang.cs</DependentUpon>
+    <Compile Include="Views\frmChiTietKhachHang.Designer.cs">
+      <DependentUpon>frmChiTietKhachHang.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\frmTaoDieuPhoi.cs">
       <SubType>Form</SubType>
@@ -271,8 +271,8 @@
     <EmbeddedResource Include="Views\frmSuaBao.resx">
       <DependentUpon>frmSuaBao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\frmSuaKhachHang.resx">
-      <DependentUpon>frmSuaKhachHang.cs</DependentUpon>
+    <EmbeddedResource Include="Views\frmChiTietKhachHang.resx">
+      <DependentUpon>frmChiTietKhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\frmTaoDieuPhoi.resx">
       <DependentUpon>frmTaoDieuPhoi.cs</DependentUpon>

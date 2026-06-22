@@ -27,7 +27,7 @@ namespace DATNWF.Views
             frmTaoDieuPhoi frm = new frmTaoDieuPhoi();
             if (frm.ShowDialog() == DialogResult.OK)
             {
-
+                this.tabDieuPhoiTableAdapter.Fill(this.thanhnienDataSet1.tabDieuPhoi);
             }
         }
     }

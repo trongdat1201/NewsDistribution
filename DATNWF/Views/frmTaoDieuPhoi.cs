@@ -108,7 +108,7 @@ namespace DATNWF.Views
                         }
                     }
 
-                    string namHienTai = dtpTuNgay.Value.ToString("yy");
+                    string namHienTai = DateTime.Now.ToString("yy");
                     string dinhDangTimKiem = loaiMaPrefix + namHienTai + "_";
 
                     string queryMax = "SELECT MAX(soHD) FROM tabDieuPhoi WHERE soHD LIKE @prefix";
@@ -212,7 +212,9 @@ namespace DATNWF.Views
                         string tenBao = bao["ten"].ToString();
                         decimal donGia = Convert.ToDecimal(bao["donGia"]);
 
-                        DateTime ngayBatDau = bao["ngayBatDau"] != DBNull.Value ? Convert.ToDateTime(bao["ngayBatDau"]) : date;
+                        DateTime ngayBatDau = bao["ngayBatDau"] != DBNull.Value && !string.IsNullOrEmpty(bao["ngayBatDau"].ToString())
+                            ? Convert.ToDateTime(bao["ngayBatDau"])
+                            : new DateTime(date.Year, 1, 1);
                         int soGoc = bao["sogoc"] != DBNull.Value ? Convert.ToInt32(bao["sogoc"]) : 1;
 
                         int soBaoTinhToan = TinhSoBaoNghiepVu(ngayBatDau, date, soGoc, bao);
@@ -299,6 +301,22 @@ namespace DATNWF.Views
         {
             if (btnCreate.Enabled) return;
 
+            bool hasAtLeastOneRow = false;
+            foreach (DataGridViewRow row in dgvChiTiet.Rows)
+            {
+                int slDieuPhoi = Convert.ToInt32(row.Cells["soluongDieuPhoi"].Value);
+                if (slDieuPhoi > 0)
+                {
+                    hasAtLeastOneRow = true;
+                    break;
+                }
+            }
+            if (!hasAtLeastOneRow)
+            {
+                MessageBox.Show("Vui lòng nhập số lượng điều phối cho ít nhất một báo!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -350,6 +368,7 @@ namespace DATNWF.Views
                     MessageBox.Show("Lưu phiếu điều phối thành công!", "Hoàn tất", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     ResetForm();
+                    this.DialogResult = DialogResult.OK;
                 }
                 catch (Exception ex)
                 {

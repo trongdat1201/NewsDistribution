@@ -43,11 +43,26 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            Guna.Charts.WinForms.ChartFont chartFont1 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.ChartFont chartFont2 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.ChartFont chartFont3 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.ChartFont chartFont4 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.Grid grid1 = new Guna.Charts.WinForms.Grid();
+            Guna.Charts.WinForms.Tick tick1 = new Guna.Charts.WinForms.Tick();
+            Guna.Charts.WinForms.ChartFont chartFont5 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.Grid grid2 = new Guna.Charts.WinForms.Grid();
+            Guna.Charts.WinForms.Tick tick2 = new Guna.Charts.WinForms.Tick();
+            Guna.Charts.WinForms.ChartFont chartFont6 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.Grid grid3 = new Guna.Charts.WinForms.Grid();
+            Guna.Charts.WinForms.PointLabel pointLabel1 = new Guna.Charts.WinForms.PointLabel();
+            Guna.Charts.WinForms.ChartFont chartFont7 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.Tick tick3 = new Guna.Charts.WinForms.Tick();
+            Guna.Charts.WinForms.ChartFont chartFont8 = new Guna.Charts.WinForms.ChartFont();
             this.pnlHeaderPublications = new Guna.UI2.WinForms.Guna2Panel();
             this.btnEdit = new Guna.UI2.WinForms.Guna2Button();
             this.btnAddNew = new Guna.UI2.WinForms.Guna2Button();
@@ -68,6 +83,8 @@
             this.sogocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlbaoNgoaile = new Guna.UI2.WinForms.Guna2Panel();
             this.dboTabBaoNLe = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.maBaoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngayPhatHanhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabBaongoaiLeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.thanhnienDataSet6 = new DATNWF.ThanhnienDataSet6();
             this.pnlDesktopRight = new Guna.UI2.WinForms.Guna2Panel();
@@ -76,13 +93,10 @@
             this.grpBaoHomNay = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dgvBaoHomNay = new Guna.UI2.WinForms.Guna2DataGridView();
             this.pnlConfig = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnConfig = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.tabBAOTableAdapter1 = new DATNWF.ThanhnienDataSetTableAdapters.tabBAOTableAdapter();
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.tabBao_ngoaiLeTableAdapter = new DATNWF.ThanhnienDataSet6TableAdapters.tabBao_ngoaiLeTableAdapter();
-            this.maBaoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngayPhatHanhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.barChart = new Guna.Charts.WinForms.GunaChart();
             this.pnlHeaderPublications.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabBAOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thanhnienDataSet)).BeginInit();
@@ -100,7 +114,6 @@
             this.grpBaoHomNay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBaoHomNay)).BeginInit();
             this.pnlConfig.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeaderPublications
@@ -204,8 +217,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.55198F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.44802F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.73939F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.26062F));
             this.tableLayoutPanel1.Controls.Add(this.pblDesktopLeft, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.pnlDesktopRight, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -223,7 +236,7 @@
             this.pblDesktopLeft.Location = new System.Drawing.Point(3, 3);
             this.pblDesktopLeft.Name = "pblDesktopLeft";
             this.pblDesktopLeft.Padding = new System.Windows.Forms.Padding(10);
-            this.pblDesktopLeft.Size = new System.Drawing.Size(1108, 662);
+            this.pblDesktopLeft.Size = new System.Drawing.Size(892, 662);
             this.pblDesktopLeft.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -238,7 +251,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67.91277F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32.08723F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1088, 642);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(872, 642);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // dboTabBao
@@ -293,7 +306,7 @@
             this.dboTabBao.RowHeadersVisible = false;
             this.dboTabBao.RowHeadersWidth = 51;
             this.dboTabBao.RowTemplate.Height = 24;
-            this.dboTabBao.Size = new System.Drawing.Size(1082, 430);
+            this.dboTabBao.Size = new System.Drawing.Size(866, 430);
             this.dboTabBao.TabIndex = 2;
             this.dboTabBao.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dboTabBao.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -391,7 +404,7 @@
             this.pnlbaoNgoaile.Location = new System.Drawing.Point(3, 439);
             this.pnlbaoNgoaile.Name = "pnlbaoNgoaile";
             this.pnlbaoNgoaile.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.pnlbaoNgoaile.Size = new System.Drawing.Size(1082, 200);
+            this.pnlbaoNgoaile.Size = new System.Drawing.Size(866, 200);
             this.pnlbaoNgoaile.TabIndex = 3;
             // 
             // dboTabBaoNLe
@@ -441,7 +454,7 @@
             this.dboTabBaoNLe.RowHeadersVisible = false;
             this.dboTabBaoNLe.RowHeadersWidth = 51;
             this.dboTabBaoNLe.RowTemplate.Height = 24;
-            this.dboTabBaoNLe.Size = new System.Drawing.Size(1082, 190);
+            this.dboTabBaoNLe.Size = new System.Drawing.Size(866, 190);
             this.dboTabBaoNLe.TabIndex = 0;
             this.dboTabBaoNLe.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dboTabBaoNLe.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -465,6 +478,26 @@
             this.dboTabBaoNLe.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dboTabBaoNLe.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // maBaoDataGridViewTextBoxColumn1
+            // 
+            this.maBaoDataGridViewTextBoxColumn1.DataPropertyName = "maBao";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.maBaoDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle12;
+            this.maBaoDataGridViewTextBoxColumn1.HeaderText = "Mã báo";
+            this.maBaoDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.maBaoDataGridViewTextBoxColumn1.Name = "maBaoDataGridViewTextBoxColumn1";
+            this.maBaoDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // ngayPhatHanhDataGridViewTextBoxColumn
+            // 
+            this.ngayPhatHanhDataGridViewTextBoxColumn.DataPropertyName = "ngayPhatHanh";
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ngayPhatHanhDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
+            this.ngayPhatHanhDataGridViewTextBoxColumn.HeaderText = "Ngày phát hành";
+            this.ngayPhatHanhDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.ngayPhatHanhDataGridViewTextBoxColumn.Name = "ngayPhatHanhDataGridViewTextBoxColumn";
+            this.ngayPhatHanhDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // tabBaongoaiLeBindingSource
             // 
             this.tabBaongoaiLeBindingSource.DataMember = "tabBao_ngoaiLe";
@@ -479,10 +512,10 @@
             // 
             this.pnlDesktopRight.Controls.Add(this.tableLayoutPanel2);
             this.pnlDesktopRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDesktopRight.Location = new System.Drawing.Point(1117, 3);
+            this.pnlDesktopRight.Location = new System.Drawing.Point(901, 3);
             this.pnlDesktopRight.Name = "pnlDesktopRight";
             this.pnlDesktopRight.Padding = new System.Windows.Forms.Padding(0, 10, 10, 10);
-            this.pnlDesktopRight.Size = new System.Drawing.Size(246, 662);
+            this.pnlDesktopRight.Size = new System.Drawing.Size(462, 662);
             this.pnlDesktopRight.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -497,10 +530,10 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 91F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 354F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(236, 642);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(452, 642);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // pnlGrBox
@@ -509,7 +542,7 @@
             this.pnlGrBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGrBox.Location = new System.Drawing.Point(3, 3);
             this.pnlGrBox.Name = "pnlGrBox";
-            this.pnlGrBox.Size = new System.Drawing.Size(230, 545);
+            this.pnlGrBox.Size = new System.Drawing.Size(446, 282);
             this.pnlGrBox.TabIndex = 0;
             // 
             // grpBaoHomNay
@@ -521,7 +554,7 @@
             this.grpBaoHomNay.ForeColor = System.Drawing.Color.Black;
             this.grpBaoHomNay.Location = new System.Drawing.Point(0, 0);
             this.grpBaoHomNay.Name = "grpBaoHomNay";
-            this.grpBaoHomNay.Size = new System.Drawing.Size(230, 545);
+            this.grpBaoHomNay.Size = new System.Drawing.Size(446, 282);
             this.grpBaoHomNay.TabIndex = 0;
             this.grpBaoHomNay.Text = "Báo phát hành hôm nay";
             this.grpBaoHomNay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -560,7 +593,7 @@
             this.dgvBaoHomNay.RowHeadersVisible = false;
             this.dgvBaoHomNay.RowHeadersWidth = 51;
             this.dgvBaoHomNay.RowTemplate.Height = 24;
-            this.dgvBaoHomNay.Size = new System.Drawing.Size(230, 505);
+            this.dgvBaoHomNay.Size = new System.Drawing.Size(446, 242);
             this.dgvBaoHomNay.TabIndex = 0;
             this.dgvBaoHomNay.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvBaoHomNay.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -587,46 +620,13 @@
             // pnlConfig
             // 
             this.pnlConfig.BackColor = System.Drawing.Color.White;
-            this.pnlConfig.Controls.Add(this.btnConfig);
-            this.pnlConfig.Controls.Add(this.guna2PictureBox1);
+            this.pnlConfig.Controls.Add(this.barChart);
             this.pnlConfig.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlConfig.Location = new System.Drawing.Point(3, 561);
+            this.pnlConfig.Location = new System.Drawing.Point(3, 298);
             this.pnlConfig.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.pnlConfig.Name = "pnlConfig";
-            this.pnlConfig.Size = new System.Drawing.Size(230, 78);
+            this.pnlConfig.Size = new System.Drawing.Size(446, 341);
             this.pnlConfig.TabIndex = 1;
-            // 
-            // btnConfig
-            // 
-            this.btnConfig.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnConfig.Animated = true;
-            this.btnConfig.BorderRadius = 17;
-            this.btnConfig.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnConfig.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnConfig.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnConfig.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnConfig.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnConfig.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfig.ForeColor = System.Drawing.Color.Black;
-            this.btnConfig.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnConfig.HoverState.ForeColor = System.Drawing.Color.Black;
-            this.btnConfig.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnConfig.Location = new System.Drawing.Point(87, 8);
-            this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(140, 60);
-            this.btnConfig.TabIndex = 8;
-            this.btnConfig.Text = "Cấu hình";
-            // 
-            // guna2PictureBox1
-            // 
-            this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(15, 8);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(66, 67);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
             // 
             // tabBAOTableAdapter1
             // 
@@ -636,25 +636,44 @@
             // 
             this.tabBao_ngoaiLeTableAdapter.ClearBeforeFill = true;
             // 
-            // maBaoDataGridViewTextBoxColumn1
+            // barChart
             // 
-            this.maBaoDataGridViewTextBoxColumn1.DataPropertyName = "maBao";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.maBaoDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle12;
-            this.maBaoDataGridViewTextBoxColumn1.HeaderText = "Mã báo";
-            this.maBaoDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.maBaoDataGridViewTextBoxColumn1.Name = "maBaoDataGridViewTextBoxColumn1";
-            this.maBaoDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // ngayPhatHanhDataGridViewTextBoxColumn
-            // 
-            this.ngayPhatHanhDataGridViewTextBoxColumn.DataPropertyName = "ngayPhatHanh";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ngayPhatHanhDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
-            this.ngayPhatHanhDataGridViewTextBoxColumn.HeaderText = "Ngày phát hành";
-            this.ngayPhatHanhDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.ngayPhatHanhDataGridViewTextBoxColumn.Name = "ngayPhatHanhDataGridViewTextBoxColumn";
-            this.ngayPhatHanhDataGridViewTextBoxColumn.ReadOnly = true;
+            this.barChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            chartFont1.FontName = "Arial";
+            this.barChart.Legend.LabelFont = chartFont1;
+            this.barChart.Location = new System.Drawing.Point(0, 0);
+            this.barChart.Name = "barChart";
+            this.barChart.Size = new System.Drawing.Size(446, 341);
+            this.barChart.TabIndex = 0;
+            chartFont2.FontName = "Segoe UI";
+            chartFont2.Size = 12;
+            chartFont2.Style = Guna.Charts.WinForms.ChartFontStyle.Bold;
+            this.barChart.Title.Font = chartFont2;
+            this.barChart.Title.ForeColor = System.Drawing.Color.Black;
+            this.barChart.Title.Text = "Thống kê độ phổ biến dựa trên doanh thu";
+            chartFont3.FontName = "Arial";
+            this.barChart.Tooltips.BodyFont = chartFont3;
+            chartFont4.FontName = "Arial";
+            chartFont4.Size = 9;
+            chartFont4.Style = Guna.Charts.WinForms.ChartFontStyle.Bold;
+            this.barChart.Tooltips.TitleFont = chartFont4;
+            this.barChart.XAxes.Display = false;
+            this.barChart.XAxes.GridLines = grid1;
+            chartFont5.FontName = "Arial";
+            tick1.Font = chartFont5;
+            this.barChart.XAxes.Ticks = tick1;
+            this.barChart.YAxes.Display = false;
+            this.barChart.YAxes.GridLines = grid2;
+            chartFont6.FontName = "Arial";
+            tick2.Font = chartFont6;
+            this.barChart.YAxes.Ticks = tick2;
+            this.barChart.ZAxes.GridLines = grid3;
+            chartFont7.FontName = "Arial";
+            pointLabel1.Font = chartFont7;
+            this.barChart.ZAxes.PointLabels = pointLabel1;
+            chartFont8.FontName = "Arial";
+            tick3.Font = chartFont8;
+            this.barChart.ZAxes.Ticks = tick3;
             // 
             // frmPublications
             // 
@@ -684,7 +703,6 @@
             this.grpBaoHomNay.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBaoHomNay)).EndInit();
             this.pnlConfig.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -722,9 +740,8 @@
         private Guna.UI2.WinForms.Guna2GroupBox grpBaoHomNay;
         private Guna.UI2.WinForms.Guna2DataGridView dgvBaoHomNay;
         private Guna.UI2.WinForms.Guna2Panel pnlConfig;
-        private Guna.UI2.WinForms.Guna2Button btnConfig;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn maBaoDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayPhatHanhDataGridViewTextBoxColumn;
+        private Guna.Charts.WinForms.GunaChart barChart;
     }
 }

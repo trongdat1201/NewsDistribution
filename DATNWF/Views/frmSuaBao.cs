@@ -143,7 +143,6 @@ namespace DATNWF.Views
             chkThu6.Enabled = isEditingMaster;
             chkThu7.Enabled = isEditingMaster;
 
-            btnCreateBao.Enabled = isEditingMaster;
 
             Color colorMaster = isEditingMaster ? Color.White : Color.WhiteSmoke;
             txtMaBao.BackColor = Color.WhiteSmoke; 

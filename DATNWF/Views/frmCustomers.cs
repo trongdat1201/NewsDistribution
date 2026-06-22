@@ -8,8 +8,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Forms;
+using Guna.Charts.WinForms;
 
 namespace DATNWF.Views
 {
@@ -27,7 +27,109 @@ namespace DATNWF.Views
             this.tabKHACHHANGTableAdapter.Fill(this.thanhnienDataSet3.tabKHACHHANG);
             LoadData();
             LoadKhachHangOrderGanDay();
+            LoadChartPhanLoai();
+            LoadChartDoanhThu();
         }
+
+        #region Biểu đồ phân loại P_PH / P_KT
+
+        private void LoadChartPhanLoai()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string sql = @"
+                    SELECT
+                        CASE
+                            WHEN P_PH = 1 AND P_KT = 1 THEN N'P_PH & P_KT'
+                            WHEN P_PH = 1 THEN N'P_PH'
+                            WHEN P_KT = 1 THEN N'P_KT'
+                            ELSE N'Không phân loại'
+                        END AS Loai,
+                        COUNT(*) AS SoLuong
+                    FROM tabKHACHHANG
+                    GROUP BY
+                        CASE
+                            WHEN P_PH = 1 AND P_KT = 1 THEN N'P_PH & P_KT'
+                            WHEN P_PH = 1 THEN N'P_PH'
+                            WHEN P_KT = 1 THEN N'P_KT'
+                            ELSE N'Không phân loại'
+                        END";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+
+                var ds = new GunaDoughnutDataset { Label = "Phân loại khách hàng" };
+                ds.FillColors.AddRange(new[]
+                {
+                    Color.FromArgb(100, 88, 255),
+                    Color.FromArgb(255, 192, 128),
+                    Color.FromArgb(76, 175, 80),
+                    Color.FromArgb(158, 158, 158)
+                });
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string loai = reader["Loai"].ToString();
+                        int count = reader.GetInt32(1);
+                        ds.DataPoints.Add(loai, count);
+                    }
+                }
+
+                chartPhanLoai.Datasets.Clear();
+                chartPhanLoai.Datasets.Add(ds);
+                chartPhanLoai.Legend.Position = LegendPosition.Right;
+                chartPhanLoai.Legend.Display = true;
+                chartPhanLoai.Refresh();
+            }
+        }
+
+        #endregion
+
+        #region Biểu đồ doanh thu top khách hàng
+
+        private void LoadChartDoanhThu()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string sql = @"
+                    SELECT TOP 5
+                        kh.TEN,
+                        SUM(ct.thanhTien) AS TongDoanhThu
+                    FROM tabKHACHHANG kh
+                    JOIN tabHOADON h ON kh.MAKH = h.makh
+                    JOIN tabCHITIETHOADON ct ON h.sohd = ct.sohd
+                    GROUP BY kh.MAKH, kh.TEN
+                    ORDER BY TongDoanhThu DESC";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                conn.Open();
+
+                var ds = new GunaBarDataset { Label = "Doanh thu (VNĐ)" };
+                ds.FillColors.Add(Color.FromArgb(255, 192, 128));
+                ds.BorderColors.Add(Color.FromArgb(255, 160, 80));
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string ten = reader["TEN"].ToString();
+                        double dt = reader["TongDoanhThu"] == DBNull.Value ? 0 : Convert.ToDouble(reader["TongDoanhThu"]);
+                        ds.DataPoints.Add(ten, dt);
+                    }
+                }
+
+                chartDoanhThu.Datasets.Clear();
+                chartDoanhThu.Datasets.Add(ds);
+                chartDoanhThu.XAxes.Display = true;
+                chartDoanhThu.YAxes.Display = true;
+                chartDoanhThu.Legend.Display = false;
+                chartDoanhThu.Refresh();
+            }
+        }
+
+        #endregion
         private void LoadData()
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -75,6 +177,8 @@ namespace DATNWF.Views
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
+                LoadChartPhanLoai();
+                LoadChartDoanhThu();
             }
         }
         private void btnEdit_Click(object sender, EventArgs e)
@@ -94,6 +198,8 @@ namespace DATNWF.Views
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
+                LoadChartPhanLoai();
+                LoadChartDoanhThu();
             }
         }
         private void btnDelete_Click(object sender, EventArgs e)
@@ -120,6 +226,9 @@ namespace DATNWF.Views
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Xóa thành công!");
                         LoadData();
+                        LoadChartPhanLoai();
+                        LoadChartDoanhThu();
+                        LoadKhachHangOrderGanDay();
                     }
                     catch (SqlException ex)
                     {

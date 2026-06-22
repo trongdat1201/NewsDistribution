@@ -37,24 +37,24 @@
             this.tableLayoutPanelTitle1 = new System.Windows.Forms.TableLayoutPanel();
             this.picLogo = new Guna.UI2.WinForms.Guna2PictureBox();
             this.tableLayoutPanelBtn = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCustomer = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.btnLogout = new Guna.UI2.WinForms.Guna2GradientButton();
             this.btnInvoices = new Guna.UI2.WinForms.Guna2GradientButton();
             this.btnDelivery = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.btnInventory = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.btnSetting = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.btnLogout = new Guna.UI2.WinForms.Guna2GradientButton();
             this.btnPublications = new Guna.UI2.WinForms.Guna2GradientButton();
             this.btnDashboard = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.btnCustomer = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.btnInventory = new Guna.UI2.WinForms.Guna2GradientButton();
+            this.btnSetting = new Guna.UI2.WinForms.Guna2GradientButton();
             this.panelHeader = new Guna.UI2.WinForms.Guna2Panel();
             this.picDateAndTime = new Guna.UI2.WinForms.Guna2PictureBox();
             this.picTime = new Guna.UI2.WinForms.Guna2PictureBox();
             this.pnlHeaderIcon = new System.Windows.Forms.TableLayoutPanel();
+            this.picSetting = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.picMessage = new Guna.UI2.WinForms.Guna2PictureBox();
             this.picUser = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.picNotification = new Guna.UI2.WinForms.Guna2PictureBox();
             this.panelDesktop = new Guna.UI2.WinForms.Guna2Panel();
             this.dayandtime = new System.Windows.Forms.Timer(this.components);
-            this.picSetting = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             this.panelSidebar.SuspendLayout();
             this.tableLayoutPanelSidebar.SuspendLayout();
             this.tableLayoutPanelTitle1.SuspendLayout();
@@ -64,10 +64,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picDateAndTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTime)).BeginInit();
             this.pnlHeaderIcon.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMessage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNotification)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSetting)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -169,32 +169,32 @@
             this.tableLayoutPanelBtn.Size = new System.Drawing.Size(270, 568);
             this.tableLayoutPanelBtn.TabIndex = 1;
             // 
-            // btnCustomer
+            // btnLogout
             // 
-            this.btnCustomer.Animated = true;
-            this.btnCustomer.BackColor = System.Drawing.Color.White;
-            this.btnCustomer.BorderRadius = 20;
-            this.btnCustomer.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnCustomer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnCustomer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnCustomer.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnCustomer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnCustomer.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCustomer.FillColor2 = System.Drawing.Color.WhiteSmoke;
-            this.btnCustomer.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
-            this.btnCustomer.ForeColor = System.Drawing.Color.Black;
-            this.btnCustomer.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnCustomer.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnCustomer.Image = global::DATNWF.Properties.Resources.customer_engagement;
-            this.btnCustomer.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCustomer.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnCustomer.Location = new System.Drawing.Point(3, 145);
-            this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.Size = new System.Drawing.Size(264, 65);
-            this.btnCustomer.TabIndex = 2;
-            this.btnCustomer.Text = "Quản lý khách hàng";
-            this.btnCustomer.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
+            this.btnLogout.Animated = true;
+            this.btnLogout.BackColor = System.Drawing.Color.White;
+            this.btnLogout.BorderRadius = 20;
+            this.btnLogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnLogout.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLogout.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.btnLogout.FillColor2 = System.Drawing.Color.WhiteSmoke;
+            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnLogout.ForeColor = System.Drawing.Color.Black;
+            this.btnLogout.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnLogout.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btnLogout.Image = ((System.Drawing.Image)(resources.GetObject("btnLogout.Image")));
+            this.btnLogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnLogout.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnLogout.Location = new System.Drawing.Point(3, 500);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(264, 65);
+            this.btnLogout.TabIndex = 7;
+            this.btnLogout.Text = "Quyền truy cập";
+            this.btnLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // btnInvoices
             // 
@@ -250,87 +250,6 @@
             this.btnDelivery.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDelivery.Click += new System.EventHandler(this.btnDelivery_Click);
             // 
-            // btnInventory
-            // 
-            this.btnInventory.Animated = true;
-            this.btnInventory.BackColor = System.Drawing.Color.White;
-            this.btnInventory.BorderRadius = 20;
-            this.btnInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnInventory.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnInventory.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.btnInventory.FillColor2 = System.Drawing.Color.WhiteSmoke;
-            this.btnInventory.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
-            this.btnInventory.ForeColor = System.Drawing.Color.Black;
-            this.btnInventory.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnInventory.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnInventory.Image = global::DATNWF.Properties.Resources.checklist;
-            this.btnInventory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnInventory.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnInventory.Location = new System.Drawing.Point(3, 429);
-            this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(264, 65);
-            this.btnInventory.TabIndex = 5;
-            this.btnInventory.Text = "Quản lý tồn kho";
-            this.btnInventory.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
-            // 
-            // btnSetting
-            // 
-            this.btnSetting.Animated = true;
-            this.btnSetting.BackColor = System.Drawing.Color.White;
-            this.btnSetting.BorderRadius = 20;
-            this.btnSetting.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnSetting.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnSetting.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSetting.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnSetting.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnSetting.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSetting.FillColor2 = System.Drawing.Color.WhiteSmoke;
-            this.btnSetting.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
-            this.btnSetting.ForeColor = System.Drawing.Color.Black;
-            this.btnSetting.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnSetting.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnSetting.Image = ((System.Drawing.Image)(resources.GetObject("btnSetting.Image")));
-            this.btnSetting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnSetting.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnSetting.Location = new System.Drawing.Point(3, 358);
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(264, 65);
-            this.btnSetting.TabIndex = 6;
-            this.btnSetting.Text = "Chi tiết hóa đơn";
-            this.btnSetting.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.Animated = true;
-            this.btnLogout.BackColor = System.Drawing.Color.White;
-            this.btnLogout.BorderRadius = 20;
-            this.btnLogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnLogout.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnLogout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLogout.FillColor = System.Drawing.Color.WhiteSmoke;
-            this.btnLogout.FillColor2 = System.Drawing.Color.WhiteSmoke;
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
-            this.btnLogout.ForeColor = System.Drawing.Color.Black;
-            this.btnLogout.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnLogout.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnLogout.Image = ((System.Drawing.Image)(resources.GetObject("btnLogout.Image")));
-            this.btnLogout.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnLogout.ImageSize = new System.Drawing.Size(38, 38);
-            this.btnLogout.Location = new System.Drawing.Point(3, 500);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(264, 65);
-            this.btnLogout.TabIndex = 7;
-            this.btnLogout.Text = "Quyền truy cập";
-            this.btnLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
             // btnPublications
             // 
             this.btnPublications.Animated = true;
@@ -385,6 +304,87 @@
             this.btnDashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
+            // btnCustomer
+            // 
+            this.btnCustomer.Animated = true;
+            this.btnCustomer.BackColor = System.Drawing.Color.White;
+            this.btnCustomer.BorderRadius = 20;
+            this.btnCustomer.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnCustomer.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnCustomer.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnCustomer.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnCustomer.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnCustomer.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCustomer.FillColor2 = System.Drawing.Color.WhiteSmoke;
+            this.btnCustomer.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnCustomer.ForeColor = System.Drawing.Color.Black;
+            this.btnCustomer.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnCustomer.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btnCustomer.Image = global::DATNWF.Properties.Resources.customer_engagement;
+            this.btnCustomer.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnCustomer.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnCustomer.Location = new System.Drawing.Point(3, 145);
+            this.btnCustomer.Name = "btnCustomer";
+            this.btnCustomer.Size = new System.Drawing.Size(264, 65);
+            this.btnCustomer.TabIndex = 2;
+            this.btnCustomer.Text = "Quản lý khách hàng";
+            this.btnCustomer.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
+            // 
+            // btnInventory
+            // 
+            this.btnInventory.Animated = true;
+            this.btnInventory.BackColor = System.Drawing.Color.White;
+            this.btnInventory.BorderRadius = 20;
+            this.btnInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnInventory.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnInventory.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.btnInventory.FillColor2 = System.Drawing.Color.WhiteSmoke;
+            this.btnInventory.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnInventory.ForeColor = System.Drawing.Color.Black;
+            this.btnInventory.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnInventory.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btnInventory.Image = global::DATNWF.Properties.Resources.checklist;
+            this.btnInventory.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnInventory.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnInventory.Location = new System.Drawing.Point(3, 429);
+            this.btnInventory.Name = "btnInventory";
+            this.btnInventory.Size = new System.Drawing.Size(264, 65);
+            this.btnInventory.TabIndex = 5;
+            this.btnInventory.Text = "Quản lý tồn kho";
+            this.btnInventory.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.Animated = true;
+            this.btnSetting.BackColor = System.Drawing.Color.White;
+            this.btnSetting.BorderRadius = 20;
+            this.btnSetting.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnSetting.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnSetting.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSetting.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnSetting.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnSetting.FillColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSetting.FillColor2 = System.Drawing.Color.WhiteSmoke;
+            this.btnSetting.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnSetting.ForeColor = System.Drawing.Color.Black;
+            this.btnSetting.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnSetting.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btnSetting.Image = ((System.Drawing.Image)(resources.GetObject("btnSetting.Image")));
+            this.btnSetting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSetting.ImageSize = new System.Drawing.Size(38, 38);
+            this.btnSetting.Location = new System.Drawing.Point(3, 358);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Size = new System.Drawing.Size(264, 65);
+            this.btnSetting.TabIndex = 6;
+            this.btnSetting.Text = "Chi tiết hóa đơn";
+            this.btnSetting.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
+            // 
             // panelHeader
             // 
             this.panelHeader.BackColor = System.Drawing.Color.White;
@@ -437,6 +437,21 @@
             this.pnlHeaderIcon.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pnlHeaderIcon.Size = new System.Drawing.Size(299, 69);
             this.pnlHeaderIcon.TabIndex = 4;
+            // 
+            // picSetting
+            // 
+            this.picSetting.BackColor = System.Drawing.Color.Transparent;
+            this.picSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picSetting.FillColor = System.Drawing.Color.Transparent;
+            this.picSetting.Image = ((System.Drawing.Image)(resources.GetObject("picSetting.Image")));
+            this.picSetting.ImageRotate = 0F;
+            this.picSetting.Location = new System.Drawing.Point(225, 3);
+            this.picSetting.Name = "picSetting";
+            this.picSetting.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.picSetting.Size = new System.Drawing.Size(71, 63);
+            this.picSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picSetting.TabIndex = 4;
+            this.picSetting.TabStop = false;
             // 
             // picMessage
             // 
@@ -498,21 +513,6 @@
             this.dayandtime.Interval = 1000;
             this.dayandtime.Tick += new System.EventHandler(this.dayandtime_Tick);
             // 
-            // picSetting
-            // 
-            this.picSetting.BackColor = System.Drawing.Color.Transparent;
-            this.picSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picSetting.FillColor = System.Drawing.Color.Transparent;
-            this.picSetting.Image = ((System.Drawing.Image)(resources.GetObject("picSetting.Image")));
-            this.picSetting.ImageRotate = 0F;
-            this.picSetting.Location = new System.Drawing.Point(225, 3);
-            this.picSetting.Name = "picSetting";
-            this.picSetting.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.picSetting.Size = new System.Drawing.Size(71, 63);
-            this.picSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picSetting.TabIndex = 4;
-            this.picSetting.TabStop = false;
-            // 
             // Home
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -534,10 +534,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picDateAndTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTime)).EndInit();
             this.pnlHeaderIcon.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picSetting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMessage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNotification)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSetting)).EndInit();
             this.ResumeLayout(false);
 
         }
