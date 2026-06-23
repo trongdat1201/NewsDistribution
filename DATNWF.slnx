@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="DATNWF/DATNWF.csproj" Id="b50d082c-a801-4614-97d8-b23c277723f8" />
+  <Project Path="DATNWF_API/DATNWF_API.csproj" Id="5802c844-0bed-491a-950b-3a40376a6aca" />
 </Solution>

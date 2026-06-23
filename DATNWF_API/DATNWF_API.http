@@ -1,0 +1,8 @@
+# Khai báo địa chỉ Server của bạn (Dùng cổng 7088 như màn hình đen lúc nãy báo)
+@DATNWF_API_HostAddress = https://localhost:7088
+
+# Ra lệnh lấy dữ liệu Khách hàng
+GET {{DATNWF_API_HostAddress}}/api/Customers
+Accept: application/json
+
+###
