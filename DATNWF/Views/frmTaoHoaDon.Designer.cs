@@ -32,10 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTaoHoaDon));
             this.guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.panelLeft = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            this.txtMaKH = new Guna.UI2.WinForms.Guna2TextBox();
+            this.picTimKH = new Guna.UI2.WinForms.Guna2PictureBox();
             this.lblThanhToan = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2GradientButton3 = new Guna.UI2.WinForms.Guna2GradientButton();
             this.chkThanhToan = new Guna.UI2.WinForms.Guna2CustomCheckBox();
-            this.guna2GradientButton2 = new Guna.UI2.WinForms.Guna2GradientButton();
             this.txtGhiChu = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2GradientButton1 = new Guna.UI2.WinForms.Guna2GradientButton();
             this.dtpDenNgay = new Guna.UI2.WinForms.Guna2DateTimePicker();
@@ -48,16 +48,15 @@
             this.lblNgayLapPhieu = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblTenKH = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblSoHD = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            this.guna2GradientButton3 = new Guna.UI2.WinForms.Guna2GradientButton();
             this.panelRight = new System.Windows.Forms.TableLayoutPanel();
             this.pnlDetails = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.guna2CustomGradientPanel3 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.guna2GradientButton4 = new Guna.UI2.WinForms.Guna2GradientButton();
-            this.picTimKH = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.txtMaKH = new Guna.UI2.WinForms.Guna2TextBox();
             this.panelLeft.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picTimKH)).BeginInit();
             this.panelRight.SuspendLayout();
             this.guna2CustomGradientPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picTimKH)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -72,9 +71,7 @@
             this.panelLeft.Controls.Add(this.txtMaKH);
             this.panelLeft.Controls.Add(this.picTimKH);
             this.panelLeft.Controls.Add(this.lblThanhToan);
-            this.panelLeft.Controls.Add(this.guna2GradientButton3);
             this.panelLeft.Controls.Add(this.chkThanhToan);
-            this.panelLeft.Controls.Add(this.guna2GradientButton2);
             this.panelLeft.Controls.Add(this.txtGhiChu);
             this.panelLeft.Controls.Add(this.guna2GradientButton1);
             this.panelLeft.Controls.Add(this.dtpDenNgay);
@@ -93,6 +90,42 @@
             this.panelLeft.Size = new System.Drawing.Size(439, 589);
             this.panelLeft.TabIndex = 0;
             // 
+            // txtMaKH
+            // 
+            this.txtMaKH.Animated = true;
+            this.txtMaKH.BackColor = System.Drawing.Color.White;
+            this.txtMaKH.BorderRadius = 10;
+            this.txtMaKH.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtMaKH.DefaultText = "";
+            this.txtMaKH.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtMaKH.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtMaKH.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtMaKH.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtMaKH.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtMaKH.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtMaKH.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtMaKH.Location = new System.Drawing.Point(162, 107);
+            this.txtMaKH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtMaKH.Name = "txtMaKH";
+            this.txtMaKH.PlaceholderText = "";
+            this.txtMaKH.SelectedText = "";
+            this.txtMaKH.Size = new System.Drawing.Size(187, 48);
+            this.txtMaKH.TabIndex = 33;
+            // 
+            // picTimKH
+            // 
+            this.picTimKH.BackColor = System.Drawing.Color.White;
+            this.picTimKH.BorderRadius = 5;
+            this.picTimKH.Image = ((System.Drawing.Image)(resources.GetObject("picTimKH.Image")));
+            this.picTimKH.ImageRotate = 0F;
+            this.picTimKH.Location = new System.Drawing.Point(355, 107);
+            this.picTimKH.Name = "picTimKH";
+            this.picTimKH.Size = new System.Drawing.Size(40, 48);
+            this.picTimKH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picTimKH.TabIndex = 32;
+            this.picTimKH.TabStop = false;
+            this.picTimKH.Click += new System.EventHandler(this.picTimKH_Click);
+            // 
             // lblThanhToan
             // 
             this.lblThanhToan.BackColor = System.Drawing.Color.Transparent;
@@ -102,29 +135,6 @@
             this.lblThanhToan.Size = new System.Drawing.Size(87, 22);
             this.lblThanhToan.TabIndex = 6;
             this.lblThanhToan.Text = "Thanh toán:";
-            // 
-            // guna2GradientButton3
-            // 
-            this.guna2GradientButton3.Animated = true;
-            this.guna2GradientButton3.BackColor = System.Drawing.Color.White;
-            this.guna2GradientButton3.BorderRadius = 20;
-            this.guna2GradientButton3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2GradientButton3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2GradientButton3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2GradientButton3.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2GradientButton3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2GradientButton3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.guna2GradientButton3.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.guna2GradientButton3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2GradientButton3.ForeColor = System.Drawing.Color.Black;
-            this.guna2GradientButton3.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.guna2GradientButton3.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.guna2GradientButton3.Location = new System.Drawing.Point(296, 512);
-            this.guna2GradientButton3.Name = "guna2GradientButton3";
-            this.guna2GradientButton3.Size = new System.Drawing.Size(122, 45);
-            this.guna2GradientButton3.TabIndex = 31;
-            this.guna2GradientButton3.Text = "Đóng";
-            this.guna2GradientButton3.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // chkThanhToan
             // 
@@ -143,28 +153,6 @@
             this.chkThanhToan.UncheckedState.BorderRadius = 2;
             this.chkThanhToan.UncheckedState.BorderThickness = 0;
             this.chkThanhToan.UncheckedState.FillColor = System.Drawing.Color.Silver;
-            // 
-            // guna2GradientButton2
-            // 
-            this.guna2GradientButton2.Animated = true;
-            this.guna2GradientButton2.BackColor = System.Drawing.Color.White;
-            this.guna2GradientButton2.BorderRadius = 20;
-            this.guna2GradientButton2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2GradientButton2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2GradientButton2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2GradientButton2.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2GradientButton2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2GradientButton2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.guna2GradientButton2.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.guna2GradientButton2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2GradientButton2.ForeColor = System.Drawing.Color.Black;
-            this.guna2GradientButton2.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.guna2GradientButton2.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.guna2GradientButton2.Location = new System.Drawing.Point(154, 512);
-            this.guna2GradientButton2.Name = "guna2GradientButton2";
-            this.guna2GradientButton2.Size = new System.Drawing.Size(122, 45);
-            this.guna2GradientButton2.TabIndex = 30;
-            this.guna2GradientButton2.Text = "Làm mới";
             // 
             // txtGhiChu
             // 
@@ -204,7 +192,7 @@
             this.guna2GradientButton1.ForeColor = System.Drawing.Color.Black;
             this.guna2GradientButton1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.guna2GradientButton1.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.guna2GradientButton1.Location = new System.Drawing.Point(17, 512);
+            this.guna2GradientButton1.Location = new System.Drawing.Point(162, 513);
             this.guna2GradientButton1.Name = "guna2GradientButton1";
             this.guna2GradientButton1.Size = new System.Drawing.Size(122, 45);
             this.guna2GradientButton1.TabIndex = 29;
@@ -335,7 +323,7 @@
             // 
             this.lblTenKH.BackColor = System.Drawing.Color.Transparent;
             this.lblTenKH.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenKH.Location = new System.Drawing.Point(15, 133);
+            this.lblTenKH.Location = new System.Drawing.Point(15, 122);
             this.lblTenKH.Name = "lblTenKH";
             this.lblTenKH.Size = new System.Drawing.Size(121, 22);
             this.lblTenKH.TabIndex = 18;
@@ -350,6 +338,29 @@
             this.lblSoHD.Size = new System.Drawing.Size(85, 22);
             this.lblSoHD.TabIndex = 17;
             this.lblSoHD.Text = "Số hóa đơn:";
+            // 
+            // guna2GradientButton3
+            // 
+            this.guna2GradientButton3.Animated = true;
+            this.guna2GradientButton3.BackColor = System.Drawing.Color.White;
+            this.guna2GradientButton3.BorderRadius = 20;
+            this.guna2GradientButton3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2GradientButton3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2GradientButton3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2GradientButton3.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2GradientButton3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2GradientButton3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.guna2GradientButton3.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.guna2GradientButton3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2GradientButton3.ForeColor = System.Drawing.Color.Black;
+            this.guna2GradientButton3.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.guna2GradientButton3.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.guna2GradientButton3.Location = new System.Drawing.Point(521, 29);
+            this.guna2GradientButton3.Name = "guna2GradientButton3";
+            this.guna2GradientButton3.Size = new System.Drawing.Size(122, 45);
+            this.guna2GradientButton3.TabIndex = 31;
+            this.guna2GradientButton3.Text = "Đóng";
+            this.guna2GradientButton3.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panelRight
             // 
@@ -378,6 +389,7 @@
             // guna2CustomGradientPanel3
             // 
             this.guna2CustomGradientPanel3.Controls.Add(this.guna2GradientButton4);
+            this.guna2CustomGradientPanel3.Controls.Add(this.guna2GradientButton3);
             this.guna2CustomGradientPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.guna2CustomGradientPanel3.Location = new System.Drawing.Point(18, 484);
             this.guna2CustomGradientPanel3.Name = "guna2CustomGradientPanel3";
@@ -400,47 +412,11 @@
             this.guna2GradientButton4.ForeColor = System.Drawing.Color.Black;
             this.guna2GradientButton4.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.guna2GradientButton4.HoverState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.guna2GradientButton4.Location = new System.Drawing.Point(320, 29);
+            this.guna2GradientButton4.Location = new System.Drawing.Point(136, 29);
             this.guna2GradientButton4.Name = "guna2GradientButton4";
             this.guna2GradientButton4.Size = new System.Drawing.Size(122, 45);
             this.guna2GradientButton4.TabIndex = 30;
             this.guna2GradientButton4.Text = "Lưu";
-            // 
-            // picTimKH
-            // 
-            this.picTimKH.BackColor = System.Drawing.Color.White;
-            this.picTimKH.BorderRadius = 5;
-            this.picTimKH.Image = ((System.Drawing.Image)(resources.GetObject("picTimKH.Image")));
-            this.picTimKH.ImageRotate = 0F;
-            this.picTimKH.Location = new System.Drawing.Point(355, 107);
-            this.picTimKH.Name = "picTimKH";
-            this.picTimKH.Size = new System.Drawing.Size(40, 48);
-            this.picTimKH.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picTimKH.TabIndex = 32;
-            this.picTimKH.TabStop = false;
-            this.picTimKH.Click += new System.EventHandler(this.picTimKH_Click);
-            // 
-            // txtMaKH
-            // 
-            this.txtMaKH.Animated = true;
-            this.txtMaKH.BackColor = System.Drawing.Color.White;
-            this.txtMaKH.BorderRadius = 10;
-            this.txtMaKH.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtMaKH.DefaultText = "";
-            this.txtMaKH.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtMaKH.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtMaKH.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMaKH.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtMaKH.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMaKH.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtMaKH.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtMaKH.Location = new System.Drawing.Point(162, 107);
-            this.txtMaKH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtMaKH.Name = "txtMaKH";
-            this.txtMaKH.PlaceholderText = "";
-            this.txtMaKH.SelectedText = "";
-            this.txtMaKH.Size = new System.Drawing.Size(187, 48);
-            this.txtMaKH.TabIndex = 33;
             // 
             // frmTaoHoaDon
             // 
@@ -456,9 +432,9 @@
             this.Text = "frmTaoHoaDon";
             this.panelLeft.ResumeLayout(false);
             this.panelLeft.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picTimKH)).EndInit();
             this.panelRight.ResumeLayout(false);
             this.guna2CustomGradientPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picTimKH)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -474,7 +450,6 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblThanhToan;
         private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton4;
         private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton3;
-        private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton2;
         private Guna.UI2.WinForms.Guna2TextBox txtGhiChu;
         private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton1;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpDenNgay;

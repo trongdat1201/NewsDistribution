@@ -70,11 +70,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ThanhnienDataSet6.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Views\frmEditDelivery.cs">
+    <Compile Include="ThanhnienDataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThanhnienDataSet7.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ThanhnienDataSet8.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ThanhnienDataSet8.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmNhapBanThuc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\frmEditDelivery.Designer.cs">
-      <DependentUpon>frmEditDelivery.cs</DependentUpon>
+    <Compile Include="Views\frmNhapBanThuc.Designer.cs">
+      <DependentUpon>frmNhapBanThuc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmNhapSoLuong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmNhapSoLuong.Designer.cs">
+      <DependentUpon>frmNhapSoLuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmNhapThongTInHD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmNhapThongTInHD.Designer.cs">
+      <DependentUpon>frmNhapThongTInHD.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\frmThemBaoNLe.cs">
       <SubType>Form</SubType>
@@ -227,8 +249,20 @@
     <Compile Include="Views\frmTimKhachHang.Designer.cs">
       <DependentUpon>frmTimKhachHang.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Views\frmEditDelivery.resx">
-      <DependentUpon>frmEditDelivery.cs</DependentUpon>
+    <Compile Include="Views\frmTroLiAI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmTroLiAI.Designer.cs">
+      <DependentUpon>frmTroLiAI.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\frmNhapBanThuc.resx">
+      <DependentUpon>frmNhapBanThuc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\frmNhapSoLuong.resx">
+      <DependentUpon>frmNhapSoLuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\frmNhapThongTInHD.resx">
+      <DependentUpon>frmNhapThongTInHD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\frmThemBaoNLe.resx">
       <DependentUpon>frmThemBaoNLe.cs</DependentUpon>
@@ -288,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\frmTimKhachHang.resx">
       <DependentUpon>frmTimKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\frmTroLiAI.resx">
+      <DependentUpon>frmTroLiAI.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -375,6 +412,28 @@
     </None>
     <None Include="ThanhnienDataSet6.xss">
       <DependentUpon>ThanhnienDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet7.xsc">
+      <DependentUpon>ThanhnienDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ThanhnienDataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ThanhnienDataSet7.xss">
+      <DependentUpon>ThanhnienDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet8.xsc">
+      <DependentUpon>ThanhnienDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="ThanhnienDataSet8.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ThanhnienDataSet8.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ThanhnienDataSet8.xss">
+      <DependentUpon>ThanhnienDataSet8.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

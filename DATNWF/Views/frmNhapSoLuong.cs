@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace DATNWF.Views
 {
-    public partial class frmEditDelivery : Form
+    public partial class frmNhapSoLuong : Form
     {
         public int SoLuongDieuPhoi { get; private set; }
 
-        public frmEditDelivery(string maBao, string tenBao, int soBao, decimal donGia, int currentSl)
+        public frmNhapSoLuong(string maBao, string tenBao, int soBao, decimal donGia, int currentSl)
         {
             InitializeComponent();
 
