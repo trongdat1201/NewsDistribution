@@ -480,6 +480,7 @@
             this.picUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picUser.TabIndex = 1;
             this.picUser.TabStop = false;
+            this.picUser.Click += new System.EventHandler(this.picUser_Click);
             // 
             // picNotification
             // 
@@ -524,7 +525,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Hệ Thống Phát Hành Báo In";
             this.panelSidebar.ResumeLayout(false);
             this.tableLayoutPanelSidebar.ResumeLayout(false);
             this.tableLayoutPanelTitle1.ResumeLayout(false);

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DATNWF
@@ -11,9 +8,20 @@ namespace DATNWF
         [STAThread]
         static void Main()
         {
+            // Must be called before any IWin32Window is created — call ONCE, outside the loop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Home());
+
+            bool restart;
+            do
+            {
+                using (var home = new Home())
+                {
+                    Application.Run(home);
+                    restart = Home.NeedsRestart;
+                    Home.NeedsRestart = false;
+                }
+            } while (restart);
         }
     }
 }

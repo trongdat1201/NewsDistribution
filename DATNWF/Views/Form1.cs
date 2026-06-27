@@ -8,6 +8,7 @@ namespace DATNWF
 {
     public partial class Home : Form
     {
+        public static bool NeedsRestart { get; set; } = false;
         private frmDashboard frmDash;
         private frmPublications frmPub;
         private frmCustomers frmCus;
@@ -33,7 +34,7 @@ namespace DATNWF
             frmLogin login = new frmLogin();
             if (login.ShowDialog() != DialogResult.OK)
             {
-                Application.Exit();
+                this.Close(); // Home closes normally → Application.Run returns → loop exits cleanly
                 return;
             }
 
@@ -156,6 +157,17 @@ namespace DATNWF
             if (UserSession.IsBC) return; // BC không có quyền truy cập Setting
             if (frmSet == null || frmSet.IsDisposed) frmSet = new frmSetting();
             OpenChildForm(frmSet);
+        }
+
+        private void picUser_Click(object sender, EventArgs e)
+        {
+            using (frmProfile frm = new frmProfile())
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    this.Close(); // Home closes → Application.Run returns → loop restarts with fresh login
+                }
+            }
         }
 
         private void dayandtime_Tick(object sender, EventArgs e)

@@ -117,5 +117,9 @@ namespace DATNWF.Views
                 }
             }
         }
+        private void imgCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

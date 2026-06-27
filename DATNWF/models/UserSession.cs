@@ -8,5 +8,13 @@ namespace DATNWF.Models
         public static bool IsHT { get; set; }
         public static bool IsNV { get; set; }
         public static bool IsBC { get; set; }
+
+        public static void Clear()
+        {
+            Username = null;
+            IsHT = false;
+            IsNV = false;
+            IsBC = false;
+        }
     }
 }
