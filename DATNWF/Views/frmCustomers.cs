@@ -1,12 +1,8 @@
 using DATNWF.Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.Charts.WinForms;
@@ -16,10 +12,6 @@ namespace DATNWF.Views
 {
     public partial class frmCustomers : Form
     {
-        private readonly HttpClient _client = new HttpClient();
-        private readonly string _apiBaseUrl = "https://localhost:7088/api/Customers";
-        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
-
         private List<KhachHangDto> _danhSachGoc = new List<KhachHangDto>();
 
         public frmCustomers()
@@ -27,9 +19,8 @@ namespace DATNWF.Views
             InitializeComponent();
         }
 
-        private async void frmCustomers_Load(object sender, EventArgs e)
+        private void frmCustomers_Load(object sender, EventArgs e)
         {
-            this.tabKHACHHANGTableAdapter.Fill(this.thanhnienDataSet3.tabKHACHHANG);
             LoadData();
             LoadChartPhanLoai();
             LoadChartDoanhThu();
@@ -37,30 +28,17 @@ namespace DATNWF.Views
 
         #region Biểu đồ phân loại P_PH / P_KT
 
+        private class ClassificationResponse
+        {
+            public string Loai { get; set; }
+            public int SoLuong { get; set; }
+        }
+
         private void LoadChartPhanLoai()
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            try
             {
-                string sql = @"
-                    SELECT
-                        CASE
-                            WHEN P_PH = 1 AND P_KT = 1 THEN N'P_PH & P_KT'
-                            WHEN P_PH = 1 THEN N'P_PH'
-                            WHEN P_KT = 1 THEN N'P_KT'
-                            ELSE N'Không phân loại'
-                        END AS Loai,
-                        COUNT(*) AS SoLuong
-                    FROM tabKHACHHANG
-                    GROUP BY
-                        CASE
-                            WHEN P_PH = 1 AND P_KT = 1 THEN N'P_PH & P_KT'
-                            WHEN P_PH = 1 THEN N'P_PH'
-                            WHEN P_KT = 1 THEN N'P_KT'
-                            ELSE N'Không phân loại'
-                        END";
-
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                conn.Open();
+                var list = ApiClient.Instance.GetAsync<List<ClassificationResponse>>("Customers/classification-chart").GetAwaiter().GetResult();
 
                 var ds = new GunaDoughnutDataset { Label = "Phân loại khách hàng" };
                 ds.FillColors.AddRange(new[]
@@ -71,13 +49,11 @@ namespace DATNWF.Views
                     Color.FromArgb(158, 158, 158)
                 });
 
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                if (list != null)
                 {
-                    while (reader.Read())
+                    foreach (var item in list)
                     {
-                        string loai = reader["Loai"].ToString();
-                        int count = reader.GetInt32(1);
-                        ds.DataPoints.Add(loai, count);
+                        ds.DataPoints.Add(item.Loai, item.SoLuong);
                     }
                 }
 
@@ -87,40 +63,37 @@ namespace DATNWF.Views
                 chartPhanLoai.Legend.Display = true;
                 chartPhanLoai.Refresh();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải phân loại khách hàng: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
 
         #region Biểu đồ doanh thu top khách hàng
 
+        private class TopCustomerResponse
+        {
+            public string Ten { get; set; }
+            public double TongDoanhThu { get; set; }
+        }
+
         private void LoadChartDoanhThu()
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            try
             {
-                string sql = @"
-                    SELECT TOP 5
-                        kh.TEN,
-                        SUM(ct.thanhTien) AS TongDoanhThu
-                    FROM tabKHACHHANG kh
-                    JOIN tabHOADON h ON kh.MAKH = h.makh
-                    JOIN tabCHITIETHOADON ct ON h.sohd = ct.sohd
-                    GROUP BY kh.MAKH, kh.TEN
-                    ORDER BY TongDoanhThu DESC";
-
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                conn.Open();
+                var list = ApiClient.Instance.GetAsync<List<TopCustomerResponse>>("Customers/top-revenue-chart").GetAwaiter().GetResult();
 
                 var ds = new GunaBarDataset { Label = "Doanh thu (VNĐ)" };
                 ds.FillColors.Add(Color.FromArgb(255, 192, 128));
                 ds.BorderColors.Add(Color.FromArgb(255, 160, 80));
 
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                if (list != null)
                 {
-                    while (reader.Read())
+                    foreach (var item in list)
                     {
-                        string ten = reader["TEN"].ToString();
-                        double dt = reader["TongDoanhThu"] == DBNull.Value ? 0 : Convert.ToDouble(reader["TongDoanhThu"]);
-                        ds.DataPoints.Add(ten, dt);
+                        ds.DataPoints.Add(item.Ten, item.TongDoanhThu);
                     }
                 }
 
@@ -131,36 +104,31 @@ namespace DATNWF.Views
                 chartDoanhThu.Legend.Display = false;
                 chartDoanhThu.Refresh();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải doanh thu khách hàng: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
-        private async void LoadData()
+
+        private void LoadData()
         {
-            await LoadDataAsync();
-            await LoadKhachHangOrderGanDayAsync();
+            LoadDataAsync();
+            LoadKhachHangOrderGanDayAsync();
         }
 
-        private async Task LoadDataAsync()
+        private void LoadDataAsync()
         {
             try
             {
-                HttpResponseMessage response = await _client.GetAsync(_apiBaseUrl);
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonResult = await response.Content.ReadAsStringAsync();
-                    _danhSachGoc = JsonConvert.DeserializeObject<List<KhachHangDto>>(jsonResult);
-
-                    dboTabKhachHang.DataSource = _danhSachGoc;
-                    dboTabKhachHang.ClearSelection();
-                }
-                else
-                {
-                    MessageBox.Show("Lỗi khi tải dữ liệu từ API.");
-                }
+                _danhSachGoc = ApiClient.Instance.GetAsync<List<KhachHangDto>>("Customers").GetAwaiter().GetResult();
+                dboTabKhachHang.DataSource = _danhSachGoc;
+                dboTabKhachHang.ClearSelection();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Không thể kết nối đến Server API: " + ex.Message);
+                MessageBox.Show("Không thể kết nối đến Server API: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -216,7 +184,7 @@ namespace DATNWF.Views
             }
         }
 
-        private async void btnDelete_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dboTabKhachHang.SelectedRows.Count == 0 || dboTabKhachHang.SelectedRows[0].Cells["MaKH"].Value == null)
             {
@@ -226,65 +194,53 @@ namespace DATNWF.Views
             string makh = dboTabKhachHang.SelectedRows[0].Cells["MaKH"].Value.ToString();
             string ten = dboTabKhachHang.SelectedRows[0].Cells["Ten"].Value.ToString();
 
-            if (MessageBox.Show($"Bạn muốn xóa khách hàng '{ten}'?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show($"Bạn muốn xóa khách hàng '{ten}'?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 try
                 {
-                    HttpResponseMessage response = await _client.DeleteAsync($"{_apiBaseUrl}/{makh}");
-
-                    if (response.IsSuccessStatusCode)
+                    bool ok = ApiClient.Instance.DeleteAsync($"Customers/{makh}").GetAwaiter().GetResult();
+                    if (ok)
                     {
                         MessageBox.Show("Xóa thành công!");
                         LoadData();
                         LoadChartPhanLoai();
                         LoadChartDoanhThu();
                     }
-                    else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
-                    {
-                        MessageBox.Show("Không thể xóa! Khách hàng này đã phát sinh Hóa Đơn hoặc Điều Phối.");
-                    }
                     else
                     {
-                        MessageBox.Show("Lỗi xóa từ server: " + response.StatusCode);
+                        MessageBox.Show("Xóa thất bại!");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi kết nối Server: " + ex.Message);
+                    MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        private async Task LoadKhachHangOrderGanDayAsync()
+        private void LoadKhachHangOrderGanDayAsync()
         {
             try
             {
-                string url = $"{_apiBaseUrl}/recent-orders";
-                HttpResponseMessage response = await _client.GetAsync(url);
+                var dtGanDay = ApiClient.Instance.GetAsync<List<KhachHangGanDayDto>>("Customers/recent-orders").GetAwaiter().GetResult();
 
-                if (response.IsSuccessStatusCode)
+                dgvKhachHangGanDay.DataSource = dtGanDay;
+
+                if (dgvKhachHangGanDay.Columns.Count > 0)
                 {
-                    string jsonResult = await response.Content.ReadAsStringAsync();
-                    var dtGanDay = JsonConvert.DeserializeObject<List<KhachHangGanDayDto>>(jsonResult);
-
-                    dgvKhachHangGanDay.DataSource = dtGanDay;
-
-                    if (dgvKhachHangGanDay.Columns.Count > 0)
-                    {
-                        dgvKhachHangGanDay.Columns["MaKH"].Visible = false;
-                        dgvKhachHangGanDay.Columns["Ten"].HeaderText = "Khách hàng order gần đây";
-                        dgvKhachHangGanDay.Columns["Ten"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    }
-
-                    dgvKhachHangGanDay.ColumnHeadersVisible = false;
-                    dgvKhachHangGanDay.RowHeadersVisible = false;
-                    dgvKhachHangGanDay.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    dgvKhachHangGanDay.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                    dgvKhachHangGanDay.AllowUserToAddRows = false;
-                    dgvKhachHangGanDay.ReadOnly = true;
-                    dgvKhachHangGanDay.BackgroundColor = Color.White;
-                    dgvKhachHangGanDay.BorderStyle = BorderStyle.None;
+                    dgvKhachHangGanDay.Columns["MaKH"].Visible = false;
+                    dgvKhachHangGanDay.Columns["Ten"].HeaderText = "Khách hàng order gần đây";
+                    dgvKhachHangGanDay.Columns["Ten"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 }
+
+                dgvKhachHangGanDay.ColumnHeadersVisible = false;
+                dgvKhachHangGanDay.RowHeadersVisible = false;
+                dgvKhachHangGanDay.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvKhachHangGanDay.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvKhachHangGanDay.AllowUserToAddRows = false;
+                dgvKhachHangGanDay.ReadOnly = true;
+                dgvKhachHangGanDay.BackgroundColor = Color.White;
+                dgvKhachHangGanDay.BorderStyle = BorderStyle.None;
             }
             catch (Exception ex)
             {

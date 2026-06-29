@@ -1,16 +1,16 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
-using System.Configuration;
+using DATNWF.Models;
+using DATNWF.Models.DTO;
 
 namespace DATNWF.Views
 {
     public partial class frmSuaBao : Form
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
-
         private string maBaoCanSua;
         private DataTable dtNgoaiLeTam;
         private bool isEditingException = false;
@@ -70,54 +70,45 @@ namespace DATNWF.Views
 
         private void LoadDataGocTuDatabase()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-
-                string sqlBao = "SELECT * FROM tabBAO WHERE maBao = @maBao";
-                using (SqlCommand cmd = new SqlCommand(sqlBao, conn))
+                var bao = ApiClient.Instance.GetAsync<BaoDto>($"Publications/{maBaoCanSua}").GetAwaiter().GetResult();
+                if (bao != null)
                 {
-                    cmd.Parameters.AddWithValue("@maBao", maBaoCanSua);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            txtMaBao.Text = reader["maBao"].ToString();
-                            txtTenBao.Text = reader["ten"].ToString();
-                            cbDvt.Text = reader["DVT"].ToString();
-                            txtDonGia.Text = reader["donGia"].ToString();
+                    txtMaBao.Text = bao.MaBao;
+                    txtTenBao.Text = bao.Ten;
+                    cbDvt.Text = bao.Dvt;
+                    txtDonGia.Text = bao.DonGia.ToString();
+                    txtSoGoc.Text = bao.Sogoc?.ToString() ?? "";
+                    if (bao.NgayBatDau.HasValue)
+                        dtpNgayBatDau.Value = bao.NgayBatDau.Value;
 
-                            if (reader["sogoc"] != DBNull.Value)
-                                txtSoGoc.Text = reader["sogoc"].ToString();
-                            else
-                                txtSoGoc.Text = "";
-
-                            if (reader["ngayBatDau"] != DBNull.Value)
-                                dtpNgayBatDau.Value = Convert.ToDateTime(reader["ngayBatDau"]);
-
-                            chkChuNhat.Checked = reader["thu1"] != DBNull.Value && Convert.ToBoolean(reader["thu1"]);
-                            chkThu2.Checked = reader["thu2"] != DBNull.Value && Convert.ToBoolean(reader["thu2"]);
-                            chkThu3.Checked = reader["thu3"] != DBNull.Value && Convert.ToBoolean(reader["thu3"]);
-                            chkThu4.Checked = reader["thu4"] != DBNull.Value && Convert.ToBoolean(reader["thu4"]);
-                            chkThu5.Checked = reader["thu5"] != DBNull.Value && Convert.ToBoolean(reader["thu5"]);
-                            chkThu6.Checked = reader["thu6"] != DBNull.Value && Convert.ToBoolean(reader["thu6"]);
-                            chkThu7.Checked = reader["thu7"] != DBNull.Value && Convert.ToBoolean(reader["thu7"]);
-                        }
-                    }
+                    chkChuNhat.Checked = bao.Thu1 ?? false;
+                    chkThu2.Checked = bao.Thu2 ?? false;
+                    chkThu3.Checked = bao.Thu3 ?? false;
+                    chkThu4.Checked = bao.Thu4 ?? false;
+                    chkThu5.Checked = bao.Thu5 ?? false;
+                    chkThu6.Checked = bao.Thu6 ?? false;
+                    chkThu7.Checked = bao.Thu7 ?? false;
                 }
 
                 txtMaBaoNgoaiLe.Text = txtMaBao.Text.Trim();
 
                 dtNgoaiLeTam.Clear();
-                string sqlNgoaiLe = "SELECT ngayPhatHanh, soLanTrongNam FROM tabBao_ngoaiLe WHERE maBao = @maBao ORDER BY ngayPhatHanh ASC";
-                using (SqlCommand cmdNL = new SqlCommand(sqlNgoaiLe, conn))
+                var ngoaiLeAll = ApiClient.Instance.GetAsync<List<BaoNgoaiLeDto>>("Publications/NgoaiLe").GetAwaiter().GetResult();
+                var filtered = ngoaiLeAll.Where(n => n.MaBao == maBaoCanSua).OrderBy(n => n.NgayPhatHanh).ToList();
+
+                foreach (var nl in filtered)
                 {
-                    cmdNL.Parameters.AddWithValue("@maBao", maBaoCanSua);
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmdNL))
-                    {
-                        da.Fill(dtNgoaiLeTam);
-                    }
+                    DataRow row = dtNgoaiLeTam.NewRow();
+                    row["ngayPhatHanh"] = nl.NgayPhatHanh;
+                    row["soLanTrongNam"] = nl.SoLanTrongNam ?? 1;
+                    dtNgoaiLeTam.Rows.Add(row);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải thông tin báo: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             ClearExceptionInputs();
         }
@@ -320,75 +311,53 @@ namespace DATNWF.Views
             double donGia = double.Parse(txtDonGia.Text);
             int soGocParsed = int.Parse(txtSoGoc.Text);
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            var model = new {
+                MaBao = maBaoCanSua,
+                Ten = txtTenBao.Text.Trim(),
+                Dvt = cbDvt.Text.Trim(),
+                DonGia = donGia,
+                SoLanPhtrongTuan = int.Parse(txtTanSuat.Text),
+                Sogoc = soGocParsed,
+                NgayBatDau = dtpNgayBatDau.Value.Date,
+                Thu1 = chkChuNhat.Checked,
+                Thu2 = chkThu2.Checked,
+                Thu3 = chkThu3.Checked,
+                Thu4 = chkThu4.Checked,
+                Thu5 = chkThu5.Checked,
+                Thu6 = chkThu6.Checked,
+                Thu7 = chkThu7.Checked,
+                NgoaiLeList = new System.Collections.Generic.List<object>()
+            };
+
+            if (dtNgoaiLeTam != null && dtNgoaiLeTam.Rows.Count > 0)
             {
-                conn.Open();
-                using (SqlTransaction trans = conn.BeginTransaction())
+                foreach (DataRow row in dtNgoaiLeTam.Rows)
                 {
-                    try
-                    {
-                        string sqlBao = @"UPDATE tabBAO SET 
-                                           ten = @ten, DVT = @dvt, donGia = @donGia, ngayBatDau = @ngayBatDau,
-                                           thu1 = @t1, thu2 = @t2, thu3 = @t3, thu4 = @t4, thu5 = @t5, thu6 = @t6, thu7 = @t7,
-                                           soLanPHtrongTuan = @tanSuat, sogoc = @soGoc 
-                                           WHERE maBao = @maBao";
-
-                        using (SqlCommand cmdBao = new SqlCommand(sqlBao, conn, trans))
-                        {
-                            cmdBao.Parameters.AddWithValue("@maBao", maBaoCanSua);
-                            cmdBao.Parameters.AddWithValue("@ten", txtTenBao.Text.Trim());
-                            cmdBao.Parameters.AddWithValue("@dvt", cbDvt.Text.Trim()); 
-                            cmdBao.Parameters.AddWithValue("@donGia", donGia);
-                            cmdBao.Parameters.AddWithValue("@tanSuat", int.Parse(txtTanSuat.Text));
-                            cmdBao.Parameters.AddWithValue("@soGoc", soGocParsed);
-                            cmdBao.Parameters.AddWithValue("@ngayBatDau", dtpNgayBatDau.Value);
-                            cmdBao.Parameters.AddWithValue("@t1", chkChuNhat.Checked);
-                            cmdBao.Parameters.AddWithValue("@t2", chkThu2.Checked);
-                            cmdBao.Parameters.AddWithValue("@t3", chkThu3.Checked);
-                            cmdBao.Parameters.AddWithValue("@t4", chkThu4.Checked);
-                            cmdBao.Parameters.AddWithValue("@t5", chkThu5.Checked);
-                            cmdBao.Parameters.AddWithValue("@t6", chkThu6.Checked);
-                            cmdBao.Parameters.AddWithValue("@t7", chkThu7.Checked);
-                            cmdBao.ExecuteNonQuery();
-                        }
-
-                        string sqlXoaOld = "DELETE FROM tabBao_ngoaiLe WHERE maBao = @maBao";
-                        using (SqlCommand cmdXoa = new SqlCommand(sqlXoaOld, conn, trans))
-                        {
-                            cmdXoa.Parameters.AddWithValue("@maBao", maBaoCanSua);
-                            cmdXoa.ExecuteNonQuery();
-                        }
-
-                        if (dtNgoaiLeTam != null && dtNgoaiLeTam.Rows.Count > 0)
-                        {
-                            string sqlInsertNgoaiLe = "INSERT INTO tabBao_ngoaiLe (maBao, ngayPhatHanh, soLanTrongNam) VALUES (@maBao, @ngay, @soLan)";
-
-                            foreach (DataRow row in dtNgoaiLeTam.Rows)
-                            {
-                                if (row.RowState == DataRowState.Deleted) continue;
-
-                                using (SqlCommand cmdNL = new SqlCommand(sqlInsertNgoaiLe, conn, trans))
-                                {
-                                    cmdNL.Parameters.AddWithValue("@maBao", maBaoCanSua);
-                                    cmdNL.Parameters.AddWithValue("@ngay", Convert.ToDateTime(row["ngayPhatHanh"]).Date);
-                                    cmdNL.Parameters.AddWithValue("@soLan", 1); 
-                                    cmdNL.ExecuteNonQuery();
-                                }
-                            }
-                        }
-
-                        trans.Commit();
-                        MessageBox.Show("Cập nhật thông tin báo và cấu hình lịch ngoại lệ thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        trans.Rollback();
-                        MessageBox.Show("Lỗi hệ thống khi lưu chỉnh sửa: " + ex.Message, "Lỗi Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    if (row.RowState == DataRowState.Deleted) continue;
+                    model.NgoaiLeList.Add(new {
+                        NgayPhatHanh = Convert.ToDateTime(row["ngayPhatHanh"]).Date,
+                        SoLanTrongNam = 1
+                    });
                 }
+            }
+
+            try
+            {
+                bool success = ApiClient.Instance.PostAsync("Publications", model).GetAwaiter().GetResult();
+                if (success)
+                {
+                    MessageBox.Show("Lưu thành công thông tin báo và cấu hình ngoại lệ.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Lưu thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lưu dữ liệu qua API: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

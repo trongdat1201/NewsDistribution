@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DATNWF_API.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using DATNWF_API.Models.DTO;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace DATNWF_API.Controllers
 {
+    [Authorize(Policy = "StaffOrAdmin")]
     [Route("api/[controller]")]
     [ApiController]
     public class DashboardController : ControllerBase

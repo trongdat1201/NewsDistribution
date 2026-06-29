@@ -1,16 +1,16 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
-using System.Configuration;
+using DATNWF.Models;
+using DATNWF.Models.DTO;
 
 namespace DATNWF.Views
 {
     public partial class frmThemBao : Form
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
-
         private DataTable dtNgoaiLeTam;
         private bool isEditingException = false;
         private DateTime oldNgayPhatHanh;
@@ -183,28 +183,19 @@ namespace DATNWF.Views
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                var listBao = ApiClient.Instance.GetAsync<List<BaoDto>>("Publications").GetAwaiter().GetResult();
+                bool exists = listBao.Any(b => b.MaBao.Equals(txtMaBao.Text.Trim(), StringComparison.OrdinalIgnoreCase));
+                if (exists)
                 {
-                    conn.Open();
-                    string queryCheck = "SELECT COUNT(*) FROM tabBAO WHERE maBao = @maBao";
-                    using (SqlCommand cmdCheck = new SqlCommand(queryCheck, conn))
-                    {
-                        cmdCheck.Parameters.AddWithValue("@maBao", txtMaBao.Text.Trim());
-                        int count = (int)cmdCheck.ExecuteScalar();
-
-                        if (count > 0)
-                        {
-                            MessageBox.Show("Mã báo này đã tồn tại trong hệ thống!\nVui lòng nhập một Mã báo khác.", "Trùng dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            txtMaBao.Focus();
-                            txtMaBao.SelectAll();
-                            return; 
-                        }
-                    }
+                    MessageBox.Show("Mã báo này đã tồn tại trong hệ thống!\nVui lòng nhập một Mã báo khác.", "Trùng dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtMaBao.Focus();
+                    txtMaBao.SelectAll();
+                    return; 
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi kết nối CSDL để kiểm tra Mã báo: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi khi kết nối API để kiểm tra Mã báo: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -330,83 +321,53 @@ namespace DATNWF.Views
             double donGia = double.Parse(txtDonGia.Text);
             int soGocParsed = int.Parse(txtSoGoc.Text);
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            var model = new {
+                MaBao = maBao,
+                Ten = txtTenBao.Text.Trim(),
+                Dvt = cbDvt.Text.Trim(),
+                DonGia = donGia,
+                SoLanPhtrongTuan = int.Parse(txtTanSuat.Text),
+                Sogoc = soGocParsed,
+                NgayBatDau = dtpNgayBatDau.Value.Date,
+                Thu1 = chkChuNhat.Checked,
+                Thu2 = chkThu2.Checked,
+                Thu3 = chkThu3.Checked,
+                Thu4 = chkThu4.Checked,
+                Thu5 = chkThu5.Checked,
+                Thu6 = chkThu6.Checked,
+                Thu7 = chkThu7.Checked,
+                NgoaiLeList = new List<object>()
+            };
+
+            if (dtNgoaiLeTam != null && dtNgoaiLeTam.Rows.Count > 0)
             {
-                conn.Open();
-                using (SqlTransaction trans = conn.BeginTransaction())
+                foreach (DataRow row in dtNgoaiLeTam.Rows)
                 {
-                    try
-                    {
-                        string sqlBao = @"
-                            IF EXISTS (SELECT 1 FROM tabBAO WHERE maBao = @maBao)
-                            BEGIN
-                                UPDATE tabBAO SET ten = @ten, DVT = @dvt, donGia = @donGia, ngayBatDau = @ngayBatDau,
-                                               thu1 = @t1, thu2 = @t2, thu3 = @t3, thu4 = @t4, thu5 = @t5, thu6 = @t6, thu7 = @t7,
-                                               soLanPHtrongTuan = @tanSuat, sogoc = @soGoc WHERE maBao = @maBao
-                            END
-                            ELSE
-                            BEGIN
-                                INSERT INTO tabBAO (maBao, ten, DVT, donGia, ngayBatDau, thu1, thu2, thu3, thu4, thu5, thu6, thu7, soLanPHtrongTuan, sogoc)
-                                VALUES (@maBao, @ten, @dvt, @donGia, @ngayBatDau, @t1, @t2, @t3, @t4, @t5, @t6, @t7, @tanSuat, @soGoc)
-                            END";
-
-                        using (SqlCommand cmdBao = new SqlCommand(sqlBao, conn, trans))
-                        {
-                            cmdBao.Parameters.AddWithValue("@maBao", maBao);
-                            cmdBao.Parameters.AddWithValue("@ten", txtTenBao.Text.Trim());
-                            cmdBao.Parameters.AddWithValue("@dvt", cbDvt.Text.Trim());
-                            cmdBao.Parameters.AddWithValue("@donGia", donGia);
-                            cmdBao.Parameters.AddWithValue("@tanSuat", int.Parse(txtTanSuat.Text));
-                            cmdBao.Parameters.AddWithValue("@soGoc", soGocParsed);
-                            cmdBao.Parameters.AddWithValue("@ngayBatDau", dtpNgayBatDau.Value.Date);
-                            cmdBao.Parameters.AddWithValue("@t1", chkChuNhat.Checked);
-                            cmdBao.Parameters.AddWithValue("@t2", chkThu2.Checked);
-                            cmdBao.Parameters.AddWithValue("@t3", chkThu3.Checked);
-                            cmdBao.Parameters.AddWithValue("@t4", chkThu4.Checked);
-                            cmdBao.Parameters.AddWithValue("@t5", chkThu5.Checked);
-                            cmdBao.Parameters.AddWithValue("@t6", chkThu6.Checked);
-                            cmdBao.Parameters.AddWithValue("@t7", chkThu7.Checked);
-                            cmdBao.ExecuteNonQuery();
-                        }
-
-                        if (dtNgoaiLeTam != null && dtNgoaiLeTam.Rows.Count > 0)
-                        {
-                            string sqlNgoaiLe = @"
-                                IF EXISTS (SELECT 1 FROM tabBao_ngoaiLe WHERE maBao = @maBao AND ngayPhatHanh = @ngay)
-                                BEGIN
-                                    UPDATE tabBao_ngoaiLe SET soLanTrongNam = @soLan WHERE maBao = @maBao AND ngayPhatHanh = @ngay
-                                END
-                                ELSE
-                                BEGIN
-                                    INSERT INTO tabBao_ngoaiLe (maBao, ngayPhatHanh, soLanTrongNam) VALUES (@maBao, @ngay, @soLan)
-                                END";
-
-                            foreach (DataRow row in dtNgoaiLeTam.Rows)
-                            {
-                                if (row.RowState == DataRowState.Deleted) continue;
-
-                                using (SqlCommand cmdNgoaiLe = new SqlCommand(sqlNgoaiLe, conn, trans))
-                                {
-                                    cmdNgoaiLe.Parameters.AddWithValue("@maBao", maBao);
-                                    cmdNgoaiLe.Parameters.AddWithValue("@ngay", Convert.ToDateTime(row["ngayPhatHanh"]).Date);
-                                    cmdNgoaiLe.Parameters.AddWithValue("@soLan", 1); 
-                                    cmdNgoaiLe.ExecuteNonQuery();
-                                }
-                            }
-                        }
-
-                        trans.Commit();
-                        MessageBox.Show("Lưu thành công thông tin báo và cấu hình ngoại lệ.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        trans.Rollback();
-                        MessageBox.Show("Lỗi khi lưu dữ liệu: " + ex.Message, "Lỗi Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    if (row.RowState == DataRowState.Deleted) continue;
+                    model.NgoaiLeList.Add(new {
+                        NgayPhatHanh = Convert.ToDateTime(row["ngayPhatHanh"]).Date,
+                        SoLanTrongNam = 1
+                    });
                 }
+            }
+
+            try
+            {
+                bool success = ApiClient.Instance.PostAsync("Publications", model).GetAwaiter().GetResult();
+                if (success)
+                {
+                    MessageBox.Show("Lưu thành công thông tin báo và cấu hình ngoại lệ.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Lưu thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lưu dữ liệu qua API: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

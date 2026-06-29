@@ -1,15 +1,18 @@
-﻿using System;
-using System.Configuration;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using DATNWF.Models;
+using DATNWF.Models.DTO;
 
 namespace DATNWF.Views
 {
     public partial class frmDelivery : Form
     {
-        private readonly string _connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
         private string _soHDHienTai = string.Empty;
+        private List<DieuPhoiDto> _listDieuPhoi = new List<DieuPhoiDto>();
 
         public frmDelivery()
         {
@@ -36,66 +39,66 @@ namespace DATNWF.Views
 
         private void LoadDanhSachDieuPhoi(string keyword = "")
         {
-            string query;
-            if (string.IsNullOrWhiteSpace(keyword))
+            try
             {
-                query = @"SELECT TOP 50 soHD, makh, ngay, tungay, denngay, ghiChu
-                          FROM dbo.tabDieuPhoi
-                          ORDER BY ngay DESC, soHD DESC";
-            }
-            else
-            {
-                query = @"SELECT soHD, makh, ngay, tungay, denngay, ghiChu
-                          FROM dbo.tabDieuPhoi
-                          WHERE soHD LIKE @kw
-                          ORDER BY ngay DESC, soHD DESC";
-            }
-
-            DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
-            {
+                _listDieuPhoi = ApiClient.Instance.GetAsync<List<DieuPhoiDto>>("Deliveries").GetAwaiter().GetResult();
+                
+                var displayList = _listDieuPhoi;
                 if (!string.IsNullOrWhiteSpace(keyword))
-                    da.SelectCommand.Parameters.AddWithValue("@kw", "%" + keyword + "%");
-                da.Fill(dt);
-            }
+                {
+                    string kw = keyword.ToLower();
+                    displayList = _listDieuPhoi.Where(x => x.Sohd.ToLower().Contains(kw) || (x.Makh != null && x.Makh.ToLower().Contains(kw))).ToList();
+                }
 
-            tabDieuPhoiBindingSource.DataSource = null;
-            tabDieuPhoiBindingSource.DataMember = "";
-            tabDieuPhoiBindingSource.DataSource = dt;
-            dgvDieuPhoi.DataSource = tabDieuPhoiBindingSource;
+                tabDieuPhoiBindingSource.DataSource = null;
+                tabDieuPhoiBindingSource.DataSource = displayList;
+                dgvDieuPhoi.DataSource = tabDieuPhoiBindingSource;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải danh sách điều phối: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private class DetailDeliveryDto
+        {
+            public string Sohd { get; set; }
+            public DateTime NgayNhan { get; set; }
+            public string MaBao { get; set; }
+            public string Tenbao { get; set; }
+            public int Sobao { get; set; }
+            public double DonGia { get; set; }
+            public int SoluongDieuPhoi { get; set; }
+            public int SoluongBan { get; set; }
+            public double ThanhTien { get; set; }
         }
 
         private void LoadChiTietDieuPhoi(string soHD)
         {
             if (string.IsNullOrEmpty(soHD)) return;
 
-            string query = @"SELECT sohd, ngayNhan, maBao, tenbao, sobao, donGia,
-                                    soluongDieuPhoi, soluongBan, thanhTien
-                             FROM dbo.tabChiTietDieuPhoi
-                             WHERE sohd = @soHD
-                             ORDER BY ngayNhan ASC";
-
-            DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+            try
             {
-                da.SelectCommand.Parameters.AddWithValue("@soHD", soHD);
-                da.Fill(dt);
+                var dt = ApiClient.Instance.GetAsync<List<DetailDeliveryDto>>($"Deliveries/{soHD}/details").GetAwaiter().GetResult();
+
+                tabChiTietDieuPhoiBindingSource.DataSource = null;
+                tabChiTietDieuPhoiBindingSource.DataSource = dt;
+                dgvChiTietDieuPhoi.DataSource = tabChiTietDieuPhoiBindingSource;
+
+                decimal tongTien = 0m;
+                if (dt != null)
+                {
+                    foreach (var row in dt)
+                    {
+                        tongTien += (decimal)row.ThanhTien;
+                    }
+                }
+                lblTongSoTien.Text = string.Format("{0:N0} đ", tongTien);
             }
-
-            tabChiTietDieuPhoiBindingSource.DataSource = null;
-            tabChiTietDieuPhoiBindingSource.DataMember = "";
-            tabChiTietDieuPhoiBindingSource.DataSource = dt;
-            dgvChiTietDieuPhoi.DataSource = tabChiTietDieuPhoiBindingSource;
-
-            decimal tongTien = 0m;
-            foreach (DataRow row in dt.Rows)
+            catch (Exception ex)
             {
-                if (row["thanhTien"] != DBNull.Value)
-                    tongTien += Convert.ToDecimal(row["thanhTien"]);
+                MessageBox.Show("Lỗi tải chi tiết điều phối: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            lblTongSoTien.Text = string.Format("{0:N0} đ", tongTien);
         }
 
         private void LoadThongTinKhachHang(string maKH)
@@ -106,29 +109,24 @@ namespace DATNWF.Views
                 return;
             }
 
-            string query = @"SELECT MAKH, TEN, DIENTHOAI, CHIETKHAU
-                             FROM dbo.tabKHACHHANG
-                             WHERE MAKH = @maKH";
-
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            try
             {
-                cmd.Parameters.AddWithValue("@maKH", maKH);
-                conn.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                var khData = ApiClient.Instance.GetAsync<KhachHangDto>($"Customers/{maKH}").GetAwaiter().GetResult();
+                if (khData != null)
                 {
-                    if (reader.Read())
-                    {
-                        txtMaKH.Text = reader["MAKH"] != DBNull.Value ? reader["MAKH"].ToString() : "";
-                        txtTenKH.Text = reader["TEN"] != DBNull.Value ? reader["TEN"].ToString() : "";
-                        txtSDT.Text = reader["DIENTHOAI"] != DBNull.Value ? reader["DIENTHOAI"].ToString() : "";
-                        txtCK.Text = reader["CHIETKHAU"] != DBNull.Value ? reader["CHIETKHAU"].ToString() : "";
-                    }
-                    else
-                    {
-                        ClearKhachHangInfo();
-                    }
+                    txtMaKH.Text = khData.MaKH;
+                    txtTenKH.Text = khData.Ten;
+                    txtSDT.Text = khData.DienThoai ?? "";
+                    txtCK.Text = khData.ChietKhau.ToString();
                 }
+                else
+                {
+                    ClearKhachHangInfo();
+                }
+            }
+            catch
+            {
+                ClearKhachHangInfo();
             }
         }
 
@@ -144,7 +142,7 @@ namespace DATNWF.Views
         {
             if (dgvDieuPhoi.SelectedRows.Count > 0)
             {
-                DataGridViewRow row = dgvDieuPhoi.SelectedRows[0];
+                var row = dgvDieuPhoi.SelectedRows[0];
                 string soHD = row.Cells["soHDDataGridViewTextBoxColumn"].Value?.ToString() ?? string.Empty;
                 string maKH = row.Cells["makhDataGridViewTextBoxColumn"].Value?.ToString() ?? string.Empty;
 

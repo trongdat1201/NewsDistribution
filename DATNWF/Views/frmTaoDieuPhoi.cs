@@ -1,14 +1,16 @@
-﻿using System;
-using System.Configuration;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using DATNWF.Models;
+using DATNWF.Models.DTO;
 
 namespace DATNWF.Views
 {
     public partial class frmTaoDieuPhoi : Form
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
         private string maKhachHangDuocChon = "";
         private readonly string _soHDEdit = null;
         private readonly bool _isEditMode = false;
@@ -119,53 +121,43 @@ namespace DATNWF.Views
             if (string.IsNullOrEmpty(maKH)) return;
 
             string loaiMaPrefix = "PT";
-            string queryKH = "SELECT P_PH, P_KT FROM tabKHACHHANG WHERE maKH = @maKH";
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
+                var khData = ApiClient.Instance.GetAsync<KhachHangDto>($"Customers/{maKH}").GetAwaiter().GetResult();
+                if (khData != null)
                 {
-                    conn.Open();
-                    using (SqlCommand cmdKH = new SqlCommand(queryKH, conn))
-                    {
-                        cmdKH.Parameters.AddWithValue("@maKH", maKH);
-                        using (SqlDataReader reader = cmdKH.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                bool isLe = reader["P_PH"] != DBNull.Value && Convert.ToBoolean(reader["P_PH"]);
-                                bool isDaiLy = reader["P_KT"] != DBNull.Value && Convert.ToBoolean(reader["P_KT"]);
+                    bool isLe = khData.P_PH;
+                    bool isDaiLy = khData.P_KT;
 
-                                if (isDaiLy) loaiMaPrefix = "PD";
-                                else if (isLe) loaiMaPrefix = "PT";
-                            }
-                        }
-                    }
-
-                    string namHienTai = DateTime.Now.ToString("yy");
-                    string dinhDangTimKiem = loaiMaPrefix + namHienTai + "_";
-
-                    string queryMax = "SELECT MAX(CAST(SUBSTRING(soHD, @lenPrefix + 1, 999) AS INT)) FROM tabDieuPhoi WHERE soHD LIKE @prefix";
-                    using (SqlCommand cmdMax = new SqlCommand(queryMax, conn))
-                    {
-                        cmdMax.Parameters.AddWithValue("@lenPrefix", dinhDangTimKiem.Length);
-                        cmdMax.Parameters.AddWithValue("@prefix", dinhDangTimKiem + "%");
-                        object maxVal = cmdMax.ExecuteScalar();
-
-                        int soThuTuTiepTheo = 1;
-
-                        if (maxVal != DBNull.Value && maxVal != null)
-                        {
-                            soThuTuTiepTheo = Convert.ToInt32(maxVal) + 1;
-                        }
-
-                        txtSoHD.Text = dinhDangTimKiem + soThuTuTiepTheo;
-                    }
+                    if (isDaiLy) loaiMaPrefix = "PD";
+                    else if (isLe) loaiMaPrefix = "PT";
                 }
-                catch (Exception ex)
+
+                string namHienTai = DateTime.Now.ToString("yy");
+                string dinhDangTimKiem = loaiMaPrefix + namHienTai + "_";
+
+                var allDeliveries = ApiClient.Instance.GetAsync<List<DieuPhoiDto>>("Deliveries").GetAwaiter().GetResult();
+                int soThuTuTiepTheo = 1;
+
+                if (allDeliveries != null)
                 {
-                    MessageBox.Show("Lỗi tự động sinh số hóa đơn: " + ex.Message, "Lỗi Hệ Thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    var matching = allDeliveries
+                        .Where(x => x.Sohd.StartsWith(dinhDangTimKiem))
+                        .Select(x => {
+                            string suffix = x.Sohd.Substring(dinhDangTimKiem.Length);
+                            int val;
+                            return int.TryParse(suffix, out val) ? val : 0;
+                        })
+                        .DefaultIfEmpty(0)
+                        .Max();
+                    soThuTuTiepTheo = matching + 1;
                 }
+
+                txtSoHD.Text = dinhDangTimKiem + soThuTuTiepTheo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tự động sinh số hóa đơn: " + ex.Message, "Lỗi Hệ Thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -216,89 +208,113 @@ namespace DATNWF.Views
             dgvChiTiet.CellDoubleClick += dgvChiTiet_CellDoubleClick;
         }
 
+        private class DetailDeliveryResponse
+        {
+            public string Sohd { get; set; }
+            public DateTime NgayNhan { get; set; }
+            public string MaBao { get; set; }
+            public string Tenbao { get; set; }
+            public int Sobao { get; set; }
+            public double DonGia { get; set; }
+            public int SoluongDieuPhoi { get; set; }
+            public int SoluongBan { get; set; }
+            public double ThanhTien { get; set; }
+        }
+
         private void LoadChiTietDieuPhoiForEdit(string soHD)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
+                var deliveriesList = ApiClient.Instance.GetAsync<List<DieuPhoiDto>>("Deliveries").GetAwaiter().GetResult();
+                var dp = deliveriesList.FirstOrDefault(x => x.Sohd == soHD);
 
-                string queryMaster = @"SELECT makh, ngay, tungay, denngay, ghiChu
-                                      FROM tabDieuPhoi WHERE soHD = @soHD";
-                using (SqlCommand cmd = new SqlCommand(queryMaster, conn))
+                if (dp != null)
                 {
-                    cmd.Parameters.AddWithValue("@soHD", soHD);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            maKhachHangDuocChon = reader["makh"]?.ToString() ?? "";
-                            dtpNgayLapPhieu.Value = reader["ngay"] != DBNull.Value
-                                ? Convert.ToDateTime(reader["ngay"]) : DateTime.Now;
-                            dtpTuNgay.Value = reader["tungay"] != DBNull.Value
-                                ? Convert.ToDateTime(reader["tungay"]) : DateTime.Now;
-                            dtpDenNgay.Value = reader["denngay"] != DBNull.Value
-                                ? Convert.ToDateTime(reader["denngay"]) : DateTime.Now;
-                            txtGhiChu.Text = reader["ghiChu"] != DBNull.Value
-                                ? reader["ghiChu"].ToString() : "";
+                    maKhachHangDuocChon = dp.Makh ?? "";
+                    dtpNgayLapPhieu.Value = dp.NgayLapPhieu ?? DateTime.Now;
+                    dtpTuNgay.Value = dp.TuNgay ?? DateTime.Now;
+                    dtpDenNgay.Value = dp.DenNgay ?? DateTime.Now;
+                    txtGhiChu.Text = dp.GhiChu ?? "";
 
-                            LoadTenKhachHang(maKhachHangDuocChon);
-                        }
-                    }
+                    LoadTenKhachHang(maKhachHangDuocChon);
                 }
 
-                string queryDetail = @"SELECT ngayNhan, maBao, tenBao, soBao, donGia,
-                                              soluongDieuPhoi, soluongBan, thanhTien
-                                       FROM tabChiTietDieuPhoi
-                                       WHERE sohd = @soHD
-                                       ORDER BY ngayNhan ASC";
-                using (SqlDataAdapter da = new SqlDataAdapter(queryDetail, conn))
+                var details = ApiClient.Instance.GetAsync<List<DetailDeliveryResponse>>($"Deliveries/{soHD}/details").GetAwaiter().GetResult();
+                
+                DataTable dt = new DataTable();
+                dt.Columns.Add("ngayNhan", typeof(DateTime));
+                dt.Columns.Add("maBao", typeof(string));
+                dt.Columns.Add("tenBao", typeof(string));
+                dt.Columns.Add("soBao", typeof(int));
+                dt.Columns.Add("donGia", typeof(decimal));
+                dt.Columns.Add("soluongDieuPhoi", typeof(int));
+                dt.Columns.Add("soluongBan", typeof(int));
+                dt.Columns.Add("thanhTien", typeof(decimal));
+
+                foreach (var detail in details)
                 {
-                    da.SelectCommand.Parameters.AddWithValue("@soHD", soHD);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    dgvChiTiet.DataSource = dt;
-
-                    if (dgvChiTiet.Columns.Count > 0)
-                    {
-                        dgvChiTiet.Columns["ngayNhan"].HeaderText = "Ngày nhận";
-                        dgvChiTiet.Columns["maBao"].HeaderText = "Mã báo";
-                        dgvChiTiet.Columns["tenBao"].HeaderText = "Tên ấn phẩm";
-                        dgvChiTiet.Columns["soBao"].HeaderText = "Số báo";
-                        dgvChiTiet.Columns["donGia"].HeaderText = "Đơn giá";
-                        dgvChiTiet.Columns["soluongDieuPhoi"].HeaderText = "SL Điều phối";
-                        dgvChiTiet.Columns["soluongBan"].HeaderText = "SL Bán thực";
-                        dgvChiTiet.Columns["thanhTien"].HeaderText = "Thành tiền";
-
-                        dgvChiTiet.Columns["ngayNhan"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                        dgvChiTiet.Columns["donGia"].DefaultCellStyle.Format = "N0";
-                        dgvChiTiet.Columns["thanhTien"].DefaultCellStyle.Format = "N0";
-
-                        dgvChiTiet.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-                        dgvChiTiet.Columns["ngayNhan"].Width = 110;
-                        dgvChiTiet.Columns["maBao"].Width = 90;
-                        dgvChiTiet.Columns["tenBao"].Width = 160;
-                        dgvChiTiet.Columns["soBao"].Width = 70;
-                        dgvChiTiet.Columns["donGia"].Width = 100;
-                        dgvChiTiet.Columns["soluongDieuPhoi"].Width = 120;
-                        dgvChiTiet.Columns["soluongBan"].Width = 120;
-                        dgvChiTiet.Columns["thanhTien"].Width = 120;
-                    }
+                    dt.Rows.Add(detail.NgayNhan, detail.MaBao, detail.Tenbao, detail.Sobao, (decimal)detail.DonGia, detail.SoluongDieuPhoi, detail.SoluongBan, (decimal)detail.ThanhTien);
                 }
+
+                dgvChiTiet.DataSource = dt;
+
+                if (dgvChiTiet.Columns.Count > 0)
+                {
+                    dgvChiTiet.Columns["ngayNhan"].HeaderText = "Ngày nhận";
+                    dgvChiTiet.Columns["maBao"].HeaderText = "Mã báo";
+                    dgvChiTiet.Columns["tenBao"].HeaderText = "Tên ấn phẩm";
+                    dgvChiTiet.Columns["soBao"].HeaderText = "Số báo";
+                    dgvChiTiet.Columns["donGia"].HeaderText = "Đơn giá";
+                    dgvChiTiet.Columns["soluongDieuPhoi"].HeaderText = "SL Điều phối";
+                    dgvChiTiet.Columns["soluongBan"].HeaderText = "SL Bán thực";
+                    dgvChiTiet.Columns["thanhTien"].HeaderText = "Thành tiền";
+
+                    dgvChiTiet.Columns["ngayNhan"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    dgvChiTiet.Columns["donGia"].DefaultCellStyle.Format = "N0";
+                    dgvChiTiet.Columns["thanhTien"].DefaultCellStyle.Format = "N0";
+
+                    dgvChiTiet.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                    dgvChiTiet.Columns["ngayNhan"].Width = 110;
+                    dgvChiTiet.Columns["maBao"].Width = 90;
+                    dgvChiTiet.Columns["tenBao"].Width = 160;
+                    dgvChiTiet.Columns["soBao"].Width = 70;
+                    dgvChiTiet.Columns["donGia"].Width = 100;
+                    dgvChiTiet.Columns["soluongDieuPhoi"].Width = 120;
+                    dgvChiTiet.Columns["soluongBan"].Width = 120;
+                    dgvChiTiet.Columns["thanhTien"].Width = 120;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải chi tiết điều phối: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void LoadTenKhachHang(string maKH)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                string query = "SELECT TEN FROM tabKHACHHANG WHERE MAKH = @maKH";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@maKH", maKH);
-                    object result = cmd.ExecuteScalar();
-                    txtMaKH.Text = result?.ToString() ?? "";
-                }
+                var kh = ApiClient.Instance.GetAsync<KhachHangDto>($"Customers/{maKH}").GetAwaiter().GetResult();
+                txtMaKH.Text = kh?.Ten ?? "";
+            }
+            catch
+            {
+                txtMaKH.Text = "";
+            }
+        }
+
+        private bool GetThuValue(BaoDto bao, string cotThu)
+        {
+            switch (cotThu.ToLower())
+            {
+                case "thu1": return bao.Thu1 ?? false;
+                case "thu2": return bao.Thu2 ?? false;
+                case "thu3": return bao.Thu3 ?? false;
+                case "thu4": return bao.Thu4 ?? false;
+                case "thu5": return bao.Thu5 ?? false;
+                case "thu6": return bao.Thu6 ?? false;
+                case "thu7": return bao.Thu7 ?? false;
+                default: return false;
             }
         }
 
@@ -317,14 +333,15 @@ namespace DATNWF.Views
             dtChiTiet.Columns.Add("soluongBan", typeof(int));
             dtChiTiet.Columns.Add("thanhTien", typeof(decimal));
 
-            DataTable dtBao = new DataTable();
-            string queryBao = "SELECT maBao, ten, donGia, ngayBatDau, thu1, thu2, thu3, thu4, thu5, thu6, thu7, sogoc FROM tabBAO";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            List<BaoDto> dtBao = null;
+            try
             {
-                using (SqlDataAdapter da = new SqlDataAdapter(queryBao, conn))
-                {
-                    da.Fill(dtBao);
-                }
+                dtBao = ApiClient.Instance.GetAsync<List<BaoDto>>("Publications").GetAwaiter().GetResult();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải danh sách ấn phẩm: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             for (DateTime date = tuNgay; date <= denNgay; date = date.AddDays(1))
@@ -332,18 +349,16 @@ namespace DATNWF.Views
                 int dayOfWeek = (int)date.DayOfWeek;
                 string cotThu = dayOfWeek == 0 ? "thu7" : "thu" + dayOfWeek.ToString();
 
-                foreach (DataRow bao in dtBao.Rows)
+                foreach (var bao in dtBao)
                 {
-                    if (bao[cotThu] != DBNull.Value && Convert.ToBoolean(bao[cotThu]) == true)
+                    if (GetThuValue(bao, cotThu))
                     {
-                        string maBao = bao["maBao"].ToString();
-                        string tenBao = bao["ten"].ToString();
-                        decimal donGia = Convert.ToDecimal(bao["donGia"]);
+                        string maBao = bao.MaBao;
+                        string tenBao = bao.Ten;
+                        decimal donGia = (decimal)bao.DonGia;
 
-                        DateTime ngayBatDau = bao["ngayBatDau"] != DBNull.Value && !string.IsNullOrEmpty(bao["ngayBatDau"].ToString())
-                            ? Convert.ToDateTime(bao["ngayBatDau"])
-                            : new DateTime(date.Year, 1, 1);
-                        int soGoc = bao["sogoc"] != DBNull.Value ? Convert.ToInt32(bao["sogoc"]) : 1;
+                        DateTime ngayBatDau = bao.NgayBatDau ?? new DateTime(date.Year, 1, 1);
+                        int soGoc = bao.Sogoc ?? 1;
 
                         int soBaoTinhToan = TinhSoBaoNghiepVu(ngayBatDau, date, soGoc, bao);
 
@@ -388,7 +403,7 @@ namespace DATNWF.Views
             dgvChiTiet.Refresh();
         }
 
-        private int TinhSoBaoNghiepVu(DateTime ngayBatDau, DateTime ngayDieuPhoi, int soGoc, DataRow thongTinBao)
+        private int TinhSoBaoNghiepVu(DateTime ngayBatDau, DateTime ngayDieuPhoi, int soGoc, BaoDto bao)
         {
             DateTime mocDauNam = new DateTime(ngayDieuPhoi.Year, 1, 1);
             DateTime mocTinhToan = (ngayBatDau > mocDauNam) ? ngayBatDau.Date : mocDauNam;
@@ -402,7 +417,7 @@ namespace DATNWF.Views
                 int dayOfWeek = (int)date.DayOfWeek;
                 string tenCotThu = (dayOfWeek == 0) ? "thu7" : "thu" + dayOfWeek.ToString();
 
-                if (thongTinBao[tenCotThu] != DBNull.Value && Convert.ToBoolean(thongTinBao[tenCotThu]) == true)
+                if (GetThuValue(bao, tenCotThu))
                 {
                     countNgayPhatHanhThucTe++;
                 }
@@ -476,86 +491,53 @@ namespace DATNWF.Views
                 return;
             }
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            var model = new
             {
-                conn.Open();
-                SqlTransaction transaction = conn.BeginTransaction();
+                Sohd = txtSoHD.Text.Trim(),
+                Makh = maKhachHangDuocChon,
+                Ngay = dtpNgayLapPhieu.Value.Date,
+                Tungay = dtpTuNgay.Value.Date,
+                Denngay = dtpDenNgay.Value.Date,
+                GhiChu = string.IsNullOrWhiteSpace(txtGhiChu.Text) ? null : txtGhiChu.Text,
+                Details = new List<object>()
+            };
 
-                try
+            foreach (DataGridViewRow row in dgvChiTiet.Rows)
+            {
+                int slDieuPhoi = Convert.ToInt32(row.Cells["soluongDieuPhoi"].Value);
+                if (slDieuPhoi > 0)
                 {
-                    if (!_isEditMode)
+                    model.Details.Add(new
                     {
-                        string queryMaster = @"INSERT INTO tabDieuPhoi (soHD, makh, ngay, tungay, denngay, ghiChu) 
-                                             VALUES (@soHD, @makh, @ngay, @tungay, @denngay, @ghiChu)";
-                        using (SqlCommand cmdMaster = new SqlCommand(queryMaster, conn, transaction))
-                        {
-                            cmdMaster.Parameters.AddWithValue("@soHD", txtSoHD.Text.Trim());
-                            cmdMaster.Parameters.AddWithValue("@makh", maKhachHangDuocChon);
-                            cmdMaster.Parameters.AddWithValue("@ngay", dtpNgayLapPhieu.Value.Date);
-                            cmdMaster.Parameters.AddWithValue("@tungay", dtpTuNgay.Value.Date);
-                            cmdMaster.Parameters.AddWithValue("@denngay", dtpDenNgay.Value.Date);
-                            cmdMaster.Parameters.AddWithValue("@ghiChu", string.IsNullOrWhiteSpace(txtGhiChu.Text) ? (object)DBNull.Value : txtGhiChu.Text);
-                            cmdMaster.ExecuteNonQuery();
-                        }
-                    }
+                        NgayNhan = Convert.ToDateTime(row.Cells["ngayNhan"].Value).Date,
+                        MaBao = row.Cells["maBao"].Value.ToString(),
+                        TenBao = row.Cells["tenBao"].Value.ToString(),
+                        SoBao = row.Cells["soBao"].Value.ToString(),
+                        DonGia = Convert.ToDouble(row.Cells["donGia"].Value),
+                        SoluongDieuPhoi = slDieuPhoi,
+                        SoluongBan = row.Cells["soluongBan"].Value != DBNull.Value ? Convert.ToInt32(row.Cells["soluongBan"].Value) : 0,
+                        ThanhTien = Convert.ToDouble(row.Cells["thanhTien"].Value)
+                    });
+                }
+            }
 
-                    string queryDeleteDetail = @"DELETE FROM tabChiTietDieuPhoi
-                                               WHERE sohd = @sohd
-                                                 AND ngayNhan = @ngayNhan
-                                                 AND maBao = @maBao";
-                    using (SqlCommand cmdDelete = new SqlCommand(queryDeleteDetail, conn, transaction))
-                    {
-                        cmdDelete.Parameters.Add("@sohd", SqlDbType.VarChar);
-                        cmdDelete.Parameters.Add("@ngayNhan", SqlDbType.DateTime);
-                        cmdDelete.Parameters.Add("@maBao", SqlDbType.VarChar);
-
-                        foreach (DataGridViewRow row in dgvChiTiet.Rows)
-                        {
-                            cmdDelete.Parameters["@sohd"].Value = txtSoHD.Text.Trim();
-                            cmdDelete.Parameters["@ngayNhan"].Value = row.Cells["ngayNhan"].Value;
-                            cmdDelete.Parameters["@maBao"].Value = row.Cells["maBao"].Value;
-                            cmdDelete.ExecuteNonQuery();
-                        }
-                    }
-
-                    string queryDetail = @"INSERT INTO tabChiTietDieuPhoi (sohd, ngayNhan, maBao, tenbao, sobao, donGia, soluongDieuPhoi, soluongBan, thanhTien) 
-                                         VALUES (@sohd, @ngayNhan, @maBao, @tenbao, @sobao, @donGia, @soluongDieuPhoi, @soluongBan, @thanhTien)";
-
-                    foreach (DataGridViewRow row in dgvChiTiet.Rows)
-                    {
-                        int slDieuPhoi = Convert.ToInt32(row.Cells["soluongDieuPhoi"].Value);
-
-                        if (slDieuPhoi > 0)
-                        {
-                            using (SqlCommand cmdDetail = new SqlCommand(queryDetail, conn, transaction))
-                            {
-                                cmdDetail.Parameters.AddWithValue("@sohd", txtSoHD.Text.Trim());
-                                cmdDetail.Parameters.AddWithValue("@ngayNhan", row.Cells["ngayNhan"].Value);
-                                cmdDetail.Parameters.AddWithValue("@maBao", row.Cells["maBao"].Value);
-                                cmdDetail.Parameters.AddWithValue("@tenbao", row.Cells["tenBao"].Value);
-                                cmdDetail.Parameters.AddWithValue("@sobao", row.Cells["soBao"].Value.ToString());
-                                cmdDetail.Parameters.AddWithValue("@donGia", row.Cells["donGia"].Value);
-
-                                cmdDetail.Parameters.AddWithValue("@soluongDieuPhoi", slDieuPhoi);
-                                cmdDetail.Parameters.AddWithValue("@soluongBan", row.Cells["soluongBan"].Value ?? 0);
-                                cmdDetail.Parameters.AddWithValue("@thanhTien", row.Cells["thanhTien"].Value);
-
-                                cmdDetail.ExecuteNonQuery();
-                            }
-                        }
-                    }
-
-                    transaction.Commit();
+            try
+            {
+                bool success = ApiClient.Instance.PostAsync("Deliveries", model).GetAwaiter().GetResult();
+                if (success)
+                {
                     MessageBox.Show("Lưu phiếu điều phối thành công!", "Hoàn tất", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     ResetForm();
                     this.DialogResult = DialogResult.OK;
                 }
-                catch (Exception ex)
+                else
                 {
-                    transaction.Rollback();
-                    MessageBox.Show("Đã xảy ra lỗi, toàn bộ dữ liệu đã được hoàn tác. Chi tiết: " + ex.Message, "Lỗi Database", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lưu phiếu điều phối thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lưu phiếu điều phối qua API: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

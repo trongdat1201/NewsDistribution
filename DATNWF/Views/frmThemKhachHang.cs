@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
+using DATNWF.Models;
+using DATNWF.Models.DTO;
 
 namespace DATNWF.Views
 {
     public partial class frmThemKhachHang : Form
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
-
         public frmThemKhachHang()
         {
             InitializeComponent();
         }
+
         private void imgSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtMaKH.Text))
@@ -45,39 +37,38 @@ namespace DATNWF.Views
                 txtChietKhau.Focus(); return;
             }
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            var kh = new KhachHangDto
             {
-                string sql = @"INSERT INTO tabKHACHHANG (MAKH, TEN, DIACHI, DIENTHOAI, CHIETKHAU, P_PH, P_KT, UUTIEN) 
-                       VALUES (@makh, @ten, @diachi, @dienthoai, @chietkhau, @pph, @pkt, @uutien)";
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                MaKH = txtMaKH.Text.Trim(),
+                Ten = txtTenKH.Text.Trim(),
+                DiaChi = string.IsNullOrWhiteSpace(txtDiaChi.Text) ? null : txtDiaChi.Text.Trim(),
+                DienThoai = string.IsNullOrWhiteSpace(txtDienThoai.Text) ? null : txtDienThoai.Text.Trim(),
+                ChietKhau = chietKhau,
+                P_PH = chkP_PH.Checked,
+                P_KT = chkP_KT.Checked,
+                Uutien = cboUuTien.SelectedItem == null ? null : cboUuTien.SelectedItem.ToString()
+            };
 
-                cmd.Parameters.AddWithValue("@makh", txtMaKH.Text.Trim());
-                cmd.Parameters.AddWithValue("@ten", txtTenKH.Text.Trim());
-
-                cmd.Parameters.AddWithValue("@diachi", string.IsNullOrWhiteSpace(txtDiaChi.Text) ? (object)DBNull.Value : txtDiaChi.Text.Trim());
-                cmd.Parameters.AddWithValue("@dienthoai", string.IsNullOrWhiteSpace(txtDienThoai.Text) ? (object)DBNull.Value : txtDienThoai.Text.Trim());
-
-                cmd.Parameters.AddWithValue("@chietkhau", chietKhau);
-                cmd.Parameters.AddWithValue("@pph", chkP_PH.Checked);
-                cmd.Parameters.AddWithValue("@pkt", chkP_KT.Checked);
-
-                cmd.Parameters.AddWithValue("@uutien", cboUuTien.SelectedItem == null ? (object)DBNull.Value : cboUuTien.SelectedItem.ToString());
-
-                try
+            try
+            {
+                bool success = ApiClient.Instance.PostAsync("Customers", kh).GetAwaiter().GetResult();
+                if (success)
                 {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
                     MessageBox.Show("Thêm Khách hàng thành công!");
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
-                catch (SqlException ex)
+                else
                 {
-                    if (ex.Number == 2627) MessageBox.Show("Lỗi: Mã khách hàng đã tồn tại!");
-                    else MessageBox.Show("Lỗi DB: " + ex.Message);
+                    MessageBox.Show("Lỗi: Mã khách hàng đã tồn tại hoặc dữ liệu không hợp lệ!");
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi API: " + ex.Message, "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
         private void imgCancel_Click(object sender, EventArgs e)
         {
             this.Close();

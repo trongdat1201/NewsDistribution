@@ -41,6 +41,15 @@ namespace DATNWF.Views
             }
         }
 
+        private class LoginResponse
+        {
+            public string Token { get; set; }
+            public string Username { get; set; }
+            public bool Ht { get; set; }
+            public bool Nv { get; set; }
+            public bool Bc { get; set; }
+        }
+
         private void Guna2GradientButton1_Click(object sender, EventArgs e)
         {
             string username = guna2TextBox2.Text.Trim();
@@ -52,69 +61,32 @@ namespace DATNWF.Views
                 return;
             }
 
-            string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                // Chỉ truy vấn bằng Username để lấy mật khẩu đã băm từ DB
-                string sql = "SELECT matKhau, HT, NV, BC FROM tabLogin WHERE tenDangNhap = @username";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@username", username);
+                var reqData = new { Username = username, Password = password };
+                var response = ApiClient.Instance.PostAsync<object, LoginResponse>("Auth/login", reqData).GetAwaiter().GetResult();
 
-                try
+                if (response != null && !string.IsNullOrEmpty(response.Token))
                 {
-                    conn.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            string storedPassword = reader["matKhau"].ToString();
-                            bool isPasswordCorrect = false;
+                    UserSession.Username = response.Username;
+                    UserSession.IsHT = response.Ht;
+                    UserSession.IsNV = response.Nv;
+                    UserSession.IsBC = response.Bc;
+                    UserSession.JwtToken = response.Token;
 
-                            // Kiểm tra xem mật khẩu lưu trong DB có phải là hash BCrypt không (bắt đầu bằng $2a$, $2b$, hoặc $2y$)
-                            if (storedPassword.StartsWith("$2a$") || storedPassword.StartsWith("$2b$") || storedPassword.StartsWith("$2y$"))
-                            {
-                                try
-                                {
-                                    isPasswordCorrect = BCrypt.Net.BCrypt.Verify(password, storedPassword);
-                                }
-                                catch
-                                {
-                                    isPasswordCorrect = false;
-                                }
-                            }
-                            else
-                            {
-                                // Cơ chế dự phòng (fallback) cho mật khẩu text thuần cũ chưa băm trong database
-                                isPasswordCorrect = (password == storedPassword);
-                            }
+                    ApiClient.Instance.SetToken(response.Token);
 
-                            if (isPasswordCorrect)
-                            {
-                                // Đăng nhập thành công, lưu thông tin vào UserSession
-                                UserSession.Username = username;
-                                UserSession.IsHT = Convert.ToBoolean(reader["HT"]);
-                                UserSession.IsNV = Convert.ToBoolean(reader["NV"]);
-                                UserSession.IsBC = Convert.ToBoolean(reader["BC"]);
-
-                                this.DialogResult = DialogResult.OK;
-                                this.Close();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Tên đăng nhập hoặc Mật khẩu không chính xác!", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Tên đăng nhập hoặc Mật khẩu không chính xác!", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Tên đăng nhập hoặc Mật khẩu không chính xác!", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đăng nhập thất bại: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void imgCancel_Click(object sender, EventArgs e)

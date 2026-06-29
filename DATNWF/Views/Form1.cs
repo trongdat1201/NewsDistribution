@@ -16,6 +16,7 @@ namespace DATNWF
         private frmInvoices frmInv;
         private frmInventory frmInven;
         private frmSetting frmSet;
+        private frmAccess frmAcc;
 
         private Form activeForm = null; 
 
@@ -26,6 +27,13 @@ namespace DATNWF
             this.StartPosition = FormStartPosition.CenterScreen;
             this.DoubleBuffered = true;
             this.Load += Home_Load;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            if (frmAcc == null || frmAcc.IsDisposed) frmAcc = new frmAccess();
+            OpenChildForm(frmAcc);
         }
 
         private void Home_Load(object sender, EventArgs e)

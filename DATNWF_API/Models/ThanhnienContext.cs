@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
@@ -364,7 +364,7 @@ public partial class ThanhnienContext : DbContext
             entity.Property(e => e.Bc).HasColumnName("BC");
             entity.Property(e => e.Ht).HasColumnName("HT");
             entity.Property(e => e.MatKhau)
-                .HasMaxLength(50)
+                .HasMaxLength(100)
                 .HasColumnName("matKhau");
             entity.Property(e => e.Nv).HasColumnName("NV");
         });

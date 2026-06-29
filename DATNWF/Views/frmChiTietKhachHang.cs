@@ -1,24 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.Charts.WinForms;
+using DATNWF.Models;
+using DATNWF.Models.DTO;
 
 namespace DATNWF.Views
 {
     public partial class frmChiTietKhachHang : Form
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
-
         private string maKHCanSua;
-        private DataTable _dtLichSu; // cache để search nhanh
+        private List<CustomerHistoryDto> _listHistory = new List<CustomerHistoryDto>();
 
         // giá trị mặc định được load lúc mở form
         private string _defaultTen;
@@ -46,40 +41,15 @@ namespace DATNWF.Views
 
         private List<ChartDataPoint> LoadChartData()
         {
-            var points = new List<ChartDataPoint>();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                string sql = @"
-                    SELECT
-                        YEAR(h.ngayLapPhieu) AS Nam,
-                        SUM(ct.thanhTien) AS TongDoanhThu,
-                        COUNT(DISTINCT h.sohd) AS SoDonHang
-                    FROM tabHOADON h
-                    JOIN tabCHITIETHOADON ct ON h.sohd = ct.sohd
-                    WHERE h.makh = @makh
-                    GROUP BY YEAR(h.ngayLapPhieu)
-                    ORDER BY Nam";
-
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@makh", maKHCanSua);
-
-                conn.Open();
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        points.Add(new ChartDataPoint
-                        {
-                            Label = reader.GetInt32(0).ToString(),
-                            DoanhThu = Convert.ToDouble(reader[1]),
-                            SoDonHang = reader.GetInt32(2)
-                        });
-                    }
-                }
+                return ApiClient.Instance.GetAsync<List<ChartDataPoint>>($"Customers/{maKHCanSua}/growth-chart").GetAwaiter().GetResult();
             }
-
-            return points;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải biểu đồ tăng trưởng: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new List<ChartDataPoint>();
+            }
         }
 
         private void RenderChart(List<ChartDataPoint> data)
@@ -115,63 +85,78 @@ namespace DATNWF.Views
 
         #region Lịch sử giao dịch
 
-        private DataTable FetchLichSuGiaoDich()
+        private class CustomerHistoryDto
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            public string SoHD { get; set; }
+            public DateTime NgayLapPhieu { get; set; }
+            public string TenBao { get; set; }
+            public int SoLuong { get; set; }
+            public double DonGia { get; set; }
+            public double ThanhTien { get; set; }
+        }
+
+        private List<CustomerHistoryDto> FetchLichSuGiaoDich()
+        {
+            try
             {
-                string sql = @"
-                    SELECT
-                        h.sohd           AS SoHD,
-                        h.ngayLapPhieu   AS NgayLapPhieu,
-                        ct.tenBao        AS TenBao,
-                        ct.soLuongThuc   AS SoLuong,
-                        ct.donGia        AS DonGia,
-                        ct.thanhTien     AS ThanhTien
-                    FROM tabHOADON h
-                    JOIN tabCHITIETHOADON ct ON h.sohd = ct.sohd
-                    WHERE h.makh = @makh
-                    ORDER BY h.ngayLapPhieu DESC, h.sohd";
-
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@makh", maKHCanSua);
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                var dt = new DataTable();
-                da.Fill(dt);
-                return dt;
+                return ApiClient.Instance.GetAsync<List<CustomerHistoryDto>>($"Customers/{maKHCanSua}/history").GetAwaiter().GetResult();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải lịch sử giao dịch: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new List<CustomerHistoryDto>();
             }
         }
 
-        private void BindLichSu(DataTable dt)
+        private void BindLichSu(List<CustomerHistoryDto> list)
         {
-            dgvLichsugiaodich.DataSource = dt;
+            dgvLichsugiaodich.DataSource = null;
+            dgvLichsugiaodich.DataSource = list;
             dgvLichsugiaodich.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
 
             if (dgvLichsugiaodich.Columns.Count > 0)
             {
-                dgvLichsugiaodich.Columns["SoHD"].HeaderText = "Số hóa đơn";
-                dgvLichsugiaodich.Columns["SoHD"].Width = 120;
+                if (dgvLichsugiaodich.Columns["SoHD"] != null)
+                {
+                    dgvLichsugiaodich.Columns["SoHD"].HeaderText = "Số hóa đơn";
+                    dgvLichsugiaodich.Columns["SoHD"].Width = 120;
+                }
 
-                dgvLichsugiaodich.Columns["NgayLapPhieu"].HeaderText = "Ngày lập";
-                dgvLichsugiaodich.Columns["NgayLapPhieu"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                dgvLichsugiaodich.Columns["NgayLapPhieu"].Width = 110;
+                if (dgvLichsugiaodich.Columns["NgayLapPhieu"] != null)
+                {
+                    dgvLichsugiaodich.Columns["NgayLapPhieu"].HeaderText = "Ngày lập";
+                    dgvLichsugiaodich.Columns["NgayLapPhieu"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    dgvLichsugiaodich.Columns["NgayLapPhieu"].Width = 110;
+                }
 
-                dgvLichsugiaodich.Columns["TenBao"].HeaderText = "Tên báo";
-                dgvLichsugiaodich.Columns["TenBao"].Width = 180;
+                if (dgvLichsugiaodich.Columns["TenBao"] != null)
+                {
+                    dgvLichsugiaodich.Columns["TenBao"].HeaderText = "Tên báo";
+                    dgvLichsugiaodich.Columns["TenBao"].Width = 180;
+                }
 
-                dgvLichsugiaodich.Columns["SoLuong"].HeaderText = "Số lượng";
-                dgvLichsugiaodich.Columns["SoLuong"].Width = 80;
-                dgvLichsugiaodich.Columns["SoLuong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                if (dgvLichsugiaodich.Columns["SoLuong"] != null)
+                {
+                    dgvLichsugiaodich.Columns["SoLuong"].HeaderText = "Số lượng";
+                    dgvLichsugiaodich.Columns["SoLuong"].Width = 80;
+                    dgvLichsugiaodich.Columns["SoLuong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                }
 
-                dgvLichsugiaodich.Columns["DonGia"].HeaderText = "Đơn giá";
-                dgvLichsugiaodich.Columns["DonGia"].DefaultCellStyle.Format = "N0";
-                dgvLichsugiaodich.Columns["DonGia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvLichsugiaodich.Columns["DonGia"].Width = 100;
+                if (dgvLichsugiaodich.Columns["DonGia"] != null)
+                {
+                    dgvLichsugiaodich.Columns["DonGia"].HeaderText = "Đơn giá";
+                    dgvLichsugiaodich.Columns["DonGia"].DefaultCellStyle.Format = "N0";
+                    dgvLichsugiaodich.Columns["DonGia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dgvLichsugiaodich.Columns["DonGia"].Width = 100;
+                }
 
-                dgvLichsugiaodich.Columns["ThanhTien"].HeaderText = "Thành tiền";
-                dgvLichsugiaodich.Columns["ThanhTien"].DefaultCellStyle.Format = "N0";
-                dgvLichsugiaodich.Columns["ThanhTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvLichsugiaodich.Columns["ThanhTien"].Width = 120;
+                if (dgvLichsugiaodich.Columns["ThanhTien"] != null)
+                {
+                    dgvLichsugiaodich.Columns["ThanhTien"].HeaderText = "Thành tiền";
+                    dgvLichsugiaodich.Columns["ThanhTien"].DefaultCellStyle.Format = "N0";
+                    dgvLichsugiaodich.Columns["ThanhTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dgvLichsugiaodich.Columns["ThanhTien"].Width = 120;
+                }
 
                 dgvLichsugiaodich.ReadOnly = true;
                 dgvLichsugiaodich.AllowUserToResizeRows = false;
@@ -181,89 +166,70 @@ namespace DATNWF.Views
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (_dtLichSu == null) return;
+            if (_listHistory == null) return;
 
-            string keyword = txtSearch.Text.Trim().Replace("'", "''");
+            string keyword = txtSearch.Text.Trim().ToLower();
 
             if (string.IsNullOrEmpty(keyword))
             {
-                BindLichSu(_dtLichSu);
+                BindLichSu(_listHistory);
                 return;
             }
 
-            DataView dv = new DataView(_dtLichSu);
-            dv.RowFilter = $"SoHD LIKE '%{keyword}%' OR TenBao LIKE '%{keyword}%'";
-            dgvLichsugiaodich.DataSource = dv.ToTable();
+            var filtered = _listHistory.Where(h =>
+                (h.SoHD != null && h.SoHD.ToLower().Contains(keyword)) ||
+                (h.TenBao != null && h.TenBao.ToLower().Contains(keyword))
+            ).ToList();
+
+            BindLichSu(filtered);
         }
 
         #endregion
 
         #region Form Load
 
-        private async void frmSuaKhachHang_Load(object sender, EventArgs e)
+        private void frmSuaKhachHang_Load(object sender, EventArgs e)
         {
             txtMaKH.Enabled = false;
 
-            var khData = await Task.Run(() =>
+            KhachHangDto khData = null;
+            try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string sql = "SELECT * FROM tabKHACHHANG WHERE MAKH = @makh";
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@makh", maKHCanSua);
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                return new
-                                {
-                                    MaKH = reader["MAKH"].ToString(),
-                                    Ten = reader["TEN"].ToString(),
-                                    DiaChi = reader["DIACHI"] == DBNull.Value ? "" : reader["DIACHI"].ToString(),
-                                    DienThoai = reader["DIENTHOAI"] == DBNull.Value ? "" : reader["DIENTHOAI"].ToString(),
-                                    ChietKhau = reader["CHIETKHAU"].ToString(),
-                                    P_PH = reader["P_PH"] != DBNull.Value && Convert.ToBoolean(reader["P_PH"]),
-                                    P_KT = reader["P_KT"] != DBNull.Value && Convert.ToBoolean(reader["P_KT"]),
-                                    UuTien = reader["UUTIEN"] == DBNull.Value ? null : reader["UUTIEN"].ToString()
-                                };
-                            }
-                        }
-                    }
-                }
-                return null;
-            });
+                khData = ApiClient.Instance.GetAsync<KhachHangDto>($"Customers/{maKHCanSua}").GetAwaiter().GetResult();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải thông tin chi tiết khách hàng: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             if (khData != null)
             {
                 txtMaKH.Text = khData.MaKH;
                 txtTenKH.Text = khData.Ten;
-                txtDiaChi.Text = khData.DiaChi;
-                txtDienThoai.Text = khData.DienThoai;
-                txtChietKhau.Text = khData.ChietKhau;
+                txtDiaChi.Text = khData.DiaChi ?? "";
+                txtDienThoai.Text = khData.DienThoai ?? "";
+                txtChietKhau.Text = khData.ChietKhau.ToString();
                 chkP_PH.Checked = khData.P_PH;
                 chkP_KT.Checked = khData.P_KT;
-                if (khData.UuTien != null)
-                    cboUuTien.SelectedItem = khData.UuTien;
+                if (khData.Uutien != null)
+                    cboUuTien.SelectedItem = khData.Uutien;
 
                 // lưu giá trị mặc định để btnDefault restore sau này
                 _defaultTen = khData.Ten;
-                _defaultDiaChi = khData.DiaChi;
-                _defaultDienThoai = khData.DienThoai;
-                _defaultChietKhau = khData.ChietKhau;
+                _defaultDiaChi = khData.DiaChi ?? "";
+                _defaultDienThoai = khData.DienThoai ?? "";
+                _defaultChietKhau = khData.ChietKhau.ToString();
                 _defaultP_PH = khData.P_PH;
                 _defaultP_KT = khData.P_KT;
-                _defaultUuTien = khData.UuTien;
+                _defaultUuTien = khData.Uutien;
             }
 
-            var chartData = await Task.Run(() => LoadChartData());
+            var chartData = LoadChartData();
             RenderChart(chartData);
 
-            _dtLichSu = await Task.Run(() => FetchLichSuGiaoDich());
-            BindLichSu(_dtLichSu);
+            _listHistory = FetchLichSuGiaoDich();
+            BindLichSu(_listHistory);
         }
-
 
         #endregion
 
@@ -294,44 +260,35 @@ namespace DATNWF.Views
                 txtChietKhau.Focus(); return;
             }
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            var kh = new KhachHangDto
             {
-                string sql = @"UPDATE tabKHACHHANG SET 
-                               TEN = @ten, 
-                               DIACHI = @diachi, 
-                               DIENTHOAI = @dienthoai, 
-                               CHIETKHAU = @chietkhau, 
-                               P_PH = @pph, 
-                               P_KT = @pkt, 
-                               UUTIEN = @uutien
-                               WHERE MAKH = @makh";
+                MaKH = maKHCanSua,
+                Ten = txtTenKH.Text.Trim(),
+                DiaChi = string.IsNullOrWhiteSpace(txtDiaChi.Text) ? null : txtDiaChi.Text.Trim(),
+                DienThoai = string.IsNullOrWhiteSpace(txtDienThoai.Text) ? null : txtDienThoai.Text.Trim(),
+                ChietKhau = chietKhau,
+                P_PH = chkP_PH.Checked,
+                P_KT = chkP_KT.Checked,
+                Uutien = cboUuTien.SelectedItem == null ? null : cboUuTien.SelectedItem.ToString()
+            };
 
-                SqlCommand cmd = new SqlCommand(sql, conn);
-
-                cmd.Parameters.AddWithValue("@makh", maKHCanSua); 
-                cmd.Parameters.AddWithValue("@ten", txtTenKH.Text.Trim());
-
-                cmd.Parameters.AddWithValue("@diachi", string.IsNullOrWhiteSpace(txtDiaChi.Text) ? (object)DBNull.Value : txtDiaChi.Text.Trim());
-                cmd.Parameters.AddWithValue("@dienthoai", string.IsNullOrWhiteSpace(txtDienThoai.Text) ? (object)DBNull.Value : txtDienThoai.Text.Trim());
-
-                cmd.Parameters.AddWithValue("@chietkhau", chietKhau);
-                cmd.Parameters.AddWithValue("@pph", chkP_PH.Checked);
-                cmd.Parameters.AddWithValue("@pkt", chkP_KT.Checked);
-                cmd.Parameters.AddWithValue("@uutien", cboUuTien.SelectedItem == null ? (object)DBNull.Value : cboUuTien.SelectedItem.ToString());
-
-                try
+            try
+            {
+                bool success = ApiClient.Instance.PutAsync($"Customers/{maKHCanSua}", kh).GetAwaiter().GetResult();
+                if (success)
                 {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
                     MessageBox.Show("Cập nhật Khách hàng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
-                catch (SqlException ex)
+                else
                 {
-                    MessageBox.Show("Lỗi Database: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lỗi: Không thể lưu thông tin cập nhật khách hàng.");
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi API: " + ex.Message, "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -139,6 +139,7 @@
     <Compile Include="Models\DTO\BaoNgoaiLeDto.cs" />
     <Compile Include="Models\DTO\HoaDonDto.cs" />
     <Compile Include="Models\UserSession.cs" />
+    <Compile Include="Models\ApiClient.cs" />
     <Compile Include="ThanhnienDataSet6.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -286,6 +287,12 @@
     </Compile>
     <Compile Include="Views\frmSetting.Designer.cs">
       <DependentUpon>frmSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\frmAccess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmAccess.Designer.cs">
+      <DependentUpon>frmAccess.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\frmSuaBao.cs">
       <SubType>Form</SubType>

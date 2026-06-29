@@ -1,17 +1,15 @@
-﻿using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using DATNWF.Models;
+using DATNWF.Models.DTO;
 
 namespace DATNWF.Views
 {
     public partial class frmInvoices : Form
     {
-        private readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["DATNWF.Properties.Settings.ThanhnienConnectionString"].ConnectionString;
-
         private string _soHDHienTai = string.Empty;
         private string _mAKHHienTai = string.Empty;
 
@@ -30,102 +28,134 @@ namespace DATNWF.Views
             LoadDanhSachDieuPhoiHople();
         }
 
+        private class InvoiceItemResponse
+        {
+            public string Sohd { get; set; }
+            public string Makh { get; set; }
+            public DateTime? NgayLapPhieu { get; set; }
+            public DateTime? TuNgay { get; set; }
+            public DateTime? DenNgay { get; set; }
+            public string Ghichu { get; set; }
+            public bool ThanhToan { get; set; }
+        }
+
         private void LoadDanhSachDieuPhoiHople(string keyword = "")
         {
-            string query;
-            if (string.IsNullOrWhiteSpace(keyword))
+            try
             {
-                // Chỉ load đơn điều phối đã hết hạn (denngay <= HÔM NAY)
-                query = @"SELECT TOP 50 dp.soHD AS SoHD, dp.makh AS MaKH, dp.ngay AS NgayLapPhieu,
-                                 dp.tungay AS TuNgay, dp.denngay AS DenNgay, dp.ghiChu AS GhiChu,
-                                 ISNULL(hd.thanhToan, 0) AS ThanhToan,
-                                 CASE WHEN hd.sohd IS NOT NULL THEN 1 ELSE 0 END AS DaLapHD
-                          FROM dbo.tabDieuPhoi dp
-                          LEFT JOIN dbo.tabHOADON hd
-                            ON hd.sohd = dp.soHD COLLATE DATABASE_DEFAULT
-                          WHERE dp.denngay <= GETDATE()
-                          ORDER BY dp.ngay DESC, dp.soHD DESC";
+                var deliveries = ApiClient.Instance.GetAsync<List<DieuPhoiDto>>("Deliveries").GetAwaiter().GetResult();
+                var invoices = ApiClient.Instance.GetAsync<List<InvoiceItemResponse>>("Invoices").GetAwaiter().GetResult();
+
+                if (string.IsNullOrWhiteSpace(keyword))
+                {
+                    // Chỉ load đơn điều phối đã hết hạn (denngay <= HÔM NAY)
+                    var today = DateTime.Now.Date;
+                    var query = from dp in deliveries
+                                where dp.DenNgay <= today
+                                join hd in invoices on dp.Sohd equals hd.Sohd into joined
+                                from hd in joined.DefaultIfEmpty()
+                                select new
+                                {
+                                    sohd = dp.Sohd,
+                                    makh = dp.Makh,
+                                    ngayLapPhieu = dp.NgayLapPhieu,
+                                    tuNgay = dp.TuNgay,
+                                    denNgay = dp.DenNgay,
+                                    ghichu = dp.GhiChu,
+                                    ThanhToan = hd != null ? hd.ThanhToan : false,
+                                    DaLapHD = hd != null ? 1 : 0
+                                };
+
+                    dgvHoaDon.DataSource = query.OrderByDescending(x => x.ngayLapPhieu).ThenByDescending(x => x.sohd).ToList();
+                }
+                else
+                {
+                    // Tìm kiếm hóa đơn cũ trong invoices
+                    string kw = keyword.Trim().ToLower();
+                    var matching = invoices.Where(hd => hd.Sohd.ToLower().Contains(kw))
+                                           .Select(hd => new
+                                           {
+                                               sohd = hd.Sohd,
+                                               makh = hd.Makh,
+                                               ngayLapPhieu = hd.NgayLapPhieu,
+                                               tuNgay = hd.TuNgay,
+                                               denNgay = hd.DenNgay,
+                                               ghichu = hd.Ghichu,
+                                               ThanhToan = hd.ThanhToan,
+                                               DaLapHD = 1
+                                           });
+
+                    dgvHoaDon.DataSource = matching.OrderByDescending(x => x.ngayLapPhieu).ThenByDescending(x => x.sohd).ToList();
+                }
+
+                // Đặt lại tên cột theo alias query
+                if (dgvHoaDon.DataSource != null && dgvHoaDon.Columns.Count > 0)
+                {
+                    if (dgvHoaDon.Columns["sohd"] != null) dgvHoaDon.Columns["sohd"].HeaderText = "Số phiếu";
+                    if (dgvHoaDon.Columns["makh"] != null) dgvHoaDon.Columns["makh"].HeaderText = "Mã KH";
+                    if (dgvHoaDon.Columns["ngayLapPhieu"] != null) dgvHoaDon.Columns["ngayLapPhieu"].HeaderText = "Ngày lập";
+                    if (dgvHoaDon.Columns["tuNgay"] != null) dgvHoaDon.Columns["tuNgay"].HeaderText = "Từ ngày";
+                    if (dgvHoaDon.Columns["denNgay"] != null) dgvHoaDon.Columns["denNgay"].HeaderText = "Đến ngày";
+                    if (dgvHoaDon.Columns["ghichu"] != null) dgvHoaDon.Columns["ghichu"].HeaderText = "Ghi chú";
+
+                    // Format cột ngày
+                    if (dgvHoaDon.Columns["ngayLapPhieu"] != null) dgvHoaDon.Columns["ngayLapPhieu"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    if (dgvHoaDon.Columns["tuNgay"] != null) dgvHoaDon.Columns["tuNgay"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    if (dgvHoaDon.Columns["denNgay"] != null) dgvHoaDon.Columns["denNgay"].DefaultCellStyle.Format = "dd/MM/yyyy";
+
+                    // Đặt lại event click row
+                    dgvHoaDon.SelectionChanged -= dgvHoaDon_SelectionChanged;
+                    dgvHoaDon.SelectionChanged += dgvHoaDon_SelectionChanged;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Tìm kiếm hóa đơn cũ trong tabHOADON
-                query = @"SELECT TOP 50 hd.sohd AS SoHD, hd.makh AS MaKH, hd.ngayLapPhieu AS NgayLapPhieu,
-                                 hd.tuNgay AS TuNgay, hd.denNgay AS DenNgay, hd.ghichu AS GhiChu,
-                                 hd.thanhToan AS ThanhToan,
-                                 1 AS DaLapHD
-                          FROM dbo.tabHOADON hd
-                          WHERE hd.sohd LIKE @kw
-                          ORDER BY hd.ngayLapPhieu DESC, hd.sohd DESC";
+                MessageBox.Show("Lỗi tải danh sách hóa đơn/điều phối: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
-            {
-                if (!string.IsNullOrWhiteSpace(keyword))
-                    da.SelectCommand.Parameters.AddWithValue("@kw", "%" + keyword.Trim() + "%");
-                da.Fill(dt);
-            }
+        }
 
-            // Gán trực tiếp vào DataGridView, bỏ qua BindingSource vì cấu trúc cột khác nhau
-            dgvHoaDon.DataSource = dt;
-
-            // Đặt lại tên cột theo alias query
-            if (dgvHoaDon.DataSource != null && dgvHoaDon.Columns.Count > 0)
-            {
-                if (dgvHoaDon.Columns["sohd"] != null) dgvHoaDon.Columns["sohd"].HeaderText = "Số phiếu";
-                if (dgvHoaDon.Columns["makh"] != null) dgvHoaDon.Columns["makh"].HeaderText = "Mã KH";
-                if (dgvHoaDon.Columns["ngayLapPhieu"] != null) dgvHoaDon.Columns["ngayLapPhieu"].HeaderText = "Ngày lập";
-                if (dgvHoaDon.Columns["tuNgay"] != null) dgvHoaDon.Columns["tuNgay"].HeaderText = "Từ ngày";
-                if (dgvHoaDon.Columns["denNgay"] != null) dgvHoaDon.Columns["denNgay"].HeaderText = "Đến ngày";
-                if (dgvHoaDon.Columns["ghichu"] != null) dgvHoaDon.Columns["ghichu"].HeaderText = "Ghi chú";
-
-                // Format cột ngày
-                if (dgvHoaDon.Columns["ngayLapPhieu"] != null) dgvHoaDon.Columns["ngayLapPhieu"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                if (dgvHoaDon.Columns["tuNgay"] != null) dgvHoaDon.Columns["tuNgay"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                if (dgvHoaDon.Columns["denNgay"] != null) dgvHoaDon.Columns["denNgay"].DefaultCellStyle.Format = "dd/MM/yyyy";
-
-                // Đặt lại event click row
-                dgvHoaDon.SelectionChanged -= dgvHoaDon_SelectionChanged;
-                dgvHoaDon.SelectionChanged += dgvHoaDon_SelectionChanged;
-            }
+        private class DetailDeliveryResponse
+        {
+            public string Sohd { get; set; }
+            public DateTime NgayNhan { get; set; }
+            public string MaBao { get; set; }
+            public string Tenbao { get; set; }
+            public int Sobao { get; set; }
+            public int SoluongBan { get; set; }
+            public int SoluongDieuPhoi { get; set; }
+            public double DonGia { get; set; }
+            public double ThanhTien { get; set; }
         }
 
         private void LoadChiTietHoaDon(string soHD)
         {
             if (string.IsNullOrEmpty(soHD)) return;
 
-            string query = @"SELECT sohd, ngayNhan, maBao, tenbao, sobao,
-                                    soluongBan, soluongDieuPhoi, donGia,
-                                    thanhTien
-                             FROM dbo.tabChiTietDieuPhoi
-                             WHERE sohd = @soHD
-                             ORDER BY ngayNhan ASC";
-
-            DataTable dt = new DataTable();
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+            try
             {
-                da.SelectCommand.Parameters.AddWithValue("@soHD", soHD);
-                da.Fill(dt);
+                var dt = ApiClient.Instance.GetAsync<List<DetailDeliveryResponse>>($"Deliveries/{soHD}/details").GetAwaiter().GetResult();
+                dgvChiTietHoaDon.DataSource = dt;
+
+                if (dgvChiTietHoaDon.Columns.Count > 0)
+                {
+                    if (dgvChiTietHoaDon.Columns["Sohd"] != null) dgvChiTietHoaDon.Columns["Sohd"].HeaderText = "Số HĐ";
+                    if (dgvChiTietHoaDon.Columns["NgayNhan"] != null) dgvChiTietHoaDon.Columns["NgayNhan"].HeaderText = "Ngày nhận";
+                    if (dgvChiTietHoaDon.Columns["MaBao"] != null) dgvChiTietHoaDon.Columns["MaBao"].HeaderText = "Mã báo";
+                    if (dgvChiTietHoaDon.Columns["Tenbao"] != null) dgvChiTietHoaDon.Columns["Tenbao"].HeaderText = "Tên báo";
+                    if (dgvChiTietHoaDon.Columns["Sobao"] != null) dgvChiTietHoaDon.Columns["Sobao"].HeaderText = "Số báo";
+                    if (dgvChiTietHoaDon.Columns["SoluongBan"] != null) dgvChiTietHoaDon.Columns["SoluongBan"].HeaderText = "SL bán";
+                    if (dgvChiTietHoaDon.Columns["SoluongDieuPhoi"] != null) dgvChiTietHoaDon.Columns["SoluongDieuPhoi"].HeaderText = "SL điều phối";
+                    if (dgvChiTietHoaDon.Columns["DonGia"] != null) dgvChiTietHoaDon.Columns["DonGia"].HeaderText = "Đơn giá";
+                    if (dgvChiTietHoaDon.Columns["ThanhTien"] != null) dgvChiTietHoaDon.Columns["ThanhTien"].HeaderText = "Thành tiền";
+
+                    if (dgvChiTietHoaDon.Columns["NgayNhan"] != null) dgvChiTietHoaDon.Columns["NgayNhan"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                    if (dgvChiTietHoaDon.Columns["DonGia"] != null) dgvChiTietHoaDon.Columns["DonGia"].DefaultCellStyle.Format = "N0";
+                    if (dgvChiTietHoaDon.Columns["ThanhTien"] != null) dgvChiTietHoaDon.Columns["ThanhTien"].DefaultCellStyle.Format = "N0";
+                }
             }
-
-            dgvChiTietHoaDon.DataSource = dt;
-
-            if (dgvChiTietHoaDon.Columns.Count > 0)
+            catch (Exception ex)
             {
-                if (dgvChiTietHoaDon.Columns["sohd"] != null) dgvChiTietHoaDon.Columns["sohd"].HeaderText = "Số HĐ";
-                if (dgvChiTietHoaDon.Columns["ngayNhan"] != null) dgvChiTietHoaDon.Columns["ngayNhan"].HeaderText = "Ngày nhận";
-                if (dgvChiTietHoaDon.Columns["maBao"] != null) dgvChiTietHoaDon.Columns["maBao"].HeaderText = "Mã báo";
-                if (dgvChiTietHoaDon.Columns["tenbao"] != null) dgvChiTietHoaDon.Columns["tenbao"].HeaderText = "Tên báo";
-                if (dgvChiTietHoaDon.Columns["sobao"] != null) dgvChiTietHoaDon.Columns["sobao"].HeaderText = "Số báo";
-                if (dgvChiTietHoaDon.Columns["soluongBan"] != null) dgvChiTietHoaDon.Columns["soluongBan"].HeaderText = "SL bán";
-                if (dgvChiTietHoaDon.Columns["soluongDieuPhoi"] != null) dgvChiTietHoaDon.Columns["soluongDieuPhoi"].HeaderText = "SL điều phối";
-                if (dgvChiTietHoaDon.Columns["donGia"] != null) dgvChiTietHoaDon.Columns["donGia"].HeaderText = "Đơn giá";
-                if (dgvChiTietHoaDon.Columns["thanhTien"] != null) dgvChiTietHoaDon.Columns["thanhTien"].HeaderText = "Thành tiền";
-
-                if (dgvChiTietHoaDon.Columns["ngayNhan"] != null) dgvChiTietHoaDon.Columns["ngayNhan"].DefaultCellStyle.Format = "dd/MM/yyyy";
-                if (dgvChiTietHoaDon.Columns["donGia"] != null) dgvChiTietHoaDon.Columns["donGia"].DefaultCellStyle.Format = "N0";
-                if (dgvChiTietHoaDon.Columns["thanhTien"] != null) dgvChiTietHoaDon.Columns["thanhTien"].DefaultCellStyle.Format = "N0";
+                MessageBox.Show("Lỗi tải chi tiết: " + ex.Message, "Lỗi API", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
