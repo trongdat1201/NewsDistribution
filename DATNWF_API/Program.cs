@@ -1,16 +1,41 @@
 using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using DATNWF_API.Filters;
 
 try
 {
     var builder = WebApplication.CreateBuilder(args);
 
+    // CẤU HÌNH SERILOG GHI LOG AUDIT TRAIL
+    var logDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs");
+    if (!Directory.Exists(logDirectory))
+    {
+        Directory.CreateDirectory(logDirectory);
+    }
+    
+    Log.Logger = new LoggerConfiguration()
+        .MinimumLevel.Information()
+        .WriteTo.Console()
+        .WriteTo.File(
+            Path.Combine(logDirectory, "audit-.txt"),
+            rollingInterval: RollingInterval.Day,
+            outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+        )
+        .CreateLogger();
+
+    builder.Host.UseSerilog();
+
     // ĐĂNG KÝ BỘ NÃO DATABASE VÀO HỆ THỐNG
     builder.Services.AddDbContext<DATNWF_API.Models.ThanhnienContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-    // Add services to the container.
-    builder.Services.AddControllers();
+    // Add services to the container. Register AuditLogFilter globally.
+    builder.Services.AddControllers(options =>
+    {
+        options.Filters.Add<AuditLogFilter>();
+    });
     builder.Services.AddOpenApi();
 
     // CẤU HÌNH JWT AUTHENTICATION
@@ -37,13 +62,9 @@ try
 
     builder.Services.AddAuthorization(options =>
     {
-        options.AddPolicy("AdminOnly", policy => policy.RequireClaim("Ht", "true"));
-        options.AddPolicy("StaffOrAdmin", policy => policy.RequireAssertion(context =>
-            context.User.HasClaim(c => (c.Type == "Nv" || c.Type == "Ht") && c.Value.ToLower() == "true")
-        ));
-        options.AddPolicy("ReportOrAdmin", policy => policy.RequireAssertion(context =>
-            context.User.HasClaim(c => (c.Type == "Bc" || c.Type == "Ht") && c.Value.ToLower() == "true")
-        ));
+        options.AddPolicy("AdminOnly", policy => policy.RequireRole("ROLE_HT"));
+        options.AddPolicy("StaffOrAdmin", policy => policy.RequireRole("ROLE_HT", "ROLE_NV_PH"));
+        options.AddPolicy("ReportOrAdmin", policy => policy.RequireRole("ROLE_HT", "ROLE_NV_KT"));
     });
 
     var app = builder.Build();
@@ -57,6 +78,10 @@ try
     app.UseHttpsRedirection();
     app.UseAuthentication();
     app.UseAuthorization();
+    
+    // ĐĂNG KÝ MIDDLEWARE GIA HẠN TOKEN TRƯỢT (SLIDING EXPIRATION)
+    app.UseMiddleware<DATNWF_API.Middleware.JwtSlidingExpirationMiddleware>();
+
     app.MapControllers();
 
     app.Run();

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace DATNWF
 {
-    public partial class Home : Form
+    public partial class Home : Form, IMessageFilter
     {
         public static bool NeedsRestart { get; set; } = false;
         private frmDashboard frmDash;
@@ -19,6 +19,8 @@ namespace DATNWF
         private frmAccess frmAcc;
 
         private Form activeForm = null; 
+        private Timer _inactivityTimer;
+        private const int InactivityTimeoutMs = 1 * 60 * 1000; // Đăng xuất tự động sau 1 phút treo máy (để làm demo)
 
         public Home()
         {
@@ -28,6 +30,51 @@ namespace DATNWF
             this.DoubleBuffered = true;
             this.Load += Home_Load;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+
+            // Đăng ký bộ lọc thông điệp toàn cục để phát hiện click/gõ phím trên toàn ứng dụng
+            Application.AddMessageFilter(this);
+
+            // Khởi tạo timer đếm ngược treo máy
+            _inactivityTimer = new Timer();
+            _inactivityTimer.Interval = InactivityTimeoutMs;
+            _inactivityTimer.Tick += InactivityTimer_Tick;
+        }
+
+        public bool PreFilterMessage(ref Message m)
+        {
+            // Kiểm tra các thông điệp hoạt động chuột, click chuột và bàn phím (WM_MOUSEMOVE, WM_LBUTTONDOWN, WM_KEYDOWN, v.v.)
+            if (m.Msg == 0x0200 || m.Msg == 0x0201 || m.Msg == 0x0202 || m.Msg == 0x0204 || m.Msg == 0x0100 || m.Msg == 0x0104)
+            {
+                // Reset bộ đếm ngược về lại 1 phút
+                if (_inactivityTimer != null && _inactivityTimer.Enabled)
+                {
+                    _inactivityTimer.Stop();
+                    _inactivityTimer.Start();
+                }
+            }
+            return false;
+        }
+
+        private void InactivityTimer_Tick(object sender, EventArgs e)
+        {
+            _inactivityTimer.Stop();
+            Application.RemoveMessageFilter(this);
+
+            MessageBox.Show("Phiên làm việc đã tự động ngắt kết nối do bạn không hoạt động quá lâu!", 
+                            "Thông báo tự động đăng xuất", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            // Xóa phiên và buộc khởi động lại WinForms để hiện Login
+            DATNWF.Models.UserSession.Clear();
+            Home.NeedsRestart = true;
+            
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action(() => this.Close()));
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -42,12 +89,16 @@ namespace DATNWF
             frmLogin login = new frmLogin();
             if (login.ShowDialog() != DialogResult.OK)
             {
+                Application.RemoveMessageFilter(this);
                 this.Close(); // Home closes normally → Application.Run returns → loop exits cleanly
                 return;
             }
 
             // Áp dụng quyền hạn menu
             ApplyPermissions();
+
+            // Khởi động bộ đếm thời gian treo máy
+            _inactivityTimer.Start();
 
             // Mở màn hình mặc định tương ứng với quyền hạn
             if (UserSession.IsBC)
@@ -203,6 +254,17 @@ namespace DATNWF
             }
             if (picTime.Image != null) picTime.Image.Dispose();
             picTime.Image = bmp;
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.RemoveMessageFilter(this);
+            if (_inactivityTimer != null)
+            {
+                _inactivityTimer.Stop();
+                _inactivityTimer.Dispose();
+            }
+            base.OnFormClosing(e);
         }
     }
 }

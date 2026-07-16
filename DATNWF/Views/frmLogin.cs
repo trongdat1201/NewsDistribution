@@ -45,9 +45,7 @@ namespace DATNWF.Views
         {
             public string Token { get; set; }
             public string Username { get; set; }
-            public bool Ht { get; set; }
-            public bool Nv { get; set; }
-            public bool Bc { get; set; }
+            public string Role { get; set; }
         }
 
         private void Guna2GradientButton1_Click(object sender, EventArgs e)
@@ -69,9 +67,7 @@ namespace DATNWF.Views
                 if (response != null && !string.IsNullOrEmpty(response.Token))
                 {
                     UserSession.Username = response.Username;
-                    UserSession.IsHT = response.Ht;
-                    UserSession.IsNV = response.Nv;
-                    UserSession.IsBC = response.Bc;
+                    UserSession.Role = response.Role;
                     UserSession.JwtToken = response.Token;
 
                     ApiClient.Instance.SetToken(response.Token);

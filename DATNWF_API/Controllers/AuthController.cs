@@ -76,15 +76,13 @@ namespace DATNWF_API.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.TenDangNhap),
-                new Claim("Ht", user.Ht.ToString().ToLower()),
-                new Claim("Nv", user.Nv.ToString().ToLower()),
-                new Claim("Bc", user.Bc.ToString().ToLower())
+                new Claim(ClaimTypes.Role, user.Role)
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddDays(7),
+                Expires = DateTime.UtcNow.AddMinutes(2), // Đặt 30 phút (2 phút để demo)
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
@@ -95,9 +93,7 @@ namespace DATNWF_API.Controllers
             {
                 Token = tokenString,
                 Username = user.TenDangNhap,
-                Ht = user.Ht,
-                Nv = user.Nv,
-                Bc = user.Bc
+                Role = user.Role
             });
         }
     }
@@ -112,8 +108,6 @@ namespace DATNWF_API.Controllers
     {
         public string Token { get; set; } = string.Empty;
         public string Username { get; set; } = string.Empty;
-        public bool Ht { get; set; }
-        public bool Nv { get; set; }
-        public bool Bc { get; set; }
+        public string Role { get; set; } = string.Empty;
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace DATNWF_API.Models;
@@ -13,7 +13,7 @@ public partial class TabChiTietDieuPhoi
 
     public string? Tenbao { get; set; }
 
-    public string? Sobao { get; set; }
+    public int? Sobao { get; set; }
 
     public decimal? DonGia { get; set; }
 

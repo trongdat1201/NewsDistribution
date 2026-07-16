@@ -29,9 +29,7 @@ namespace DATNWF_API.Controllers
                 .Select(u => new
                 {
                     TenDangNhap = u.TenDangNhap,
-                    Ht = u.Ht,
-                    Nv = u.Nv,
-                    Bc = u.Bc
+                    Role = u.Role
                 }).ToListAsync();
             return Ok(list);
         }
@@ -46,9 +44,7 @@ namespace DATNWF_API.Controllers
             return Ok(new
             {
                 TenDangNhap = u.TenDangNhap,
-                Ht = u.Ht,
-                Nv = u.Nv,
-                Bc = u.Bc
+                Role = u.Role
             });
         }
 
@@ -71,9 +67,7 @@ namespace DATNWF_API.Controllers
                 TenDangNhap = model.TenDangNhap,
                 // Hashing password with BCrypt (which generates dynamic salt internally)
                 MatKhau = BCrypt.Net.BCrypt.HashPassword(model.MatKhau),
-                Ht = model.Ht,
-                Nv = model.Nv,
-                Bc = model.Bc
+                Role = model.Role
             };
 
             _context.TabLogins.Add(user);
@@ -81,9 +75,7 @@ namespace DATNWF_API.Controllers
 
             return CreatedAtAction(nameof(GetUser), new { username = user.TenDangNhap }, new {
                 TenDangNhap = user.TenDangNhap,
-                Ht = user.Ht,
-                Nv = user.Nv,
-                Bc = user.Bc
+                Role = user.Role
             });
         }
 
@@ -99,9 +91,7 @@ namespace DATNWF_API.Controllers
             var user = await _context.TabLogins.FirstOrDefaultAsync(x => x.TenDangNhap == username);
             if (user == null) return NotFound();
 
-            user.Ht = model.Ht;
-            user.Nv = model.Nv;
-            user.Bc = model.Bc;
+            user.Role = model.Role;
 
             if (!string.IsNullOrWhiteSpace(model.MatKhau))
             {
@@ -130,8 +120,6 @@ namespace DATNWF_API.Controllers
     {
         public string TenDangNhap { get; set; } = null!;
         public string? MatKhau { get; set; }
-        public bool Ht { get; set; }
-        public bool Nv { get; set; }
-        public bool Bc { get; set; }
+        public string Role { get; set; } = null!;
     }
 }

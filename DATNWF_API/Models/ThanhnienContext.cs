@@ -134,11 +134,7 @@ public partial class ThanhnienContext : DbContext
             entity.Property(e => e.DonGia)
                 .HasColumnType("money")
                 .HasColumnName("donGia");
-            entity.Property(e => e.Sobao)
-                .HasMaxLength(4)
-                .IsUnicode(false)
-                .UseCollation("SQL_Latin1_General_CP1_CI_AS")
-                .HasColumnName("sobao");
+            entity.Property(e => e.Sobao).HasColumnName("sobao");
             entity.Property(e => e.SoluongBan).HasColumnName("soluongBan");
             entity.Property(e => e.SoluongDieuPhoi).HasColumnName("soluongDieuPhoi");
             entity.Property(e => e.Tenbao)
@@ -361,12 +357,12 @@ public partial class ThanhnienContext : DbContext
             entity.Property(e => e.TenDangNhap)
                 .HasMaxLength(50)
                 .HasColumnName("tenDangNhap");
-            entity.Property(e => e.Bc).HasColumnName("BC");
-            entity.Property(e => e.Ht).HasColumnName("HT");
+            entity.Property(e => e.Role)
+                .HasMaxLength(50)
+                .HasColumnName("Role");
             entity.Property(e => e.MatKhau)
                 .HasMaxLength(100)
                 .HasColumnName("matKhau");
-            entity.Property(e => e.Nv).HasColumnName("NV");
         });
 
         modelBuilder.Entity<TabTon>(entity =>

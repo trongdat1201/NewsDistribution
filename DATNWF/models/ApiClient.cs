@@ -37,9 +37,27 @@ namespace DATNWF.Models
                 : new AuthenticationHeaderValue("Bearer", token);
         }
 
+        private void CheckAndRefreshToken(HttpResponseMessage response)
+        {
+            if (response.Headers.Contains("X-New-Token"))
+            {
+                var newTokens = response.Headers.GetValues("X-New-Token");
+                foreach (var token in newTokens)
+                {
+                    if (!string.IsNullOrEmpty(token))
+                    {
+                        SetToken(token);
+                        DATNWF.Models.UserSession.JwtToken = token;
+                        break;
+                    }
+                }
+            }
+        }
+
         public async Task<T> GetAsync<T>(string endpoint)
         {
             HttpResponseMessage response = await _client.GetAsync(endpoint).ConfigureAwait(false);
+            CheckAndRefreshToken(response);
             if (response.IsSuccessStatusCode)
             {
                 string json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -58,6 +76,7 @@ namespace DATNWF.Models
             string json = JsonConvert.SerializeObject(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _client.PostAsync(endpoint, content).ConfigureAwait(false);
+            CheckAndRefreshToken(response);
             return response.IsSuccessStatusCode;
         }
 
@@ -66,6 +85,7 @@ namespace DATNWF.Models
             string json = JsonConvert.SerializeObject(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _client.PostAsync(endpoint, content).ConfigureAwait(false);
+            CheckAndRefreshToken(response);
             if (response.IsSuccessStatusCode)
             {
                 string resJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -73,6 +93,13 @@ namespace DATNWF.Models
             }
             if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
+                if (endpoint.Contains("Auth/login"))
+                {
+                    string errContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    // Loại bỏ ký tự nháy kép dư thừa từ chuỗi JSON thô
+                    errContent = errContent.Trim('\"');
+                    throw new UnauthorizedAccessException(!string.IsNullOrWhiteSpace(errContent) ? errContent : "Tên đăng nhập hoặc mật khẩu không chính xác.");
+                }
                 throw new UnauthorizedAccessException("Phiên đăng nhập đã hết hạn hoặc không hợp lệ.");
             }
             string err = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -84,12 +111,14 @@ namespace DATNWF.Models
             string json = JsonConvert.SerializeObject(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await _client.PutAsync(endpoint, content).ConfigureAwait(false);
+            CheckAndRefreshToken(response);
             return response.IsSuccessStatusCode;
         }
 
         public async Task<bool> DeleteAsync(string endpoint)
         {
             HttpResponseMessage response = await _client.DeleteAsync(endpoint).ConfigureAwait(false);
+            CheckAndRefreshToken(response);
             if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
             {
                 throw new InvalidOperationException("Không thể xóa dữ liệu vì có các ràng buộc liên quan.");

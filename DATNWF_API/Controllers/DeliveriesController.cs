@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DATNWF_API.Controllers
 {
-    [Authorize(Policy = "StaffOrAdmin")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DeliveriesController : ControllerBase
@@ -70,6 +70,7 @@ namespace DATNWF_API.Controllers
         }
 
         // POST: api/Deliveries
+        [Authorize(Policy = "StaffOrAdmin")]
         [HttpPost]
         public async Task<IActionResult> SaveDelivery([FromBody] DeliveryInputModel model)
         {
@@ -119,6 +120,7 @@ namespace DATNWF_API.Controllers
         }
 
         // DELETE: api/Deliveries/{sohd}
+        [Authorize(Policy = "StaffOrAdmin")]
         [HttpDelete("{sohd}")]
         public async Task<IActionResult> DeleteDelivery(string sohd)
         {
@@ -150,7 +152,7 @@ namespace DATNWF_API.Controllers
         public DateTime NgayNhan { get; set; }
         public string MaBao { get; set; } = null!;
         public string? TenBao { get; set; }
-        public string? SoBao { get; set; }
+        public int? SoBao { get; set; }
         public double DonGia { get; set; }
         public int SoluongDieuPhoi { get; set; }
         public int SoluongBan { get; set; }

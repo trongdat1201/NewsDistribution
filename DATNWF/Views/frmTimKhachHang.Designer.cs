@@ -1,4 +1,4 @@
-﻿namespace DATNWF.Views
+namespace DATNWF.Views
 {
     partial class frmTimKhachHang
     {
@@ -45,15 +45,12 @@
             this.tENDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dIENTHOAIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabKHACHHANGBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.thanhnienDataSet2 = new DATNWF.ThanhnienDataSet2();
-            this.tabKHACHHANGTableAdapter = new DATNWF.ThanhnienDataSet2TableAdapters.tabKHACHHANGTableAdapter();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             this.pnlBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabKHACHHANGBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thanhnienDataSet2)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -211,7 +208,7 @@
             // 
             // mAKHDataGridViewTextBoxColumn
             // 
-            this.mAKHDataGridViewTextBoxColumn.DataPropertyName = "MAKH";
+            this.mAKHDataGridViewTextBoxColumn.DataPropertyName = "MaKH";
             this.mAKHDataGridViewTextBoxColumn.HeaderText = "Mã khách hàng";
             this.mAKHDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.mAKHDataGridViewTextBoxColumn.Name = "mAKHDataGridViewTextBoxColumn";
@@ -219,7 +216,7 @@
             // 
             // tENDataGridViewTextBoxColumn
             // 
-            this.tENDataGridViewTextBoxColumn.DataPropertyName = "TEN";
+            this.tENDataGridViewTextBoxColumn.DataPropertyName = "Ten";
             this.tENDataGridViewTextBoxColumn.HeaderText = "Tên khách hàng";
             this.tENDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.tENDataGridViewTextBoxColumn.Name = "tENDataGridViewTextBoxColumn";
@@ -227,7 +224,7 @@
             // 
             // dIENTHOAIDataGridViewTextBoxColumn
             // 
-            this.dIENTHOAIDataGridViewTextBoxColumn.DataPropertyName = "DIENTHOAI";
+            this.dIENTHOAIDataGridViewTextBoxColumn.DataPropertyName = "DienThoai";
             this.dIENTHOAIDataGridViewTextBoxColumn.HeaderText = "Số điện thoại";
             this.dIENTHOAIDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.dIENTHOAIDataGridViewTextBoxColumn.Name = "dIENTHOAIDataGridViewTextBoxColumn";
@@ -235,17 +232,7 @@
             // 
             // tabKHACHHANGBindingSource
             // 
-            this.tabKHACHHANGBindingSource.DataMember = "tabKHACHHANG";
-            this.tabKHACHHANGBindingSource.DataSource = this.thanhnienDataSet2;
-            // 
-            // thanhnienDataSet2
-            // 
-            this.thanhnienDataSet2.DataSetName = "ThanhnienDataSet2";
-            this.thanhnienDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tabKHACHHANGTableAdapter
-            // 
-            this.tabKHACHHANGTableAdapter.ClearBeforeFill = true;
+            this.tabKHACHHANGBindingSource.DataSource = typeof(DATNWF.Models.DTO.KhachHangDto);
             // 
             // frmTimKhachHang
             // 
@@ -265,7 +252,6 @@
             this.pnlBody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabKHACHHANGBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thanhnienDataSet2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -279,9 +265,7 @@
         private Guna.UI2.WinForms.Guna2DataGridView dgvKhachHang;
         private Guna.UI2.WinForms.Guna2PictureBox btnClose;
         private Guna.UI2.WinForms.Guna2PictureBox btnSave;
-        private ThanhnienDataSet2 thanhnienDataSet2;
         private System.Windows.Forms.BindingSource tabKHACHHANGBindingSource;
-        private ThanhnienDataSet2TableAdapters.tabKHACHHANGTableAdapter tabKHACHHANGTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn mAKHDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tENDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dIENTHOAIDataGridViewTextBoxColumn;

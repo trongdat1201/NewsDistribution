@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DATNWF_API.Controllers
 {
-    [Authorize(Policy = "StaffOrAdmin")]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase

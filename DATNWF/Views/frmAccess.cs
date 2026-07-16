@@ -12,9 +12,12 @@ namespace DATNWF.Views
         private class UserDto
         {
             public string TenDangNhap { get; set; }
-            public bool Ht { get; set; }
-            public bool Nv { get; set; }
-            public bool Bc { get; set; }
+            public string Role { get; set; }
+
+            // Các thuộc tính ảo trả về boolean tương thích với GridView cũ
+            public bool Ht => Role == "ROLE_HT";
+            public bool Nv => Role == "ROLE_NV_PH";
+            public bool Bc => Role == "ROLE_NV_KT";
         }
 
         private List<UserDto> _usersList = new List<UserDto>();
@@ -23,6 +26,11 @@ namespace DATNWF.Views
         public frmAccess()
         {
             InitializeComponent();
+            
+            // Thiết lập loại trừ lẫn nhau (chỉ cho phép chọn 1 Role tại một thời điểm)
+            this.chkHT.CheckedChanged += (s, ev) => { if (chkHT.Checked) { chkNV.Checked = false; chkBC.Checked = false; } };
+            this.chkNV.CheckedChanged += (s, ev) => { if (chkNV.Checked) { chkHT.Checked = false; chkBC.Checked = false; } };
+            this.chkBC.CheckedChanged += (s, ev) => { if (chkBC.Checked) { chkHT.Checked = false; chkNV.Checked = false; } };
         }
 
         private void frmAccess_Load(object sender, EventArgs e)
@@ -105,13 +113,16 @@ namespace DATNWF.Views
                 return;
             }
 
+            string selectedRole = "ROLE_NV_PH"; // mặc định là nhân viên phát hành
+            if (chkHT.Checked) selectedRole = "ROLE_HT";
+            else if (chkBC.Checked) selectedRole = "ROLE_NV_KT";
+            else if (chkNV.Checked) selectedRole = "ROLE_NV_PH";
+
             var model = new
             {
                 TenDangNhap = username,
                 MatKhau = string.IsNullOrEmpty(password) ? null : password,
-                Ht = chkHT.Checked,
-                Nv = chkNV.Checked,
-                Bc = chkBC.Checked
+                Role = selectedRole
             };
 
             try
