@@ -17,7 +17,7 @@ public partial class TabChitiethoadon
 
     public int? SoLuongThuc { get; set; }
 
-    public int? SoLuongPhatSinh { get; set; }
+    public int? SoLuongDu { get; set; }
 
     public double? DonGia { get; set; }
 

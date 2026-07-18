@@ -121,7 +121,7 @@
   <data name="btnEdit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAADfNSURBVHhe7Z15
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAADfNSURBVHhe7Z15
         eBz1nacFQd0iJJkMQ3RZ3TrsAJOQ2U2yybCzbDI7k2SuTWaeGXhmNxOSybGJ8QUkWA4EEhN8IducloSH
         kAtmJhhfMuBgMFiSD0iwjS1btmVZah2WbdmyLatb8qGj9ikJA/52u12lru6q36/e93nefxOjVv3eT7e6
         q7OyAFTglmWBvBn1f18wo25O3rTalbnTarfnTnntUO6UV2J5k18+m3vby4N531s3kvu9l4z8O39nFJY3
@@ -366,7 +366,7 @@
   <data name="btnAddNew.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAEqRSURBVHhe7d15
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAEqRSURBVHhe7d15
         fFT1vf/xSK21m900IYFMMtFab9u7etvaXn+VksyeSSZounhrF29rVRY3CGJdgrIJiBuZGCArYDWFTABL
         BRdWcUMlCWFPJosLCirMBASyfH+PE1DJ53sCk5kzc77fc96vx+P59+2FOd/3VzKZSUpCSIYKa8+7aMIm
         Z+r4TQ+kjF2/MmXsusbkm198N+WmF0LJNz53PPnGNT2pRY0fpRY1Hk0tamRpRY2HUosaP0gtamxJK2ps
@@ -1090,11 +1090,17 @@
   <metadata name="thanhnienDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="thanhnienDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="tabBAOTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>403, 17</value>
   </metadata>
   <metadata name="tabBaongoaiLeBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 58</value>
+  </metadata>
+  <metadata name="thanhnienDataSet6.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1027, 17</value>
   </metadata>
   <metadata name="thanhnienDataSet6.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1027, 17</value>
@@ -1109,6 +1115,6 @@
     <value>274, 58</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>57</value>
+    <value>49</value>
   </metadata>
 </root>

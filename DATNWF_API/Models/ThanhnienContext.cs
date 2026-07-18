@@ -174,7 +174,7 @@ public partial class ThanhnienContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("ngayNhan");
             entity.Property(e => e.SoBao).HasColumnName("soBao");
-            entity.Property(e => e.SoLuongPhatSinh).HasColumnName("soLuongPhatSinh");
+            entity.Property(e => e.SoLuongDu).HasColumnName("soLuongDu");
             entity.Property(e => e.SoLuongThuc).HasColumnName("soLuongThuc");
             entity.Property(e => e.Sohd)
                 .HasMaxLength(30)

@@ -28,7 +28,7 @@ namespace DATNWF_API.Controllers
 
             // 1. LẤY CÁC THÔNG SỐ TỔNG
             summary.TongDoanhThu = await _context.TabChitiethoadons.SumAsync(x => (decimal?)x.ThanhTien) ?? 0;
-            summary.TongSoBao = await _context.TabChitiethoadons.SumAsync(x => (int?)(x.SoLuongThuc + x.SoLuongPhatSinh)) ?? 0;
+            summary.TongSoBao = await _context.TabChitiethoadons.SumAsync(x => (int?)(x.SoLuongThuc + x.SoLuongDu)) ?? 0;
             summary.TongKhachHang = await _context.TabKhachhangs.CountAsync();
 
             // 2. BIỂU ĐỒ TRÒN 
@@ -71,7 +71,7 @@ namespace DATNWF_API.Controllers
                                                select new TopKhachHangDto
                                                {
                                                    TenKhachHang = g.Key,
-                                                   SoLuongMua = g.Sum(x => (double?)(x.SoLuongThuc + x.SoLuongPhatSinh)) ?? 0
+                                                   SoLuongMua = g.Sum(x => (double?)(x.SoLuongThuc + x.SoLuongDu)) ?? 0
                                                })
                                                .OrderBy(x => x.SoLuongMua).Take(10).ToListAsync();
 

@@ -23,6 +23,9 @@ namespace DATNWF.Models.DTO
         public bool P_KT { get; set; }
 
         public string Uutien { get; set; }
+
+        [JsonIgnore]
+        public string SearchKey { get; set; }
     }
 
     // Class hứng dữ liệu khách order gần đây
